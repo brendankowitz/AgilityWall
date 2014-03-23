@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using AgilityWall.WinPhone.Resources;
+﻿using Microsoft.Phone.Controls;
 
-namespace AgilityWall.WinPhone
+namespace AgilityWall.WinPhone.Features.Main
 {
     public partial class MainPage : PhoneApplicationPage
     {

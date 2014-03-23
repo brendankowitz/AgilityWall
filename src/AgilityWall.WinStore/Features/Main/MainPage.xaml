@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <TextBox Text="Welcome to caliburn micro"></TextBox>
     </Grid>
 </Page>
