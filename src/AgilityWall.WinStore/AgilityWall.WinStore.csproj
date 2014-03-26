@@ -109,6 +109,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\Main\MainPageViewModel.cs" />
+    <Compile Include="Infrastructure\NavigationHelper.cs" />
     <Compile Include="Infrastructure\PlatformServices\ObjectStorageHelper.RT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

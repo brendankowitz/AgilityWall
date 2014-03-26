@@ -41,13 +41,49 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Agility Wall" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
 
+                <StackPanel Orientation="Horizontal">
+
+                    <Border BorderBrush="DarkGray" BorderThickness="3" Background="White" Margin="12" Padding="8">
+                        <StackPanel Width="300" Background="White">
+                            <TextBlock Text="To do" Foreground="Black" FontSize="36"></TextBlock>
+
+                            <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
+                                <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
+                            </Border>
+                            <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
+                                <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
+                            </Border>
+                            <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
+                                <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
+                            </Border>
+                            <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
+                                <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <Border BorderBrush="DarkGray" BorderThickness="3" Background="White" Margin="12" Padding="8">
+                        <Grid Width="300" Background="White">
+                            <TextBlock Text="Doing" Foreground="Black" FontSize="36"></TextBlock>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderBrush="DarkGray" BorderThickness="3" Background="White" Margin="12" Padding="8">
+                        <Grid Width="300" Background="White">
+                            <TextBlock Text="Done" Foreground="Black" FontSize="36"></TextBlock>
+                        </Grid>
+                    </Border>
+
+                </StackPanel>
+
+            </ScrollViewer>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

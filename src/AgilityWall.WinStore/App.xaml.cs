@@ -14,7 +14,7 @@ namespace AgilityWall.WinStore
     /// </summary>
     public sealed partial class App
     {
-        private WinRTContainer container;
+        private WinRTContainer _container;
 
         public App()
         {
@@ -23,16 +23,16 @@ namespace AgilityWall.WinStore
 
         protected override void Configure()
         {
-            container = new WinRTContainer();
-            container.RegisterWinRTServices();
+            _container = new WinRTContainer();
+            _container.RegisterWinRTServices();
 
             //TODO: Register your view models at the container
-            container.PerRequest<MainPageViewModel>();
+            _container.PerRequest<MainPageViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
         {
-            var instance = container.GetInstance(service, key);
+            var instance = _container.GetInstance(service, key);
             if (instance != null)
                 return instance;
             throw new Exception("Could not locate any instances.");
@@ -40,17 +40,17 @@ namespace AgilityWall.WinStore
 
         protected override IEnumerable<object> GetAllInstances(Type service)
         {
-            return container.GetAllInstances(service);
+            return _container.GetAllInstances(service);
         }
 
         protected override void BuildUp(object instance)
         {
-            container.BuildUp(instance);
+            _container.BuildUp(instance);
         }
 
         protected override void PrepareViewFirst(Frame rootFrame)
         {
-            container.RegisterNavigationService(rootFrame);
+            _container.RegisterNavigationService(rootFrame);
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)

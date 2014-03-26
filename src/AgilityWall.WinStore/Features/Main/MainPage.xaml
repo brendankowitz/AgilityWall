@@ -8,6 +8,64 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Welcome to caliburn micro"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Margin="24" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button  x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        Margin="-1,-1,39,0" 
+                        VerticalAlignment="Top"
+                        Command="{Binding GoBackCommand, Source={StaticResource NavigationHelper}}"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock x:Name="pageTitle" Text="Agility Wall" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        VerticalAlignment="Top" IsHitTestVisible="false" TextWrapping="NoWrap" />
+        </Grid>
+
+        <ScrollViewer HorizontalScrollMode="Auto" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden"  Grid.Row="1">
+            
+            <StackPanel Orientation="Horizontal">
+                
+                <Border BorderBrush="DarkGray" BorderThickness="3" Background="White" Margin="12" Padding="8">
+                    <StackPanel Width="300" Background="White">
+                        <TextBlock Text="To do" Foreground="Black" FontSize="36"></TextBlock>
+                        
+                        <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
+                            <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
+                        </Border>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
+                            <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
+                        </Border>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
+                            <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
+                        </Border>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
+                            <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="DarkGray" BorderThickness="3" Background="White" Margin="12" Padding="8">
+                    <Grid Width="300" Background="White">
+                        <TextBlock Text="Doing" Foreground="Black" FontSize="36"></TextBlock>
+                    </Grid>
+                </Border>
+
+                <Border BorderBrush="DarkGray" BorderThickness="3" Background="White" Margin="12" Padding="8">
+                    <Grid Width="300" Background="White">
+                        <TextBlock Text="Done" Foreground="Black" FontSize="36"></TextBlock>
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+            
+        </ScrollViewer>
     </Grid>
 </Page>
