@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.IO.IsolatedStorage;
 using System.Threading;
 using System.Threading.Tasks;
-using Lor.OurPeople.Client.Shared.Infrastructure;
+using AgilityWall.Core.Infrastructure;
 using Newtonsoft.Json;
+using System.IO.IsolatedStorage;
 
 namespace AgilityWall.Core.PlatformServices
 {
     public class ObjectStorageHelper<T> : IObjectStorageHelper<T>, IDisposable where T : class
     {
         private const string ObjectstoragePath = "TempObjectStorage";
-        private readonly SemaphoreSlim Sync = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim _sync = new SemaphoreSlim(1, 1);
         private readonly IsolatedStorageFile _storage = IsolatedStorageFile.GetUserStoreForApplication();
 
         public void Dispose()
@@ -36,7 +36,7 @@ namespace AgilityWall.Core.PlatformServices
 
         public async Task<T> LoadAsync(string key)
         {
-            await Sync.WaitAsync();
+            await _sync.WaitAsync();
             T retval = null;
             try
             {
@@ -61,22 +61,21 @@ namespace AgilityWall.Core.PlatformServices
                 {
                     _storage.DeleteFile(key);
                 }
-                catch
-                {
-                }
+// ReSharper disable once EmptyGeneralCatchClause
+                catch { }
                 Debug.WriteLine(ex.Message);
                 if (Debugger.IsAttached) Debugger.Break();
             }
             finally
             {
-                Sync.Release();
+                _sync.Release();
             }
             return retval;
         }
 
         public async Task SaveAsync(string key, T obj)
         {
-            await Sync.WaitAsync();
+            await _sync.WaitAsync();
             try
             {
                 var path = key.Split('\\', '/');
@@ -109,7 +108,7 @@ namespace AgilityWall.Core.PlatformServices
             }
             finally
             {
-                Sync.Release();
+                _sync.Release();
             }
         }
 
@@ -120,15 +119,15 @@ namespace AgilityWall.Core.PlatformServices
 
         private void ClearDirectory(string directoryName)
         {
-            Sync.Wait();
+            _sync.Wait();
             try
             {
                 if (!string.IsNullOrEmpty(directoryName) && _storage.DirectoryExists(directoryName))
                 {
-                    var fn = _storage.GetFileNames(Path.Combine(directoryName, "*"));
-                    if (fn.Length > 0)
-                        for (int i = 0; i < fn.Length; ++i)
-                            _storage.DeleteFile(Path.Combine(directoryName, fn[i]));
+                    var files = _storage.GetFileNames(Path.Combine(directoryName, "*"));
+                    if (files.Length > 0)
+                        foreach (string item in files)
+                            _storage.DeleteFile(Path.Combine(directoryName, item));
                 }
             }
             catch (Exception ex)
@@ -139,7 +138,7 @@ namespace AgilityWall.Core.PlatformServices
             }
             finally
             {
-                Sync.Release();
+                _sync.Release();
             }
         }
     }
