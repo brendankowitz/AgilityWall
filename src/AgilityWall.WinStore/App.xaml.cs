@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Controls;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
+using AgilityWall.Core.Features.Main;
 using AgilityWall.WinStore.Features.Main;
 using Caliburn.Micro;
 
@@ -14,48 +17,33 @@ namespace AgilityWall.WinStore
     /// </summary>
     public sealed partial class App
     {
-        private WinRTContainer _container;
-
         public App()
         {
             InitializeComponent();
         }
 
+        protected override IEnumerable<Assembly> SelectAssemblies()
+        {
+            return base.SelectAssemblies().Concat(new []{ typeof(MainPageViewModel).GetTypeInfo().Assembly });
+        }
+
         protected override void Configure()
         {
-            _container = new WinRTContainer();
-            _container.RegisterWinRTServices();
+            base.Configure();
 
-            //TODO: Register your view models at the container
-            _container.PerRequest<MainPageViewModel>();
+            var config = new TypeMappingConfiguration
+            {
+                DefaultSubNamespaceForViewModels = "AgilityWall.Core.Features",
+                DefaultSubNamespaceForViews = "AgilityWall.WinStore.Features"
+            };
+
+            ViewLocator.ConfigureTypeMappings(config);
+            ViewModelLocator.ConfigureTypeMappings(config);
         }
 
-        protected override object GetInstance(Type service, string key)
+        protected override void HandleLaunched(LaunchActivatedEventArgs args)
         {
-            var instance = _container.GetInstance(service, key);
-            if (instance != null)
-                return instance;
-            throw new Exception("Could not locate any instances.");
-        }
-
-        protected override IEnumerable<object> GetAllInstances(Type service)
-        {
-            return _container.GetAllInstances(service);
-        }
-
-        protected override void BuildUp(object instance)
-        {
-            _container.BuildUp(instance);
-        }
-
-        protected override void PrepareViewFirst(Frame rootFrame)
-        {
-            _container.RegisterNavigationService(rootFrame);
-        }
-
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
-        {
-            DisplayRootView<MainPage>();
+            DisplayRootViewFor<MainPageViewModel>();
         }
     }
 }

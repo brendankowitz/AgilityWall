@@ -9,7 +9,7 @@ using System.IO.IsolatedStorage;
 
 namespace AgilityWall.Core.PlatformServices
 {
-    public class ObjectStorageHelper<T> : IObjectStorageHelper<T>, IDisposable where T : class
+    public class ObjectStorageService<T> : IObjectStorageService<T>, IDisposable where T : class
     {
         private const string ObjectstoragePath = "TempObjectStorage";
         private readonly SemaphoreSlim _sync = new SemaphoreSlim(1, 1);

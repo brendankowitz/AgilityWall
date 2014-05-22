@@ -33,16 +33,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Board.cs" />
+    <Compile Include="Contracts\Column.cs" />
+    <Compile Include="Contracts\Task.cs" />
     <Compile Include="Infrastructure\ActionCommand.cs" />
+    <Compile Include="Infrastructure\Clock.cs" />
     <Compile Include="Infrastructure\FuncEqualityComparer.cs" />
-    <Compile Include="Infrastructure\IObjectStorageHelper.cs" />
+    <Compile Include="Infrastructure\IObjectStorageService.cs" />
     <Compile Include="Infrastructure\ObservableSortedList.cs" />
+    <Compile Include="Features\Main\MainPageViewModel.cs" />
+    <Compile Include="Repositories\BoardRepository.cs" />
+    <Compile Include="Repositories\IBoardRepository.cs" />
     <None Include="PlatformServices\ObjectStorageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro">
-      <HintPath>..\packages\Caliburn.Micro.Core.2.0.0-beta\lib\portable-net45+sl5+win8+wp8\Caliburn.Micro.dll</HintPath>
+      <HintPath>..\packages\Caliburn.Micro.Core.2.0.0-beta2\lib\portable-net45+win8+wp8+wpa81\Caliburn.Micro.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>

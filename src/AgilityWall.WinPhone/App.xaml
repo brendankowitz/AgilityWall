@@ -2,14 +2,12 @@
     x:Class="AgilityWall.WinPhone.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:winPhone="clr-namespace:AgilityWall.WinPhone">
+    xmlns:infrastructure="clr-namespace:AgilityWall.WinPhone.Infrastructure">
 
     <!--Application Resources-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:AgilityWall.WinPhone" x:Key="LocalizedStrings"/>
-        <winPhone:AppBootstrapper x:Key="bootstrapper" />
+        <infrastructure:AutofacBootstrapper x:Key="bootstrapper" />
     </Application.Resources>
 
 </Application>

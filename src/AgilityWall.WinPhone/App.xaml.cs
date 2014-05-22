@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
 
 namespace AgilityWall.WinPhone
 {
@@ -7,6 +9,16 @@ namespace AgilityWall.WinPhone
         public App()
         {
             InitializeComponent();
+
+            UnhandledException += OnUnhandledException;
+        }
+
+        private void OnUnhandledException(object sender, ApplicationUnhandledExceptionEventArgs applicationUnhandledExceptionEventArgs)
+        {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
         }
     }
 }

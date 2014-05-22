@@ -11,7 +11,7 @@ namespace AgilityWall.WinStore.Features.Main
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

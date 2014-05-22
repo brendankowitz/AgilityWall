@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace AgilityWall.WinStore.Infrastructure.PlatformServices
 {
-    public class ObjectStorageHelper<T> : IObjectStorageHelper<T> where T : class
+    public class ObjectStorageService<T> : IObjectStorageService<T> where T : class
     {
         private string _objectstoragePath = "TempObjectStorage";
         readonly JsonSerializer _serializer = new JsonSerializer();
@@ -30,7 +30,7 @@ namespace AgilityWall.WinStore.Infrastructure.PlatformServices
             return Path.Combine(ObjectstoragePath, string.Format("{0}.json", key));
         }
 
-        public ObjectStorageHelper(StorageFolder storageLocation)
+        public ObjectStorageService(StorageFolder storageLocation)
         {
             StorageFolder = storageLocation;
         }
