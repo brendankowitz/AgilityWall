@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Windows;
 using AgilityWall.Core.Features.Main;
-using Autofac;
 using Caliburn.Micro;
 using Caliburn.Micro.Autofac;
 
@@ -13,13 +12,6 @@ namespace AgilityWall.WinPhone.Infrastructure
         protected override System.Collections.Generic.IEnumerable<System.Reflection.Assembly> SelectAssemblies()
         {
             return base.SelectAssemblies().Concat(new[] { typeof(MainPageViewModel).Assembly });
-        }
-
-        protected override void ConfigureBootstrapper()
-        {
-            base.ConfigureBootstrapper();
-            EnforceNamespaceConvention = false;
-            EnableFastAppResumeSupport(new Uri("/Features/Main/MainPage.xaml", UriKind.Relative));
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
