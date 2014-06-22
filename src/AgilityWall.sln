@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgilityWall.WinStore", "AgilityWall.WinStore\AgilityWall.WinStore.csproj", "{DB5156C4-EE0F-4FA1-942C-D16AC600BEAA}"
 EndProject
@@ -12,6 +12,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{130A4E4D-3F80-4CC3-BC7F-7D191F70F853}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{EFF741C9-324C-42C2-A89F-E237B8BCD2EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{399537B8-8889-4166-9AC0-719093B50477}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,8 +91,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F3CA2D72-C993-4CA5-9481-651824DA64E2} = {130A4E4D-3F80-4CC3-BC7F-7D191F70F853}
-		{B74985C5-D805-43C7-B83B-905EAFD94602} = {EFF741C9-324C-42C2-A89F-E237B8BCD2EB}
 		{DB5156C4-EE0F-4FA1-942C-D16AC600BEAA} = {EFF741C9-324C-42C2-A89F-E237B8BCD2EB}
+		{B74985C5-D805-43C7-B83B-905EAFD94602} = {EFF741C9-324C-42C2-A89F-E237B8BCD2EB}
+		{F3CA2D72-C993-4CA5-9481-651824DA64E2} = {130A4E4D-3F80-4CC3-BC7F-7D191F70F853}
 	EndGlobalSection
 EndGlobal
