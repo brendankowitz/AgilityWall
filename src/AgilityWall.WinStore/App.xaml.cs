@@ -41,7 +41,7 @@ namespace AgilityWall.WinStore
             ViewModelLocator.ConfigureTypeMappings(config);
         }
 
-        protected override void HandleLaunched(LaunchActivatedEventArgs args)
+        protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             DisplayRootViewFor<MainPageViewModel>();
         }
