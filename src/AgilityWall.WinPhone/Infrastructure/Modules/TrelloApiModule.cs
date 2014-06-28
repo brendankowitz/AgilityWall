@@ -11,6 +11,7 @@ namespace AgilityWall.WinPhone.Infrastructure.Modules
             builder.RegisterType<TrelloClient>()
                 .WithParameter("key", "96d8e8fa4f535fbff7f524fb210a54fc")
                 .WithParameter("secret", "b298727fa2c794204f8eff59f47c4c488afca00a2012fcd1007cf100bb07ee7a")
+                .WithProperty("ClientName", "Agility Wall")
                 .AsSelf()
                 .SingleInstance();
 

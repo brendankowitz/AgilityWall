@@ -44,9 +44,14 @@
     <Compile Include="Client\ITokenStore.cs" />
     <Compile Include="Client\TrelloClient.cs" />
     <Compile Include="Client\TrelloToken.cs" />
+    <Compile Include="Contracts\DescData.cs" />
+    <Compile Include="Contracts\Emoji.cs" />
+    <Compile Include="Contracts\LabelNames.cs" />
     <Compile Include="Contracts\List.cs" />
     <Compile Include="Contracts\Board.cs" />
     <Compile Include="Contracts\Card.cs" />
+    <Compile Include="Contracts\Membership.cs" />
+    <Compile Include="Contracts\Prefs.cs" />
     <Compile Include="Internal\BaseClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
