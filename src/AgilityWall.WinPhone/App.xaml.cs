@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows;
+using Microsoft.Phone.Controls;
 
 namespace AgilityWall.WinPhone
 {
@@ -9,8 +10,9 @@ namespace AgilityWall.WinPhone
         public App()
         {
             InitializeComponent();
-
             UnhandledException += OnUnhandledException;
+            ThemeManager.OverrideOptions = ThemeManagerOverrideOptions.None;
+            ThemeManager.ToLightTheme();
         }
 
         private void OnUnhandledException(object sender, ApplicationUnhandledExceptionEventArgs args)

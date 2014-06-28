@@ -1,4 +1,5 @@
 ﻿using AgilityWall.Core.PlatformServices;
+using AgilityWall.WinPhone.Infrastructure.PlatformServices;
 using Autofac;
 
 namespace AgilityWall.WinPhone.Infrastructure.Modules

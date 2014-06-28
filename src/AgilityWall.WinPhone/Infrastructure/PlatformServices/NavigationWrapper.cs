@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using Caliburn.Micro;
 using INavigationService = AgilityWall.Core.Infrastructure.INavigationService;
 
-namespace AgilityWall.Core.PlatformServices
+namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
 {
     public class NavigationWrapper : INavigationService
     {

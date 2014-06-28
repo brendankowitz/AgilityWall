@@ -7,12 +7,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource AppAccentColor}"
+    shell:SystemTray.ForegroundColor="White">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -35,30 +38,43 @@
             CurrentUICulture of the app at run time.
          -->
 
-        <Border Background="SteelBlue"
+        <Border Background="{StaticResource AppAccentBrush}"
                 Height="73"
                 VerticalAlignment="Top"
                 ></Border>
-        
+
         <phone:Panorama
             Grid.Row="0"
             Background="Transparent"
             Title="Agility wall" TitleTemplate="{StaticResource MainPanorama}" 
             HeaderTemplate="{StaticResource MainPanoramaHeaderTemplate}">
-            
+
             <phone:PanoramaItem Header="Boards">
-                <phone:LongListSelector ItemsSource="{Binding Boards}" Margin="12,0">
+                <phone:LongListSelector ItemsSource="{Binding Boards}" Margin="12,-18,12,8">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Board.Name}"></TextBlock>
+                            <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="1"
+                                    Margin="4" toolkit:TiltEffect.IsTiltEnabled="True">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="15" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Background="{StaticResource FillBrush}"></Border>
+                                    <TextBlock Grid.Column="1" Text="{Binding Board.Name}" 
+                                               Style="{StaticResource AppTextBase}"
+                                               FontSize="24"
+                                               Margin="4, 8"></TextBlock>
+                                </Grid>
+                            </Border>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
             </phone:PanoramaItem>
-            
+
         </phone:Panorama>
 
-       
+
 
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
@@ -71,9 +87,9 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar >
-        <shell:ApplicationBar Mode="Minimized" BackgroundColor="SteelBlue">
+        <shell:ApplicationBar Mode="Minimized" BackgroundColor="{StaticResource AppAccentColor}">
             <shell:ApplicationBar.Buttons>
-                <micro:AppBarButton Text="Create board" Message="CreateBoard" IconUri="/Assets/AppBar/Pin.png" />
+                <micro:AppBarButton Text="new board" Message="CreateBoard" IconUri="/Toolkit.Content/ApplicationBar.Add.png" />
             </shell:ApplicationBar.Buttons>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
