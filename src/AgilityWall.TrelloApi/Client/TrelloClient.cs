@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using AgilityWall.TrelloApi.Authentication;
 using AgilityWall.TrelloApi.Contracts;
 using AgilityWall.TrelloApi.Internal;
 
@@ -18,9 +22,13 @@ namespace AgilityWall.TrelloApi.Client
             ClientName = ".NET Portable Trello Client";
         }
 
-        public async Task Initialize()
+        public async Task<bool> Initialize()
         {
-            Token = await _tokenStore.GetToken();
+            if (Token == null)
+                Token = await _tokenStore.GetToken();
+            if (Token != null)
+                return true;
+            return false;
         }
 
         protected override string BaseUrl
@@ -33,23 +41,71 @@ namespace AgilityWall.TrelloApi.Client
         public string ClientName { get; set; }
         protected TrelloToken Token { get; set; }
 
-        public string GetAuthorizeUrl()
+        protected string GetAuthorizeUrl()
         {
             return BuildUri("/authorize",
                 new Dictionary<string, string>
                 {
                     {"key", Key},
                     {"name", ClientName},
+                    //{"return_url", "http://bing.com"},
                     {"expiration", "never"},
                     {"response_type", "token"},
                     {"scope", "read,write"}
                 });
         }
 
-        public Task<bool> ProcessAuthorizeResponse(string content)
+        async Task<bool> ProcessAuthorizeResponse(string content)
         {
-            //set token
-            return Task.FromResult(true);
+            if (string.IsNullOrEmpty(content))
+                return false;
+
+            var matches = Regex.Match(content, "<pre>(?<KEY>.*)</pre>", RegexOptions.Singleline | RegexOptions.IgnoreCase).Groups["KEY"].Value;
+
+            if (!string.IsNullOrEmpty(matches))
+            {
+                Token = new TrelloToken(matches.Trim(), null);
+                await _tokenStore.SaveToken(Token);
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> Authenticate(IAuthenticationFrame authenticationFrame)
+        {
+            string content = null;
+            var waitForContent = new AutoResetEvent(false);
+            EventHandler<BrowserEventArgs> handler = (sender, s) =>
+            {
+                var approveUri = BuildUri("/token/approve", new Dictionary<string, string>());
+                if (s.Uri.StartsWith(approveUri))
+                {
+                    content = s.HtmlContent;
+                    waitForContent.Set();
+                }
+                else if (s.Uri.EndsWith("trello.com/"))
+                    waitForContent.Set();
+            };
+            EventHandler cancelHandler = (sender, s) => waitForContent.Set();
+            try
+            {
+                authenticationFrame.BrowserRedirected += handler;
+                authenticationFrame.LoginCanceled += cancelHandler;
+                await authenticationFrame.DisplayUri(new Uri(GetAuthorizeUrl()));
+                await Task.Run(async () =>
+                {
+                    if (!waitForContent.WaitOne(TimeSpan.FromMinutes(5)))
+                        throw new Exception("Authentication timed out.");
+
+                    return await ProcessAuthorizeResponse(content);
+                });
+            }
+            finally
+            {
+                authenticationFrame.BrowserRedirected -= handler;
+                authenticationFrame.LoginCanceled -= cancelHandler;
+            }
+            return false;
         }
 
         public async Task<IEnumerable<Board>> GetBoardsForMe()
@@ -63,7 +119,7 @@ namespace AgilityWall.TrelloApi.Client
                new Dictionary<string, string>
                 {
                     {"key", Key},
-                    {"token", ClientName}
+                    {"token", Token.Token}
                 });
             return response;
         }

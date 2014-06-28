@@ -13,7 +13,7 @@ namespace AgilityWall.WinPhone
             UnhandledException += OnUnhandledException;
         }
 
-        private void OnUnhandledException(object sender, ApplicationUnhandledExceptionEventArgs applicationUnhandledExceptionEventArgs)
+        private void OnUnhandledException(object sender, ApplicationUnhandledExceptionEventArgs args)
         {
             if (Debugger.IsAttached)
             {

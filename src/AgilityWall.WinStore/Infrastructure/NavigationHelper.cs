@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using AgilityWall.Core.Infrastructure;
 using Caliburn.Micro;
+using INavigationService = Caliburn.Micro.INavigationService;
 
 namespace AgilityWall.WinStore.Infrastructure
 {

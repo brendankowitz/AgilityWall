@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -15,11 +16,6 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
         <!-- LOCALIZATION NOTE:
             To localize the displayed strings copy their values to appropriately named
             keys in the app's neutral language resource file (AppResources.resx) then
@@ -39,52 +35,16 @@
             CurrentUICulture of the app at run time.
          -->
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Agility Wall" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-        </StackPanel>
+        <phone:Panorama Title="Agility wall" TitleTemplate="{StaticResource MainPanorama}">
+            
+            <phone:PanoramaItem Header="Boards">
+                
+            </phone:PanoramaItem>
+            
+        </phone:Panorama>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+       
 
-                <StackPanel Orientation="Horizontal">
-
-                    <Border BorderBrush="DarkGray" BorderThickness="3" Background="White" Margin="12" Padding="8">
-                        <StackPanel Width="300" Background="White">
-                            <TextBlock Text="To do" Foreground="Black" FontSize="36"></TextBlock>
-
-                            <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
-                                <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
-                            </Border>
-                            <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
-                                <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
-                            </Border>
-                            <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
-                                <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
-                            </Border>
-                            <Border BorderBrush="DarkBlue" BorderThickness="1" Background="AliceBlue" Padding="8" Margin="0,0,0,8">
-                                <TextBlock Text="I'm a task" FontSize="21" Foreground="Black"></TextBlock>
-                            </Border>
-                        </StackPanel>
-                    </Border>
-
-                    <Border BorderBrush="DarkGray" BorderThickness="3" Background="White" Margin="12" Padding="8">
-                        <Grid Width="300" Background="White">
-                            <TextBlock Text="Doing" Foreground="Black" FontSize="36"></TextBlock>
-                        </Grid>
-                    </Border>
-
-                    <Border BorderBrush="DarkGray" BorderThickness="3" Background="White" Margin="12" Padding="8">
-                        <Grid Width="300" Background="White">
-                            <TextBlock Text="Done" Foreground="Black" FontSize="36"></TextBlock>
-                        </Grid>
-                    </Border>
-
-                </StackPanel>
-
-            </ScrollViewer>
-        </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to
@@ -94,5 +54,13 @@
             Before shipping remove this XAML and the image itself.-->
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar >
+        <shell:ApplicationBar Mode="Minimized">
+            <shell:ApplicationBar.Buttons>
+                <micro:AppBarButton Text="Create board" Message="CreateBoard" IconUri="/Assets/AppBar/Pin.png" />
+            </shell:ApplicationBar.Buttons>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

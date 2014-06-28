@@ -38,10 +38,13 @@
     <Compile Include="Contracts\Board.cs" />
     <Compile Include="Contracts\Column.cs" />
     <Compile Include="Contracts\Task.cs" />
+    <Compile Include="Features\Authentication\AuthenticateViewModel.cs" />
     <Compile Include="Infrastructure\ActionCommand.cs" />
     <Compile Include="Infrastructure\Clock.cs" />
     <Compile Include="Infrastructure\FuncEqualityComparer.cs" />
+    <Compile Include="Infrastructure\INavigationService.cs" />
     <Compile Include="Infrastructure\IObjectStorageService.cs" />
+    <Compile Include="Infrastructure\ObjectTokenStore.cs" />
     <Compile Include="Infrastructure\ObservableSortedList.cs" />
     <Compile Include="Features\Main\MainPageViewModel.cs" />
     <Compile Include="Repositories\BoardRepository.cs" />
@@ -60,7 +63,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AgilityWall.TrelloApi\AgilityWall.TrelloApi.csproj">
+      <Project>{93fa04f0-783c-4d46-b1f3-b5b48e6d8f36}</Project>
+      <Name>AgilityWall.TrelloApi</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

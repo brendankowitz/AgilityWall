@@ -40,6 +40,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\IAuthenticationFrame.cs" />
     <Compile Include="Client\ITokenStore.cs" />
     <Compile Include="Client\TrelloClient.cs" />
     <Compile Include="Client\TrelloToken.cs" />

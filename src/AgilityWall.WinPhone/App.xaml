@@ -6,8 +6,18 @@
 
     <!--Application Resources-->
     <Application.Resources>
-        <local:LocalizedStrings xmlns:local="clr-namespace:AgilityWall.WinPhone" x:Key="LocalizedStrings"/>
-        <infrastructure:AutofacBootstrapper x:Key="bootstrapper" />
+        <ResourceDictionary>
+            
+            <local:LocalizedStrings xmlns:local="clr-namespace:AgilityWall.WinPhone" x:Key="LocalizedStrings"/>
+
+            <DataTemplate x:Key="MainPanorama">
+                <ContentPresenter>
+                    <TextBlock Text="{Binding}" FontSize="50" Margin="0,70,0,0" />
+                </ContentPresenter>
+            </DataTemplate>
+
+            <infrastructure:AutofacBootstrapper x:Key="bootstrapper" />
+        </ResourceDictionary>
     </Application.Resources>
 
 </Application>
