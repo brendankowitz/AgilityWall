@@ -1,9 +1,8 @@
 ﻿namespace AgilityWall.TrelloApi.Client.Parameters
 {
-    public enum GetCardOptions
+    public enum ListFilterOptions
     {
         none,
-        visible,
         open,
         closed,
         all

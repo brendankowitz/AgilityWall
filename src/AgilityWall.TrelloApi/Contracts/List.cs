@@ -5,5 +5,6 @@ namespace AgilityWall.TrelloApi.Contracts
         public string Id { get; set; }
         public string Name { get; set; }
         public string BoardId { get; set; }
+        public Card[] Cards { get; set; }
     }
 }

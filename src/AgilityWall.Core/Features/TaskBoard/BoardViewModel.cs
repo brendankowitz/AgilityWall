@@ -17,13 +17,13 @@ namespace AgilityWall.Core.Features.TaskBoard
 
         public string BoardId { get; set; }
         public Board Board { get; set; }
-        public IObservableCollection<TaskSummaryViewModel> Cards { get; set; }
+        public IObservableCollection<ListSummaryViewModel> Lists { get; set; }
 
         public BoardViewModel(INavigationService navigationService, TrelloClient trelloClient)
         {
             _navigationService = navigationService;
             _trelloClient = trelloClient;
-            Cards = new BindableCollection<TaskSummaryViewModel>();
+            Lists = new BindableCollection<ListSummaryViewModel>();
         }
 
         protected async override void OnInitialize()
@@ -31,9 +31,9 @@ namespace AgilityWall.Core.Features.TaskBoard
             if (!string.IsNullOrEmpty(BoardId))
             {
                 Board = await _trelloClient.GetBoardById(BoardId);
-                var cards = await _trelloClient.GetBoardCards(BoardId, GetCardOptions.visible);
+                var cards = await _trelloClient.GetBoardLists(BoardId, ListFilterOptions.open, FilterOptions.open);
 
-                Cards.AddRange(cards.Select(x => new TaskSummaryViewModel(x)));
+                Lists.AddRange(cards.Select(x => new ListSummaryViewModel(x)));
             }
         }
     }

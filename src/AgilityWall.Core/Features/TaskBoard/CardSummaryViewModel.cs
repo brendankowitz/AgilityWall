@@ -5,13 +5,13 @@ using PropertyChanged;
 namespace AgilityWall.Core.Features.TaskBoard
 {
     [ImplementPropertyChanged]
-    public class TaskSummaryViewModel : PropertyChangedBase
+    public class CardSummaryViewModel : PropertyChangedBase
     {
-        public TaskSummaryViewModel(Card card)
+        public Card Card { get; set; }
+
+        public CardSummaryViewModel(Card card)
         {
             Card = card;
         }
-
-        public Card Card { get; set; }
     }
 }

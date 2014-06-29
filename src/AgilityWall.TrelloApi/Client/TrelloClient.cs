@@ -136,11 +136,25 @@ namespace AgilityWall.TrelloApi.Client
             return response;
         }
 
-        public async Task<IEnumerable<Card>> GetBoardCards(string boardId, GetCardOptions options = GetCardOptions.all)
+        public async Task<IEnumerable<Card>> GetBoardCards(string boardId, FilterOptions options = FilterOptions.all)
         {
             var response = await ExecuteRequest<IEnumerable<Card>>(string.Format("/boards/{0}/cards/{1}", boardId, options),
                new Dictionary<string, string>
                 {
+                    {"key", Key},
+                    {"token", Token.Token}
+                });
+            return response;
+        }
+
+        public async Task<IEnumerable<List>> GetBoardLists(string boardId, 
+            ListFilterOptions options = ListFilterOptions.all,
+            FilterOptions cards = FilterOptions.none)
+        {
+            var response = await ExecuteRequest<IEnumerable<List>>(string.Format("/boards/{0}/lists/{1}", boardId, options),
+               new Dictionary<string, string>
+                {
+                    {"cards", cards.ToString()},
                     {"key", Key},
                     {"token", Token.Token}
                 });

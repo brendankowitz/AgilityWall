@@ -12,29 +12,29 @@ namespace AgilityWall.TrelloApi.Internal
     {
         protected abstract string BaseUrl { get; }
 
-        protected async Task<T> ExecuteRequest<T>(string resource, IDictionary<string, string> parameters)
+        protected virtual async Task<T> ExecuteRequest<T>(string resource, IDictionary<string, string> parameters)
         {
             return await ExecuteRequest<T>(resource, parameters, HttpMethod.Get);
         }
 
-        protected async Task<T> ExecuteRequest<T>(string resource, IDictionary<string, string> parameters, HttpMethod method, string content = null)
+        protected virtual async Task<T> ExecuteRequest<T>(string resource, IDictionary<string, string> parameters, HttpMethod method, string content = null)
         {
             var response = await ExecuteRequest(resource, parameters, method, content);
             return JsonConvert.DeserializeObject<T>(response);
         }
 
-        protected async Task<T> ExecuteRequest<T>(string resource, IDictionary<string, string> parameters, HttpMethod method, IDictionary<string, string> formUrlEncodedContent)
+        protected virtual async Task<T> ExecuteRequest<T>(string resource, IDictionary<string, string> parameters, HttpMethod method, IDictionary<string, string> formUrlEncodedContent)
         {
             var response = await ExecuteRequest(resource, parameters, method, formUrlEncodedContent);
             return JsonConvert.DeserializeObject<T>(response);
         }
 
-        protected async Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters)
+        protected virtual async Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters)
         {
             return await ExecuteRequest(resource, parameters, HttpMethod.Get);
         }
 
-        protected async Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters, HttpMethod method, string content = null)
+        protected virtual async Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters, HttpMethod method, string content = null)
         {
             using (var client = CreateHttpClient())
             {
@@ -42,11 +42,13 @@ namespace AgilityWall.TrelloApi.Internal
                 if(!string.IsNullOrEmpty(content))
                     req.Content = new StringContent(content);
                 var response = await client.SendAsync(req);
+                if(!response.IsSuccessStatusCode)
+                    throw new Exception("Request did not succeed");
                 return await response.Content.ReadAsStringAsync();
             }
         }
 
-        protected async Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters, HttpMethod method, IDictionary<string, string> formUrlEncodedContent)
+        protected virtual async Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters, HttpMethod method, IDictionary<string, string> formUrlEncodedContent)
         {
             if (formUrlEncodedContent == null) throw new ArgumentNullException("formUrlEncodedContent");
 
@@ -55,11 +57,13 @@ namespace AgilityWall.TrelloApi.Internal
                 var req = new HttpRequestMessage(method, BuildUri(resource, parameters));
                 req.Content = new FormUrlEncodedContent(formUrlEncodedContent);
                 var response = await client.SendAsync(req);
+                if (!response.IsSuccessStatusCode)
+                    throw new Exception("Request did not succeed");
                 return await response.Content.ReadAsStringAsync();
             }
         }
 
-        protected async Task Execute(string resource, IDictionary<string, string> parameters)
+        protected virtual async Task Execute(string resource, IDictionary<string, string> parameters)
         {
             using (var client = CreateHttpClient())
             {
@@ -72,7 +76,7 @@ namespace AgilityWall.TrelloApi.Internal
             return new HttpClient();
         }
 
-        protected string BuildUri(string resource, IDictionary<string, string> parameters)
+        protected virtual string BuildUri(string resource, IDictionary<string, string> parameters)
         {
             var uriBuilder = new StringBuilder(string.Format("{0}{1}", BaseUrl, resource));
 

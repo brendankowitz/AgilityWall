@@ -7,6 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:taskBoard="clr-namespace:AgilityWall.Core.Features.TaskBoard;assembly=AgilityWall.Core"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -25,19 +27,46 @@
         <phone:Panorama
             Grid.Row="0"
             Background="Transparent"
-            Title="Agility wall" TitleTemplate="{StaticResource MainPanorama}" 
-            HeaderTemplate="{StaticResource MainPanoramaHeaderTemplate}"
-            ItemsSource="">
+            Title="{Binding DisplayName}" TitleTemplate="{StaticResource MainPanorama}" 
+            ItemsSource="{Binding Lists}">
+            <phone:Panorama.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Visibility="Collapsed" />
+                </DataTemplate>
+            </phone:Panorama.HeaderTemplate>
+            <phone:Panorama.ItemTemplate>
+                <DataTemplate>
+                    <phone:PanoramaItem Header="{Binding List.Name}">
+                        <phone:PanoramaItem.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="32" Margin="0" />
+                            </DataTemplate>
+                        </phone:PanoramaItem.HeaderTemplate>
+                        <phone:LongListSelector ItemsSource="{Binding Cards}"  Margin="12,-18,12,8">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="1"
+                                    Margin="4" toolkit:TiltEffect.IsTiltEnabled="True">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="15" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Border Background="{StaticResource FillBrush}"></Border>
+                                            <TextBlock Grid.Column="1" Text="{Binding Card.Name}" 
+                                               Style="{StaticResource AppTextBase}"
+                                               TextWrapping="Wrap"
+                                               FontSize="24"
+                                               Margin="4, 8"></TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                    </phone:PanoramaItem>
+                </DataTemplate>
+            </phone:Panorama.ItemTemplate>
             
-            <!--Panorama item one-->
-            <phone:PanoramaItem Header="item1">
-                <Grid/>
-            </phone:PanoramaItem>
-
-            <!--Panorama item two-->
-            <phone:PanoramaItem Header="item2">
-                <Grid/>
-            </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>
 
