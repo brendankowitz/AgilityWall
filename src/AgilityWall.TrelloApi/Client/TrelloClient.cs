@@ -78,8 +78,7 @@ namespace AgilityWall.TrelloApi.Client
             var waitForContent = new AutoResetEvent(false);
             EventHandler<BrowserEventArgs> handler = (sender, s) =>
             {
-                var approveUri = BuildUri("/token/approve", new Dictionary<string, string>());
-                if (s.Uri.StartsWith(approveUri))
+                if (s.Uri.Contains("/token/approve"))
                 {
                     content = s.HtmlContent;
                     waitForContent.Set();

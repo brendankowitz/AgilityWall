@@ -186,7 +186,7 @@
                 <StackPanel Margin="0">
                     <Border Background="#CC9954bb" HorizontalAlignment="Left" Margin="12,12,0,24">
                         <TextBlock Text="{Binding PageTitle, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White"
-                                   HorizontalAlignment="Left" Style="{StaticResource AppPrimaryPageHeading}"/>
+                                   HorizontalAlignment="Left" Style="{StaticResource AppPrimaryPageHeading}" TextWrapping="Wrap"/>
                     </Border>
                 </StackPanel>
             </Border>

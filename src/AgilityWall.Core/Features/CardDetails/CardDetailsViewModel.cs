@@ -5,15 +5,15 @@ using AgilityWall.TrelloApi.Contracts;
 using Caliburn.Micro;
 using PropertyChanged;
 
-namespace AgilityWall.Core.Features.Task
+namespace AgilityWall.Core.Features.CardDetails
 {
     [ImplementPropertyChanged]
-    public class TaskViewModel : Screen
+    public class CardDetailsViewModel : Screen
     {
         private readonly INavigationService _navigationService;
         private readonly TrelloClient _trelloClient;
 
-        public TaskViewModel(INavigationService navigationService, TrelloClient trelloClient)
+        public CardDetailsViewModel(INavigationService navigationService, TrelloClient trelloClient)
         {
             _navigationService = navigationService;
             _trelloClient = trelloClient;
