@@ -14,7 +14,7 @@ namespace AgilityWall.TrelloApi.Contracts
         public string IdList { get; set; }
         public List<object> IdMembersVoted { get; set; }
         public int IdShort { get; set; }
-        public object IdAttachmentCover { get; set; }
+        public string IdAttachmentCover { get; set; }
         public bool ManualCoverAttachment { get; set; }
         public string Name { get; set; }
         public double Pos { get; set; }

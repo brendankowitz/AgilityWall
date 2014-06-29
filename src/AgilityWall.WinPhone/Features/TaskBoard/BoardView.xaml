@@ -46,7 +46,8 @@
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="1"
-                                    Margin="4" toolkit:TiltEffect.IsTiltEnabled="True">
+                                            Margin="4" toolkit:TiltEffect.IsTiltEnabled="True"
+                                            micro:Message.Attach="[Event Tap] = [Action NavigateToCard($dataContext)]">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="15" />

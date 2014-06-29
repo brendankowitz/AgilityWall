@@ -16,7 +16,7 @@
     d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type=main:MainPageViewModel}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="{StaticResource AppAccentColor}"
+    shell:SystemTray.BackgroundColor="Black"
     shell:SystemTray.ForegroundColor="{StaticResource AppAccentForeColor}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->

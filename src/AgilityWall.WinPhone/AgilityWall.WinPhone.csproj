@@ -107,6 +107,9 @@
     <Compile Include="Features\TaskBoard\BoardView.xaml.cs">
       <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Features\CardDetails\CardDetailsView.xaml.cs">
+      <DependentUpon>CardDetailsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\AutofacBootstrapper.cs" />
     <Compile Include="Infrastructure\Behaviors\UpdateTextBindingOnPropertyChanged.cs" />
     <Compile Include="Infrastructure\Converters\NonEmptyStringToVisibilityConverter.cs" />
@@ -141,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Features\Main\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\CardDetails\CardDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

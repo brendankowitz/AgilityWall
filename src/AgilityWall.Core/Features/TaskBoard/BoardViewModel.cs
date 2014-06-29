@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using AgilityWall.Core.Features.Task;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.TrelloApi.Client;
 using AgilityWall.TrelloApi.Client.Parameters;
@@ -35,6 +36,11 @@ namespace AgilityWall.Core.Features.TaskBoard
 
                 Lists.AddRange(cards.Select(x => new ListSummaryViewModel(x)));
             }
+        }
+
+        public void NavigateToCard(CardSummaryViewModel card)
+        {
+            _navigationService.Navigate<TaskViewModel>(new {CardId = card.Card.Id, DisplayName = card.Card.Name});
         }
     }
 }

@@ -160,5 +160,27 @@ namespace AgilityWall.TrelloApi.Client
                 });
             return response;
         }
+
+        public async Task<Card> GetCardId(string cardId)
+        {
+            var response = await ExecuteRequest<Card>(string.Format("/cards/{0}", cardId),
+               new Dictionary<string, string>
+                {
+                    {"key", Key},
+                    {"token", Token.Token}
+                });
+            return response;
+        }
+
+        public async Task<Attachment> GetAttachment(string cardId, string attachmentId)
+        {
+            var response = await ExecuteRequest<Attachment>(string.Format("/cards/{0}/attachments/{1}", cardId, attachmentId),
+               new Dictionary<string, string>
+                {
+                    {"key", Key},
+                    {"token", Token.Token}
+                });
+            return response;
+        }
     }
 }
