@@ -21,15 +21,25 @@ namespace AgilityWall.Core.Features.Main
         }
 
         public IObservableCollection<BoardSummaryViewModel> Boards { get; set; }
+        public bool RequiredLogin { get; set; }
 
-        protected async override void OnViewAttached(object view, object context)
+        protected async override void OnActivate()
         {
-            if (!(await _trelloClient.Initialize()))
-                _navigationService.Navigate<AuthenticateViewModel>();
+            if ((await _trelloClient.Initialize()))
+            {
+                RequiredLogin = false;
+                var boards = await _trelloClient.GetBoardsForMe();
+                Boards.Clear();
+                Boards.AddRange(
+                    boards.Where(x => !x.Closed).OrderBy(x => x.Name).Select(x => new BoardSummaryViewModel(x)));
+            }
+            else
+                RequiredLogin = true;
+        }
 
-            var boards = await _trelloClient.GetBoardsForMe();
-            Boards.Clear();
-            Boards.AddRange(boards.Select(x => new BoardSummaryViewModel(x)));
+        public void ConnectWithTrello()
+        {
+            _navigationService.Navigate<AuthenticateViewModel>();
         }
 
         public void CreateBoard()

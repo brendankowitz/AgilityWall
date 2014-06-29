@@ -8,10 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:main="clr-namespace:AgilityWall.Core.Features.Main;assembly=AgilityWall.Core"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type=main:MainPageViewModel}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource AppAccentColor}"
@@ -73,9 +75,11 @@
             </phone:PanoramaItem>
 
         </phone:Panorama>
-
-
-
+        
+        <Button Height="100" Width="300" Content="Connect with Trello"
+                x:Name="ConnectWithTrello"
+                Visibility="{Binding RequiredLogin, Converter={StaticResource BooleanToVisibilityConverter}}"
+                ></Button>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to
