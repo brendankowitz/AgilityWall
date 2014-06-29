@@ -162,6 +162,11 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\RandomBg1.jpg" />
+    <Content Include="Assets\RandomBg2.jpg" />
+    <Content Include="Assets\RandomBg3.jpg" />
+    <Content Include="Assets\RandomBg4.jpg" />
+    <Content Include="Assets\RandomBg5.jpg" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

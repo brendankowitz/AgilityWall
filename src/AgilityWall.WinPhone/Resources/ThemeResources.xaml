@@ -4,9 +4,11 @@
                     xmlns:controls="clr-namespace:AgilityWall.WinPhone.Controls">
 
     <Color x:Key="AppAccentColor">#007fff</Color>
+    <Color x:Key="AppAccentForeColor">#fff</Color>
     <Color x:Key="AppSecondaryColor">#9954bb</Color>
 
     <SolidColorBrush x:Key="AppAccentBrush" Color="#007fff"/>
+    <SolidColorBrush x:Key="AppSecondaryBrush" Color="#9954bb"/>
     <SolidColorBrush x:Key="AppAccentBgBrush" Color="#CC007fff"/>
     <SolidColorBrush x:Key="RedBrush" Color="#DE2027"/>
     <SolidColorBrush x:Key="GreenBrush" Color="#00813D"/>
@@ -29,6 +31,11 @@
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
+    <Style x:Key="AppPrimaryPageHeading" TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
+        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+        <Setter Property="FontSize" Value="50"/>
+    </Style>
+    
     <Style x:Key="AppPrimaryItemHeading" TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
         <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
@@ -177,14 +184,14 @@
 
             <Border Grid.Row="0" Background="{Binding BackgroundBrush, RelativeSource={RelativeSource TemplatedParent}}">
                 <StackPanel Margin="0">
-                    <Border Background="{StaticResource AppAccentBgBrush}" HorizontalAlignment="Left" Margin="12,0,0,24">
+                    <Border Background="#CC9954bb" HorizontalAlignment="Left" Margin="12,12,0,24">
                         <TextBlock Text="{Binding PageTitle, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White"
-                                   HorizontalAlignment="Left" Style="{StaticResource PhoneTextTitle1Style}"/>
+                                   HorizontalAlignment="Left" Style="{StaticResource AppPrimaryPageHeading}"/>
                     </Border>
                 </StackPanel>
             </Border>
 
-            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,28,12,0">
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12">
                 <ContentPresenter />
             </Grid>
         </Grid>

@@ -23,7 +23,8 @@ namespace AgilityWall.Core.Features.Authentication
             if (!await _trelloClient.Initialize())
             {
                 await _trelloClient.Authenticate(frame);
-                _navigationService.GoBack();
+                if(_navigationService.CanGoBack)
+                    _navigationService.GoBack();
             }
         }
     }
