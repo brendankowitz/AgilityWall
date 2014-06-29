@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using AgilityWall.TrelloApi.Authentication;
+using AgilityWall.TrelloApi.Client.Parameters;
 using AgilityWall.TrelloApi.Contracts;
 using AgilityWall.TrelloApi.Internal;
 
@@ -116,6 +117,28 @@ namespace AgilityWall.TrelloApi.Client
         public async Task<IEnumerable<Board>> GetBoardsForUser(string userId)
         {
             var response = await ExecuteRequest<IEnumerable<Board>>(string.Format("/members/{0}/boards", userId),
+               new Dictionary<string, string>
+                {
+                    {"key", Key},
+                    {"token", Token.Token}
+                });
+            return response;
+        }
+
+        public async Task<Board> GetBoardById(string boardId)
+        {
+            var response = await ExecuteRequest<Board>(string.Format("/boards/{0}", boardId),
+               new Dictionary<string, string>
+                {
+                    {"key", Key},
+                    {"token", Token.Token}
+                });
+            return response;
+        }
+
+        public async Task<IEnumerable<Card>> GetBoardCards(string boardId, GetCardOptions options = GetCardOptions.all)
+        {
+            var response = await ExecuteRequest<IEnumerable<Card>>(string.Format("/boards/{0}/cards/{1}", boardId, options),
                new Dictionary<string, string>
                 {
                     {"key", Key},

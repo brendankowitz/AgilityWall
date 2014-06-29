@@ -54,7 +54,7 @@ namespace AgilityWall.Core.Features.Main
 
         public void NavigateToBoard(BoardSummaryViewModel viewModel)
         {
-            _navigationService.Navigate<BoardViewModel>(new {BoardId = viewModel.Board.Id});
+            _navigationService.Navigate<BoardViewModel>(new { BoardId = viewModel.Board.Id, DisplayName = viewModel.Board.Name });
         }
 
         public void CreateBoard()

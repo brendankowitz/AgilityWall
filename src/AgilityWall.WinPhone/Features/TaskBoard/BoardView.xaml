@@ -6,17 +6,29 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:taskBoard="clr-namespace:AgilityWall.Core.Features.TaskBoard;assembly=AgilityWall.Core"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type=taskBoard:BoardViewModel}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <phone:Panorama Title="my application">
+        <Border Background="{StaticResource AppAccentBrush}"
+                Height="73"
+                VerticalAlignment="Top"
+                ></Border>
 
+        <phone:Panorama
+            Grid.Row="0"
+            Background="Transparent"
+            Title="Agility wall" TitleTemplate="{StaticResource MainPanorama}" 
+            HeaderTemplate="{StaticResource MainPanoramaHeaderTemplate}"
+            ItemsSource="">
+            
             <!--Panorama item one-->
             <phone:PanoramaItem Header="item1">
                 <Grid/>

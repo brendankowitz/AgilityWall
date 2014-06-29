@@ -42,8 +42,10 @@
   <ItemGroup>
     <Compile Include="Authentication\IAuthenticationFrame.cs" />
     <Compile Include="Client\ITokenStore.cs" />
+    <Compile Include="Client\Parameters\GetCardOptions.cs" />
     <Compile Include="Client\TrelloClient.cs" />
     <Compile Include="Client\TrelloToken.cs" />
+    <Compile Include="Contracts\Badges.cs" />
     <Compile Include="Contracts\DescData.cs" />
     <Compile Include="Contracts\Emoji.cs" />
     <Compile Include="Contracts\LabelNames.cs" />
