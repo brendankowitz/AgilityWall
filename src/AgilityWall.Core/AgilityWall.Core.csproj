@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Features\Authentication\AuthenticateViewModel.cs" />
+    <Compile Include="Features\TaskBoard\BoardViewModel.cs" />
     <Compile Include="Features\Main\BoardSummaryViewModel.cs" />
     <Compile Include="Infrastructure\ActionCommand.cs" />
     <Compile Include="Infrastructure\Clock.cs" />

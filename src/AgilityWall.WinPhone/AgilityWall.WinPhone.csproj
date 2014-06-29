@@ -104,6 +104,9 @@
     <Compile Include="Features\Authentication\AuthenticateView.xaml.cs">
       <DependentUpon>AuthenticateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Features\TaskBoard\BoardView.xaml.cs">
+      <DependentUpon>BoardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\AutofacBootstrapper.cs" />
     <Compile Include="Infrastructure\Behaviors\UpdateTextBindingOnPropertyChanged.cs" />
     <Compile Include="Infrastructure\Converters\NonEmptyStringToVisibilityConverter.cs" />
@@ -130,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Features\Authentication\AuthenticateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\TaskBoard\BoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

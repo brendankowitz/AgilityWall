@@ -56,7 +56,8 @@
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="1"
-                                    Margin="4" toolkit:TiltEffect.IsTiltEnabled="True">
+                                    Margin="4" toolkit:TiltEffect.IsTiltEnabled="True"
+                                    micro:Message.Attach="[Event Tap] = [Action NavigateToBoard($dataContext)]">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="15" />
@@ -80,6 +81,11 @@
                 x:Name="ConnectWithTrello"
                 Visibility="{Binding RequiredLogin, Converter={StaticResource BooleanToVisibilityConverter}}"
                 ></Button>
+
+        <ProgressBar Height="10" VerticalAlignment="Top"
+                     IsIndeterminate="{Binding IsLoading}"
+                     Foreground="White"
+                     Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to

@@ -1,5 +1,6 @@
 using System.Linq;
 using AgilityWall.Core.Features.Authentication;
+using AgilityWall.Core.Features.TaskBoard;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.TrelloApi.Client;
 using Caliburn.Micro;
@@ -22,24 +23,38 @@ namespace AgilityWall.Core.Features.Main
 
         public IObservableCollection<BoardSummaryViewModel> Boards { get; set; }
         public bool RequiredLogin { get; set; }
+        public bool IsLoading { get; set; }
 
         protected async override void OnActivate()
         {
-            if ((await _trelloClient.Initialize()))
+            try
             {
-                RequiredLogin = false;
-                var boards = await _trelloClient.GetBoardsForMe();
-                Boards.Clear();
-                Boards.AddRange(
-                    boards.Where(x => !x.Closed).OrderBy(x => x.Name).Select(x => new BoardSummaryViewModel(x)));
+                IsLoading = true;
+                if ((await _trelloClient.Initialize()))
+                {
+                    RequiredLogin = false;
+                    var boards = await _trelloClient.GetBoardsForMe();
+                    Boards.Clear();
+                    Boards.AddRange(
+                        boards.Where(x => !x.Closed).OrderBy(x => x.Name).Select(x => new BoardSummaryViewModel(x)));
+                }
+                else
+                    RequiredLogin = true;
             }
-            else
-                RequiredLogin = true;
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         public void ConnectWithTrello()
         {
             _navigationService.Navigate<AuthenticateViewModel>();
+        }
+
+        public void NavigateToBoard(BoardSummaryViewModel viewModel)
+        {
+            _navigationService.Navigate<BoardViewModel>(new {BoardId = viewModel.Board.Id});
         }
 
         public void CreateBoard()
