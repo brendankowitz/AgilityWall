@@ -1,5 +1,6 @@
 ﻿using System;
 using AgilityWall.Core.Infrastructure;
+using AgilityWall.Core.Messages;
 using AgilityWall.TrelloApi.Client;
 using AgilityWall.TrelloApi.Contracts;
 using Caliburn.Micro;
@@ -12,16 +13,20 @@ namespace AgilityWall.Core.Features.CardDetails
     {
         private readonly INavigationService _navigationService;
         private readonly TrelloClient _trelloClient;
+        private readonly IEventAggregator _eventAggregator;
 
-        public CardDetailsViewModel(INavigationService navigationService, TrelloClient trelloClient)
+        public CardDetailsViewModel(INavigationService navigationService, TrelloClient trelloClient, IEventAggregator eventAggregator)
         {
             _navigationService = navigationService;
             _trelloClient = trelloClient;
+            _eventAggregator = eventAggregator;
         }
 
         protected async override void OnInitialize()
         {
             base.OnInitialize();
+
+            await _trelloClient.Initialize();
 
             try
             {
@@ -52,6 +57,11 @@ namespace AgilityWall.Core.Features.CardDetails
                     return new Uri(CoverAttachment.Url);
                 return new Uri("/Assets/RandomBg3.jpg", UriKind.Relative);
             }
+        }
+
+        public void Pin()
+        {
+            _eventAggregator.Publish(new PinCardMessage(Card), Execute.BeginOnUIThread);
         }
     }
 }

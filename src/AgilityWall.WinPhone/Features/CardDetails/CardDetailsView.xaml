@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:AgilityWall.WinPhone.Controls"
     xmlns:cardDetails="clr-namespace:AgilityWall.Core.Features.CardDetails;assembly=AgilityWall.Core"
+    xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -27,5 +28,13 @@
         
 
     </controls:HeaderedPageLayout>
+
+    <phone:PhoneApplicationPage.ApplicationBar >
+        <shell:ApplicationBar Mode="Minimized" BackgroundColor="{StaticResource AppAccentColor}">
+            <shell:ApplicationBar.Buttons>
+                <micro:AppBarButton Text="pin" Message="Pin" IconUri="/Toolkit.Content/ApplicationBar.Add.png" />
+            </shell:ApplicationBar.Buttons>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

@@ -115,10 +115,13 @@
     <Compile Include="Infrastructure\Converters\NonEmptyStringToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\StringToUriConverter.cs" />
     <Compile Include="Infrastructure\Converters\ToCapsConverter.cs" />
+    <Compile Include="Infrastructure\Modules\AutosubscribeModule.cs" />
     <Compile Include="Infrastructure\Modules\NavigationModule.cs" />
     <Compile Include="Infrastructure\Modules\StorageModule.cs" />
+    <Compile Include="Infrastructure\Modules\TileModule.cs" />
     <Compile Include="Infrastructure\Modules\TrelloApiModule.cs" />
     <Compile Include="Infrastructure\PlatformServices\NavigationWrapper.cs" />
+    <Compile Include="Infrastructure\PlatformServices\TileService.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Features\Main\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

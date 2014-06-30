@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Navigation;
 using AgilityWall.TrelloApi.Authentication;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 
 namespace AgilityWall.WinPhone.Features.Authentication
 {
@@ -24,15 +25,23 @@ namespace AgilityWall.WinPhone.Features.Authentication
         }
 
         private bool _isWaitingForResult;
-
+        
         public AuthenticateView()
         {
             InitializeComponent();
             Browser.Navigated += BrowserOnNavigated;
+            Browser.Navigating += (sender, args) => SetProgressIndicator(true);
+        }
+
+        private void SetProgressIndicator(bool value)
+        {
+           ProgressIndicator.IsIndeterminate = value;
+           ProgressIndicator.IsVisible = value;
         }
 
         private void BrowserOnNavigated(object sender, NavigationEventArgs navigationEventArgs)
         {
+            SetProgressIndicator(false);
             var source = Browser.SaveToString();
             if (_isWaitingForResult && source != null)
                 OnResponseRedirected(new BrowserEventArgs(Browser.Source.ToString(), source));

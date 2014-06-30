@@ -9,6 +9,7 @@ namespace AgilityWall.WinPhone.Infrastructure.Modules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<NavigationWrapper>()
+                .AsSelf()
                 .AsImplementedInterfaces()
                 .SingleInstance();
         }

@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using AgilityWall.Core.Features.Main;
+using Autofac;
+using Autofac.Features.OwnedInstances;
 using Caliburn.Micro;
 using Caliburn.Micro.Autofac;
 
@@ -26,6 +30,18 @@ namespace AgilityWall.WinPhone.Infrastructure
 
             ViewLocator.ConfigureTypeMappings(config);
             ViewModelLocator.ConfigureTypeMappings(config);
+
+            EnableFastAppResumeSupport<MainPageViewModel>();
+        }
+
+        public void EnableFastAppResumeSupport<T>() where T : INotifyPropertyChanged
+        {
+            var viewModelType = typeof(T);
+            var type = ViewLocator.LocateTypeForModelType(viewModelType, null, null);
+            if (type == null)
+                throw new InvalidOperationException(string.Format("No view was found for {0}. See the log for searched views.", viewModelType.FullName));
+            
+            EnableFastAppResumeSupport(new Uri(ViewLocator.DeterminePackUriFromType(viewModelType, type), UriKind.Relative));
         }
     }
 }

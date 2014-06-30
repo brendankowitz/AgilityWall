@@ -16,6 +16,11 @@
     shell:SystemTray.BackgroundColor="{StaticResource AppAccentColor}"
     shell:SystemTray.ForegroundColor="{StaticResource AppAccentForeColor}">
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator x:Name="ProgressIndicator" 
+                                 Text="just a moment..." />
+    </shell:SystemTray.ProgressIndicator>
+
     <controls:HeaderedPageLayout
         PageTitle="connect">
         <controls:HeaderedPageLayout.BackgroundBrush>

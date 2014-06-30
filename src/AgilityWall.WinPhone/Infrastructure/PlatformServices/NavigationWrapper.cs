@@ -47,7 +47,7 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
             _navigationService.GoBack();
         }
 
-        public Uri BuildUri(Type viewModelType, Dictionary<string, string> qry)
+        public Uri BuildUri(Type viewModelType, IDictionary<string, string> qry)
         {
             var type = ViewLocator.LocateTypeForModelType(viewModelType, null, null);
             if (type == null)
@@ -55,7 +55,7 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
             return new Uri(ViewLocator.DeterminePackUriFromType(viewModelType, type) + BuildQueryString(qry), UriKind.Relative);
         }
 
-        private string BuildQueryString(Dictionary<string, string> qry)
+        private string BuildQueryString(IDictionary<string, string> qry)
         {
             if (qry.Count < 1)
                 return string.Empty;
