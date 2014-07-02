@@ -9,16 +9,4 @@ namespace AgilityWall.TrelloApi.Authentication
         event EventHandler<BrowserEventArgs> BrowserRedirected;
         event EventHandler LoginCanceled;
     }
-
-    public class BrowserEventArgs : EventArgs
-    {
-        public BrowserEventArgs(string uri, string htmlContent)
-        {
-            Uri = uri;
-            HtmlContent = htmlContent;
-        }
-
-        public string Uri { get; set; }
-        public string HtmlContent { get; set; }
-    }
 }

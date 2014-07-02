@@ -77,7 +77,10 @@
 
         </phone:Panorama>
         
-        <Button Height="100" Width="300" Content="Connect with Trello"
+        <Button Height="100" Width="300" 
+                Style="{StaticResource BorderlessPrimaryButtonStyle}"
+                HorizontalAlignment="Center"
+                Content="Connect with Trello"
                 x:Name="ConnectWithTrello"
                 Visibility="{Binding RequiredLogin, Converter={StaticResource BooleanToVisibilityConverter}}"
                 ></Button>
@@ -106,5 +109,5 @@
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-
+    
 </phone:PhoneApplicationPage>

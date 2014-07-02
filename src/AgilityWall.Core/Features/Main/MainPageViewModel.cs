@@ -26,7 +26,7 @@ namespace AgilityWall.Core.Features.Main
         public bool RequiredLogin { get; set; }
         public bool IsLoading { get; set; }
 
-        protected async override void OnActivate()
+        protected async override void OnInitialize()
         {
             try
             {

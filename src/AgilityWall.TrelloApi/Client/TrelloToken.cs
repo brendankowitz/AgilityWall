@@ -6,7 +6,7 @@ namespace AgilityWall.TrelloApi.Client
     {
         public TrelloToken(string token, DateTime? expires)
         {
-            Token = token;
+            Value = token;
             Expires = expires;
         }
 
@@ -14,7 +14,7 @@ namespace AgilityWall.TrelloApi.Client
         {
         }
 
-        public string Token { get; set; }
+        public string Value { get; set; }
         public DateTime? Expires { get; set; }
     }
 }

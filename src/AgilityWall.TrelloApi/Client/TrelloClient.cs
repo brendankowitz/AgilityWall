@@ -61,11 +61,11 @@ namespace AgilityWall.TrelloApi.Client
             if (string.IsNullOrEmpty(content))
                 return false;
 
-            var matches = Regex.Match(content, "<pre>(?<KEY>.*)</pre>", RegexOptions.Singleline | RegexOptions.IgnoreCase).Groups["KEY"].Value;
+            var value = Regex.Match(content, "<pre>(?<KEY>.*)</pre>", RegexOptions.Singleline | RegexOptions.IgnoreCase).Groups["KEY"].Value;
 
-            if (!string.IsNullOrEmpty(matches))
+            if (!string.IsNullOrEmpty(value))
             {
-                Token = new TrelloToken(matches.Trim(), null);
+                Token = new TrelloToken(value.Trim(), null);
                 await _tokenStore.SaveToken(Token);
                 return true;
             }
@@ -119,7 +119,7 @@ namespace AgilityWall.TrelloApi.Client
                new Dictionary<string, string>
                 {
                     {"key", Key},
-                    {"token", Token.Token}
+                    {"token", Token.Value}
                 });
             return response;
         }
@@ -130,7 +130,7 @@ namespace AgilityWall.TrelloApi.Client
                new Dictionary<string, string>
                 {
                     {"key", Key},
-                    {"token", Token.Token}
+                    {"token", Token.Value}
                 });
             return response;
         }
@@ -141,7 +141,7 @@ namespace AgilityWall.TrelloApi.Client
                new Dictionary<string, string>
                 {
                     {"key", Key},
-                    {"token", Token.Token}
+                    {"token", Token.Value}
                 });
             return response;
         }
@@ -155,7 +155,7 @@ namespace AgilityWall.TrelloApi.Client
                 {
                     {"cards", cards.ToString()},
                     {"key", Key},
-                    {"token", Token.Token}
+                    {"token", Token.Value}
                 });
             return response;
         }
@@ -166,7 +166,7 @@ namespace AgilityWall.TrelloApi.Client
                new Dictionary<string, string>
                 {
                     {"key", Key},
-                    {"token", Token.Token}
+                    {"token", Token.Value}
                 });
             return response;
         }
@@ -177,7 +177,7 @@ namespace AgilityWall.TrelloApi.Client
                new Dictionary<string, string>
                 {
                     {"key", Key},
-                    {"token", Token.Token}
+                    {"token", Token.Value}
                 });
             return response;
         }
@@ -189,7 +189,7 @@ namespace AgilityWall.TrelloApi.Client
                 {
                     {"cards", cards.ToString()},
                     {"key", Key},
-                    {"token", Token.Token}
+                    {"token", Token.Value}
                 });
             return response;
         }

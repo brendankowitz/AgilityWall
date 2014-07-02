@@ -10,6 +10,7 @@
     xmlns:controls="clr-namespace:AgilityWall.WinPhone.Controls"
     xmlns:cardDetails="clr-namespace:AgilityWall.Core.Features.CardDetails;assembly=AgilityWall.Core"
     xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -35,7 +36,7 @@
         <StackPanel Margin="0,-24,0,0">
             
             <TextBlock FontWeight="Black">
-                <Run Text="In list " /><Run Text="{Binding List.Name}" />
+                <Run Text="In list " FontWeight="SemiBold" /><Run Text="{Binding List.Name}" />
             </TextBlock>
             
             <TextBlock Text="{Binding Card.Desc}" TextWrapping="Wrap" />

@@ -60,9 +60,8 @@
         <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
-        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+        <Setter Property="FontSize" Value="28"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="Padding" Value="10,5,10,6"/>
         <Setter Property="Template">
@@ -100,6 +99,12 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="BorderlessPrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource BorderlessButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource SecondaryBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource AppAccentForeColor}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
 
     <Style x:Key="HeaderedContentControlHeaderStyle" TargetType="ContentControl">
@@ -209,7 +214,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image Source="{Binding BackgroundBrush.ImageSource, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Image Source="{Binding BackgroundBrush.ImageSource, RelativeSource={RelativeSource TemplatedParent}}" MaxHeight="300" Stretch="UniformToFill" />
                 <Border Grid.Row="1" Background="#CC9954bb" HorizontalAlignment="Left" Margin="12,12,12,24">
                     <TextBlock Text="{Binding PageTitle, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White"
                                    HorizontalAlignment="Left" Style="{StaticResource AppPrimaryPageHeading}" TextWrapping="Wrap"/>
