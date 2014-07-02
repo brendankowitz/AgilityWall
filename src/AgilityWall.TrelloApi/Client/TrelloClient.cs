@@ -135,7 +135,7 @@ namespace AgilityWall.TrelloApi.Client
             return response;
         }
 
-        public async Task<IEnumerable<Card>> GetBoardCards(string boardId, FilterOptions options = FilterOptions.all)
+        public async Task<IEnumerable<Card>> GetBoardCardsById(string boardId, FilterOptions options = FilterOptions.all)
         {
             var response = await ExecuteRequest<IEnumerable<Card>>(string.Format("/boards/{0}/cards/{1}", boardId, options),
                new Dictionary<string, string>
@@ -146,7 +146,7 @@ namespace AgilityWall.TrelloApi.Client
             return response;
         }
 
-        public async Task<IEnumerable<List>> GetBoardLists(string boardId, 
+        public async Task<IEnumerable<List>> GetBoardListsById(string boardId, 
             ListFilterOptions options = ListFilterOptions.all,
             FilterOptions cards = FilterOptions.none)
         {
@@ -171,11 +171,23 @@ namespace AgilityWall.TrelloApi.Client
             return response;
         }
 
-        public async Task<Attachment> GetAttachment(string cardId, string attachmentId)
+        public async Task<Attachment> GetAttachmentById(string cardId, string attachmentId)
         {
             var response = await ExecuteRequest<Attachment>(string.Format("/cards/{0}/attachments/{1}", cardId, attachmentId),
                new Dictionary<string, string>
                 {
+                    {"key", Key},
+                    {"token", Token.Token}
+                });
+            return response;
+        }
+
+        public async Task<List> GetListById(string idList, FilterOptions cards = FilterOptions.none)
+        {
+            var response = await ExecuteRequest<List>(string.Format("/lists/{0}", idList),
+               new Dictionary<string, string>
+                {
+                    {"cards", cards.ToString()},
                     {"key", Key},
                     {"token", Token.Token}
                 });

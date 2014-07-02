@@ -33,7 +33,7 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
 
             Attachment backgroundImage = null;
             if (!string.IsNullOrEmpty(message.Card.IdAttachmentCover))
-                backgroundImage = await _client.GetAttachment(message.Card.Id, message.Card.IdAttachmentCover);
+                backgroundImage = await _client.GetAttachmentById(message.Card.Id, message.Card.IdAttachmentCover);
 
             var tileData = new StandardTileData
             {

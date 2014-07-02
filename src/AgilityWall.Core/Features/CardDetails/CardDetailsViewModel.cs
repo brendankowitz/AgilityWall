@@ -35,7 +35,8 @@ namespace AgilityWall.Core.Features.CardDetails
                 {
                     Card = await _trelloClient.GetCardId(CardId);
                     if (!string.IsNullOrEmpty(Card.IdAttachmentCover))
-                        CoverAttachment = await _trelloClient.GetAttachment(CardId, Card.IdAttachmentCover);
+                        CoverAttachment = await _trelloClient.GetAttachmentById(CardId, Card.IdAttachmentCover);
+                    List = await _trelloClient.GetListById(Card.IdList);
                 }
             }
             finally
@@ -47,6 +48,7 @@ namespace AgilityWall.Core.Features.CardDetails
         public Attachment CoverAttachment { get; set; }
         public Card Card { get; set; }
         public string CardId { get; set; }
+        public List List { get; set; }
         public bool IsLoading { get; set; }
 
         [DependsOn("CoverAttachment")]
@@ -55,7 +57,7 @@ namespace AgilityWall.Core.Features.CardDetails
             get {
                 if (CoverAttachment != null)
                     return new Uri(CoverAttachment.Url);
-                return new Uri("/Assets/RandomBg3.jpg", UriKind.Relative);
+                return null;
             }
         }
 

@@ -14,18 +14,33 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type=cardDetails:TaskViewModel}"
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type=cardDetails:CardDetailsViewModel}"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource AppAccentColor}"
     shell:SystemTray.ForegroundColor="{StaticResource AppAccentForeColor}">
 
     <controls:HeaderedPageLayout
+        Template="{StaticResource CardHeaderedPageLayoutTemplate}"
         PageTitle="{Binding DisplayName}">
         <controls:HeaderedPageLayout.BackgroundBrush>
             <ImageBrush ImageSource="{Binding CoverPhoto}" 
                         Stretch="UniformToFill"></ImageBrush>
         </controls:HeaderedPageLayout.BackgroundBrush>
+        <controls:HeaderedPageLayout.Resources>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+        </controls:HeaderedPageLayout.Resources>
         
+        <StackPanel Margin="0,-24,0,0">
+            
+            <TextBlock FontWeight="Black">
+                <Run Text="In list " /><Run Text="{Binding List.Name}" />
+            </TextBlock>
+            
+            <TextBlock Text="{Binding Card.Desc}" TextWrapping="Wrap" />
+            
+        </StackPanel>
 
     </controls:HeaderedPageLayout>
 

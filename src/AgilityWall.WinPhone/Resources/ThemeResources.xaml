@@ -33,9 +33,9 @@
 
     <Style x:Key="AppPrimaryPageHeading" TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
-        <Setter Property="FontSize" Value="50"/>
+        <Setter Property="FontSize" Value="32"/>
     </Style>
-    
+
     <Style x:Key="AppPrimaryItemHeading" TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
         <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
@@ -152,7 +152,7 @@
                 </Grid.RowDefinitions>
                 <Image Source="{Binding FeaturedImage, RelativeSource={RelativeSource TemplatedParent}}"
                        Grid.RowSpan="2" Stretch="UniformToFill" />
-                
+
                 <Border Background="{StaticResource AppAccentBgBrush}" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,0,0"
                         Visibility="{Binding Label, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NonEmptyStringToVisibilityConverter}}">
                     <TextBlock Margin="8" Foreground="White" Style="{StaticResource StandardTextStyle}" 
@@ -160,7 +160,7 @@
                                Text="{Binding Label, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToCapsConverter}}" 
                                />
                 </Border>
-                
+
                 <Border Background="{StaticResource AppAccentBgBrush}" Grid.Row="1" VerticalAlignment="Bottom">
                     <TextBlock Style="{Binding TitleStyle, RelativeSource={RelativeSource TemplatedParent}}"
                                Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" />
@@ -200,5 +200,26 @@
     <Style TargetType="controls:HeaderedPageLayout">
         <Setter Property="Template" Value="{StaticResource BaseHeaderedPageLayoutTemplate}" />
     </Style>
+
+    <ControlTemplate x:Key="CardHeaderedPageLayoutTemplate" TargetType="controls:HeaderedPageLayout">
+        <ScrollViewer>
+            <Grid Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Source="{Binding BackgroundBrush.ImageSource, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Border Grid.Row="1" Background="#CC9954bb" HorizontalAlignment="Left" Margin="12,12,12,24">
+                    <TextBlock Text="{Binding PageTitle, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White"
+                                   HorizontalAlignment="Left" Style="{StaticResource AppPrimaryPageHeading}" TextWrapping="Wrap"/>
+                </Border>
+
+                <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12">
+                    <ContentPresenter />
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </ControlTemplate>
 
 </ResourceDictionary>
