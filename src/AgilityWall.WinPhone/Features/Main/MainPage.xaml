@@ -101,6 +101,9 @@
             <shell:ApplicationBar.Buttons>
                 <micro:AppBarButton Text="new board" Message="CreateBoard" IconUri="/Toolkit.Content/ApplicationBar.Add.png" />
             </shell:ApplicationBar.Buttons>
+            <shell:ApplicationBar.MenuItems>
+                <micro:AppBarMenuItem Text="about" Message="NavigateToAbout" />
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

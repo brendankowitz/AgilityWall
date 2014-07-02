@@ -71,4 +71,12 @@
         </phone:Panorama>
     </Grid>
 
+    <phone:PhoneApplicationPage.ApplicationBar >
+        <shell:ApplicationBar Mode="Minimized" BackgroundColor="{StaticResource AppAccentColor}">
+            <shell:ApplicationBar.Buttons>
+                <micro:AppBarButton Text="new card" Message="NewCard" IconUri="/Toolkit.Content/ApplicationBar.Add.png" />
+            </shell:ApplicationBar.Buttons>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
 </phone:PhoneApplicationPage>

@@ -1,4 +1,5 @@
 using System.Linq;
+using AgilityWall.Core.Features.About;
 using AgilityWall.Core.Features.Authentication;
 using AgilityWall.Core.Features.TaskBoard;
 using AgilityWall.Core.Infrastructure;
@@ -55,6 +56,11 @@ namespace AgilityWall.Core.Features.Main
         public void NavigateToBoard(BoardSummaryViewModel viewModel)
         {
             _navigationService.Navigate<BoardViewModel>(new { BoardId = viewModel.Board.Id, DisplayName = viewModel.Board.Name });
+        }
+
+        public void NavigateToAbout()
+        {
+            _navigationService.Navigate<AboutViewModel>();
         }
 
         public void CreateBoard()

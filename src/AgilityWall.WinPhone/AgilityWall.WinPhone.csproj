@@ -101,6 +101,9 @@
     </Compile>
     <Compile Include="Controls\FeaturedItemControl.cs" />
     <Compile Include="Controls\HeaderedPageLayout.cs" />
+    <Compile Include="Features\About\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Features\Authentication\AuthenticateView.xaml.cs">
       <DependentUpon>AuthenticateView.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Features\About\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Features\Authentication\AuthenticateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -223,7 +230,7 @@
     </Reference>
     <Reference Include="Caliburn.Micro.Autofac, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Caliburn.Micro.AutofacBootstrap.2.0.1\lib\wp8\Caliburn.Micro.Autofac.dll</HintPath>
+      <HintPath>..\packages\Caliburn.Micro.AutofacBootstrap.2.0.2\lib\wp8\Caliburn.Micro.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Caliburn.Micro.Extensions, Version=2.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

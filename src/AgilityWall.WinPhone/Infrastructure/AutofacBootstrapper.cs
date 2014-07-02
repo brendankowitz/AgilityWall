@@ -33,15 +33,5 @@ namespace AgilityWall.WinPhone.Infrastructure
 
             EnableFastAppResumeSupport<MainPageViewModel>();
         }
-
-        public void EnableFastAppResumeSupport<T>() where T : INotifyPropertyChanged
-        {
-            var viewModelType = typeof(T);
-            var type = ViewLocator.LocateTypeForModelType(viewModelType, null, null);
-            if (type == null)
-                throw new InvalidOperationException(string.Format("No view was found for {0}. See the log for searched views.", viewModelType.FullName));
-            
-            EnableFastAppResumeSupport(new Uri(ViewLocator.DeterminePackUriFromType(viewModelType, type), UriKind.Relative));
-        }
     }
 }

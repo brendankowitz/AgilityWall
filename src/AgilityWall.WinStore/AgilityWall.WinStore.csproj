@@ -146,7 +146,7 @@
     </Reference>
     <Reference Include="Caliburn.Micro.Autofac, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Caliburn.Micro.AutofacBootstrap.2.0.1\lib\portable-net45+win8+wpa81\Caliburn.Micro.Autofac.dll</HintPath>
+      <HintPath>..\packages\Caliburn.Micro.AutofacBootstrap.2.0.2\lib\portable-net45+win8+wpa81\Caliburn.Micro.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Caliburn.Micro.Extensions, Version=2.0.0.6, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
