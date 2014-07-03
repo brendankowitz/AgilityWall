@@ -48,6 +48,12 @@ namespace AgilityWall.Core.Features.Main
             }
         }
 
+        protected override void OnActivate()
+        {
+            if(RequiredLogin)
+                OnInitialize();
+        }
+
         public void ConnectWithTrello()
         {
             _navigationService.Navigate<AuthenticateViewModel>();

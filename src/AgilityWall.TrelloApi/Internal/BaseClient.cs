@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -42,9 +43,7 @@ namespace AgilityWall.TrelloApi.Internal
                 if(!string.IsNullOrEmpty(content))
                     req.Content = new StringContent(content);
                 var response = await client.SendAsync(req);
-                if(!response.IsSuccessStatusCode)
-                    throw new Exception("Request did not succeed");
-                return await response.Content.ReadAsStringAsync();
+                return await HandleResponseMessage(response);
             }
         }
 
@@ -57,9 +56,7 @@ namespace AgilityWall.TrelloApi.Internal
                 var req = new HttpRequestMessage(method, BuildUri(resource, parameters));
                 req.Content = new FormUrlEncodedContent(formUrlEncodedContent);
                 var response = await client.SendAsync(req);
-                if (!response.IsSuccessStatusCode)
-                    throw new Exception("Request did not succeed");
-                return await response.Content.ReadAsStringAsync();
+                return await HandleResponseMessage(response);
             }
         }
 
@@ -74,6 +71,11 @@ namespace AgilityWall.TrelloApi.Internal
         protected virtual HttpClient CreateHttpClient()
         {
             return new HttpClient();
+        }
+
+        protected virtual Task<string> HandleResponseMessage(HttpResponseMessage message)
+        {
+            return message.Content.ReadAsStringAsync();
         }
 
         protected virtual string BuildUri(string resource, IDictionary<string, string> parameters)

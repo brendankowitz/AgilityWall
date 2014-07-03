@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Authentication\BrowserEventArgs.cs" />
     <Compile Include="Authentication\IAuthenticationFrame.cs" />
+    <Compile Include="Client\InvalidTokenException.cs" />
     <Compile Include="Client\ITokenStore.cs" />
     <Compile Include="Client\Parameters\FilterOptions.cs" />
     <Compile Include="Client\Parameters\ListFilterOptions.cs" />

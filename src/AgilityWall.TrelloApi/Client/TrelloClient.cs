@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -106,6 +107,30 @@ namespace AgilityWall.TrelloApi.Client
                 authenticationFrame.LoginCanceled -= cancelHandler;
             }
             return false;
+        }
+
+        protected async override Task<string> HandleResponseMessage(HttpResponseMessage message)
+        {
+            string content = null;
+            try
+            {
+                 content = await message.Content.ReadAsStringAsync();
+            }
+            catch { }
+
+            if (!message.IsSuccessStatusCode)
+            {
+                if (!string.IsNullOrEmpty(content) &&
+                    content.IndexOf("invalid token", StringComparison.CurrentCultureIgnoreCase) > -1)
+                {
+                    Token = null;
+                    await _tokenStore.Clear();
+                    throw new InvalidTokenException("Your Trello token has expired or is invalid, please login again.");
+                }
+                throw new HttpRequestException("Request failed.");
+            }
+
+            return content;
         }
 
         public async Task<IEnumerable<Board>> GetBoardsForMe()

@@ -21,6 +21,10 @@ namespace AgilityWall.WinPhone
             {
                 Debugger.Break();
             }
+            else
+            {
+                MessageBox.Show(args.ExceptionObject.ToString());
+            }
         }
     }
 }

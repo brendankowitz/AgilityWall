@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                    xmlns:controls="clr-namespace:AgilityWall.WinPhone.Controls">
+                    xmlns:controls="clr-namespace:AgilityWall.WinPhone.Controls"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <Color x:Key="AppAccentColor">#007fff</Color>
     <Color x:Key="AppAccentForeColor">#fff</Color>
@@ -15,6 +16,29 @@
     <SolidColorBrush x:Key="SecondaryBrush" Color="#9954bb"/>
     <SolidColorBrush x:Key="FillBorderBrush" Color="#e2e2e2"/>
     <SolidColorBrush x:Key="FillBrush" Color="#eeeeee"/>
+
+    <system:Double x:Key="11PtFontSize">14.667</system:Double>
+    <system:Double x:Key="11PtLineHeight">18</system:Double>
+    <system:Double x:Key="14PtFontSize">18.667</system:Double>
+    <system:Double x:Key="14PtLineHeight">22</system:Double>
+    <system:Double x:Key="16PtFontSize">21.333</system:Double>
+    <system:Double x:Key="16PtLineHeight">25</system:Double>
+    <system:Double x:Key="17PtFontSize">22.667</system:Double>
+    <system:Double x:Key="17PtLineHeight">26</system:Double>
+    <system:Double x:Key="18PtFontSize">24</system:Double>
+    <system:Double x:Key="18PtLineHeight">28</system:Double>
+    <system:Double x:Key="21PtFontSize">28</system:Double>
+    <system:Double x:Key="21PtLineHeight">32</system:Double>
+    <system:Double x:Key="24PtFontSize">32</system:Double>
+    <system:Double x:Key="24PtLineHeight">36</system:Double>
+    <system:Double x:Key="30PtFontSize">40</system:Double>
+    <system:Double x:Key="30PtLineHeight">42</system:Double>
+    <system:Double x:Key="32PtFontSize">42</system:Double>
+    <system:Double x:Key="32PtLineHeight">46</system:Double>
+    <system:Double x:Key="35PtFontSize">46</system:Double>
+    <system:Double x:Key="35PtLineHeight">50</system:Double>
+    <system:Double x:Key="36PtFontSize">48</system:Double>
+    <system:Double x:Key="36PtLineHeight">52</system:Double>
 
     <Style x:Name="StandardTextStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextLargeStyle}">
         <Setter Property="FontSize" Value="25"></Setter>
@@ -46,6 +70,17 @@
         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
         <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
         <Setter Property="Margin" Value="{StaticResource PhoneHorizontalMargin}"/>
+    </Style>
+
+    <Style x:Key="IconBase" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="/AgilityWall.WinPhone;component/Assets/trellicons-regular.ttf#Trellicons"/>
+        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
+    </Style>
+
+    <Style x:Key="IconBoard" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="/AgilityWall.WinPhone;component/Assets/trellicons-regular.ttf#Trellicons"/>
+        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
+        <Setter Property="Text" Value="&#xF002;"/>
     </Style>
 
     <Style x:Name="FeaturedItemTitleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource StandardTextStyle}">

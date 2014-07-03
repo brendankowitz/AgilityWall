@@ -26,5 +26,10 @@ namespace AgilityWall.Core.Infrastructure
         {
             return _tokenStorageService.SaveAsync(Key, token);
         }
+
+        public Task Clear()
+        {
+            return _tokenStorageService.DeleteAsync(Key);
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace AgilityWall.TrelloApi.Client
     {
         Task<TrelloToken> GetToken();
         Task SaveToken(TrelloToken token);
+        Task Clear();
     }
 }
