@@ -7,11 +7,21 @@ namespace AgilityWall.Core.Features.TaskBoard
     [ImplementPropertyChanged]
     public class CardSummaryViewModel : PropertyChangedBase
     {
-        public Card Card { get; set; }
-
         public CardSummaryViewModel(Card card)
         {
             Card = card;
+        }
+
+        public Card Card { get; set; }
+
+        [DependsOn("Card")]
+        public bool HasDescription
+        {
+            get
+            {
+                if (Card == null) return false;
+                return !string.IsNullOrEmpty(Card.Desc);
+            }
         }
     }
 }

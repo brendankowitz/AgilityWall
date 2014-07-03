@@ -32,9 +32,9 @@ namespace AgilityWall.Core.Features.TaskBoard
             if (!string.IsNullOrEmpty(BoardId))
             {
                 Board = await _trelloClient.GetBoardById(BoardId);
-                var cards = await _trelloClient.GetBoardListsById(BoardId, ListFilterOptions.open, FilterOptions.open);
+                var lists = await _trelloClient.GetBoardListsById(BoardId, ListFilterOptions.open, FilterOptions.open);
 
-                Lists.AddRange(cards.Select(x => new ListSummaryViewModel(x)));
+                Lists.AddRange(lists.Select(x => new ListSummaryViewModel(x)));
             }
         }
 

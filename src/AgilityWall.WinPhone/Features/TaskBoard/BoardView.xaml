@@ -9,6 +9,7 @@
     xmlns:taskBoard="clr-namespace:AgilityWall.Core.Features.TaskBoard;assembly=AgilityWall.Core"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+    xmlns:controls="clr-namespace:AgilityWall.WinPhone.Controls"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -46,22 +47,11 @@
                         <phone:LongListSelector ItemsSource="{Binding Cards}"  Margin="12,-18,12,8">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="1"
-                                            Margin="4" toolkit:TiltEffect.IsTiltEnabled="True"
-                                            micro:Message.Attach="[Event Tap] = [Action NavigateToCard($dataContext)]">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="15" />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            <Border Background="{StaticResource FillBrush}"></Border>
-                                            <TextBlock Grid.Column="1" Text="{Binding Card.Name}" 
-                                               Style="{StaticResource AppTextBase}"
-                                               TextWrapping="Wrap"
-                                               FontSize="24"
-                                               Margin="4, 8"></TextBlock>
-                                        </Grid>
-                                    </Border>
+                                    <controls:CardControl
+                                        micro:Message.Attach="[Event Tap] = [Action NavigateToCard($dataContext)]"
+                                        Title="{Binding Card.Name}"
+                                        HasDescription="{Binding HasDescription}"
+                                        />
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>
                         </phone:LongListSelector>
