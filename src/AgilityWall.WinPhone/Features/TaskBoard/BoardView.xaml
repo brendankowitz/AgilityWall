@@ -27,7 +27,8 @@
         <phone:Panorama
             Grid.Row="0"
             Background="Transparent"
-            Title="{Binding DisplayName}" TitleTemplate="{StaticResource MainPanorama}" 
+            Title="{Binding DisplayName}" 
+            TitleTemplate="{StaticResource BoardPanorama}" 
             ItemsSource="{Binding Lists}">
             <phone:Panorama.HeaderTemplate>
                 <DataTemplate>
@@ -39,7 +40,7 @@
                     <phone:PanoramaItem Header="{Binding List.Name}">
                         <phone:PanoramaItem.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" FontSize="32" Margin="0" />
+                                <TextBlock Text="{Binding}" FontSize="32" Margin="0" Foreground="{StaticResource SecondaryBrush}" />
                             </DataTemplate>
                         </phone:PanoramaItem.HeaderTemplate>
                         <phone:LongListSelector ItemsSource="{Binding Cards}"  Margin="12,-18,12,8">

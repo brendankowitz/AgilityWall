@@ -83,6 +83,15 @@
         <Setter Property="Text" Value="&#xF002;"/>
     </Style>
 
+    <ControlTemplate x:Name="IconAgilityWall" TargetType="ContentControl">
+        <Canvas Height="100" Width="100" >
+            <Path Fill="#fff" Data="M 49.987,0 0,25 0,37.5 49.987,12.5 99.978,37.5 99.978,25"></Path>
+            <Path Fill="#fff" Data="M 74.978 37.5V100h18.75V37.5H74.978zM89.561 45.834h-6.25V50h6.25v4.167h-3.125v4.167h3.125V62.5h-6.25v4.167h6.25v4.166h-3.125V75h3.125v4.167h-6.25v4.166h6.25V87.5h-3.125v4.166h3.125v4.167H79.145V41.667h10.416V45.834z"></Path>
+            <Path Fill="#fff" Data="M41.111 48.539c-5.442-7.942-12.465-9.623-17.427-9.623 -3.235 0-5.497 0.741-5.593 0.773 -0.307 0.102-0.586 0.276-0.814 0.505l-1.473 1.473h-1.221c0-1.151-0.932-2.083-2.083-2.083H8.333c-1.151 0-2.083 0.932-2.083 2.083v6.25C6.25 49.068 7.182 50 8.333 50H12.5c1.151 0 2.083-0.932 2.083-2.083h2.083v14.245l-1.975 5.929c-0.071 0.212-0.108 0.436-0.108 0.659v29.166c0 1.152 0.932 2.084 2.083 2.084H25c1.151 0 2.083-0.932 2.083-2.084V68.75c0-0.224-0.037-0.447-0.108-0.659L25 62.162V49.149c0.903-0.386 1.961-0.581 3.158-0.581 4.905 0 10.302 3.186 10.355 3.218 0.325 0.195 0.684 0.289 1.043 0.293 1.17 0.094 2.15-0.907 2.15-2.079C41.707 49.431 41.479 48.914 41.111 48.539z"></Path>
+            <Path Fill="#fff" Data="M58.26 60.588c1.029-1.677 1.978-3.805 1.994-6.092 0.014-2.233-0.86-4.301-2.531-5.969 -0.539-0.541-1.2-1.082-1.904-1.652 -2.256-1.822-3.735-3.174-3.735-5.208 0-2.689 2.569-5.867 3.558-6.864 0.81-0.813 0.808-2.132-0.006-2.946 -0.816-0.81-2.13-0.81-2.942 0.004 -0.488 0.488-4.777 4.916-4.777 9.807 0 4.175 3.052 6.645 5.281 8.447 0.58 0.472 1.133 0.911 1.579 1.359 0.887 0.887 1.314 1.863 1.31 2.982 -0.012 2.254-1.737 4.703-2.838 5.969 -7.212 0.11-13.666 1.624-13.666 10.408v8.334c0 10.241 5.455 20.833 14.583 20.833 9.473 0 14.583-10.734 14.583-20.833v-8.334C68.75 63.367 64.088 61.153 58.26 60.588zM64.583 70.833v2.084H56.25v-8.289C63.303 64.93 64.583 66.874 64.583 70.833zM52.083 64.628v8.289H43.75v-2.084C43.75 66.874 45.029 64.93 52.083 64.628zM54.167 95.833c-6.433 0-10.417-8.65-10.417-16.666v-2.084h20.833v2.084C64.583 86.088 61.352 95.833 54.167 95.833z"></Path>
+        </Canvas>
+    </ControlTemplate>
+
     <Style x:Name="FeaturedItemTitleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource StandardTextStyle}">
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontWeight" Value="SemiBold" />
@@ -150,7 +159,36 @@
     <Style x:Key="TextBoxHeaderStyle" BasedOn="{StaticResource HeaderedContentControlHeaderStyle}" TargetType="ContentControl">
         <Setter Property="Padding" Value="0,0,0,8"/>
     </Style>
+    
+    <!-- ## Panorama styles -->
+    <DataTemplate x:Key="MainPanorama">
+        <ContentPresenter>
+            <StackPanel Orientation="Horizontal">
+                <Viewbox Height="50" Width="50" Stretch="Uniform" Margin="0,26,8,0" >
+                    <ContentControl Template="{StaticResource IconAgilityWall}" />
+                </Viewbox>
+                <TextBlock Text="{Binding}" FontSize="{StaticResource 36PtFontSize}" Margin="0,36,0,0" Foreground="White" />
+            </StackPanel>
+        </ContentPresenter>
+    </DataTemplate>
 
+    <DataTemplate x:Key="BoardPanorama">
+        <ContentPresenter>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource IconBoard}"
+                                   FontSize="{StaticResource 36PtFontSize}"  Foreground="White" Margin="0,26,8,0"  />
+                <TextBlock Text="{Binding}" FontSize="{StaticResource 36PtFontSize}" Margin="0,36,0,0" Foreground="White" />
+            </StackPanel>
+        </ContentPresenter>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainPanoramaHeaderTemplate">
+        <ContentPresenter>
+            <TextBlock Text="{Binding}" FontSize="32" Margin="0,24,0,0" Foreground="{StaticResource AppSecondaryBrush}" />
+        </ContentPresenter>
+    </DataTemplate>
+
+    <!-- ## Listbox styles -->
     <DataTemplate x:Key="groupHeaderTemplate">
         <Border Width="72" Height="72" HorizontalAlignment="Left" 
                     Background="{StaticResource AppAccentBrush}"

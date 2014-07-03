@@ -19,22 +19,6 @@
 
             <local:LocalizedStrings xmlns:local="clr-namespace:AgilityWall.WinPhone" x:Key="LocalizedStrings"/>
 
-            <DataTemplate x:Key="MainPanorama">
-                <ContentPresenter>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource IconBoard}"
-                                   FontSize="{StaticResource 36PtFontSize}"  Foreground="White" Margin="0,26,8,0"  />
-                        <TextBlock Text="{Binding}" FontSize="{StaticResource 36PtFontSize}" Margin="0,36,0,0" Foreground="White" />
-                    </StackPanel>
-                </ContentPresenter>
-            </DataTemplate>
-
-            <DataTemplate x:Key="MainPanoramaHeaderTemplate">
-                <ContentPresenter>
-                    <TextBlock Text="{Binding}" FontSize="32" Margin="0,24,0,0" />
-                </ContentPresenter>
-            </DataTemplate>
-
             <infrastructure:AutofacBootstrapper x:Key="bootstrapper" />
         </ResourceDictionary>
     </Application.Resources>

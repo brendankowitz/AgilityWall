@@ -99,6 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CardControl.cs" />
     <Compile Include="Controls\FeaturedItemControl.cs" />
     <Compile Include="Controls\HeaderedPageLayout.cs" />
     <Compile Include="Features\About\AboutView.xaml.cs">
