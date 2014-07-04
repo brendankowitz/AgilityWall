@@ -20,6 +20,10 @@ namespace AgilityWall.WinPhone.Infrastructure.Modules
             builder.RegisterType<ObjectTokenStore>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
+
+            builder.RegisterType<TrelloRelay>()
+                .AutoActivate()
+                .SingleInstance();
         }
     }
 }

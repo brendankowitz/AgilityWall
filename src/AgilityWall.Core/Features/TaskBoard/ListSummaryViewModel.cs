@@ -8,10 +8,10 @@ namespace AgilityWall.Core.Features.TaskBoard
     [ImplementPropertyChanged]
     public class ListSummaryViewModel : PropertyChangedBase
     {
-        public ListSummaryViewModel(List list)
+        public ListSummaryViewModel(List list, IEventAggregator eventAggregator)
         {
             List = list;
-            Cards = new BindableCollection<CardSummaryViewModel>(list.Cards.Select(x => new CardSummaryViewModel(x)));
+            Cards = new BindableCollection<CardSummaryViewModel>(list.Cards.Select(x => new CardSummaryViewModel(x, eventAggregator)));
         }
 
         public List List { get; set; }

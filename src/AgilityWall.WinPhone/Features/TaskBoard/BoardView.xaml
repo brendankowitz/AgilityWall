@@ -51,6 +51,7 @@
                                         micro:Message.Attach="[Event Tap] = [Action NavigateToCard($dataContext)]"
                                         Title="{Binding Card.Name}"
                                         HasDescription="{Binding HasDescription}"
+                                        Image="{Binding CoverAttachment.Previews[0].Url}"
                                         />
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>

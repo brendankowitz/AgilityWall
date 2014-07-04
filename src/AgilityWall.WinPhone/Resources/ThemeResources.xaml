@@ -78,10 +78,48 @@
         <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
     </Style>
 
-    <Style x:Key="IconBoard" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="/AgilityWall.WinPhone;component/Assets/trellicons-regular.ttf#Trellicons"/>
-        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
+    <Style x:Key="IconBoard" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
         <Setter Property="Text" Value="&#xF002;"/>
+    </Style>
+
+    <Style x:Key="IconComment" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF008;"/>
+    </Style>
+
+    <Style x:Key="IconLabel" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF009;"/>
+    </Style>
+
+    <Style x:Key="IconAttachment" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF010;"/>
+    </Style>
+
+    <Style x:Key="IconChecklist" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF011;"/>
+    </Style>
+
+    <Style x:Key="IconVote" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF012;"/>
+    </Style>
+
+    <Style x:Key="IconClock" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF013;"/>
+    </Style>
+    
+    <Style x:Key="IconArchive" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF014;"/>
+    </Style>
+
+    <Style x:Key="IconActivity" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF015;"/>
+    </Style>
+
+    <Style x:Key="IconEdit" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF031;"/>
+    </Style>
+
+    <Style x:Key="IconStar" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF042;"/>
     </Style>
 
     <Style x:Key="IconDesc" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
@@ -276,17 +314,23 @@
     <!-- ## Card Item styles -->
 
     <ControlTemplate x:Key="CardControl" TargetType="controls:CardControl">
-        <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="1"
+        <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="2"
                 Margin="4" toolkit:TiltEffect.IsTiltEnabled="True">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Image Source="{Binding Image, RelativeSource={RelativeSource TemplatedParent}}" Stretch="UniformToFill" MaxHeight="100" />
+                <TextBlock Grid.Row="1" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" 
                                                Style="{StaticResource AppTextBase}"
                                                TextWrapping="Wrap"
                                                FontSize="24"
                                                Margin="4, 8"></TextBlock>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="4, 8">
+                    <TextBlock Style="{StaticResource IconDesc}" FontSize="{StaticResource PhoneFontSizeNormal}" Visibility="{Binding HasDescription, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
             </Grid>
         </Border>
     </ControlTemplate>
