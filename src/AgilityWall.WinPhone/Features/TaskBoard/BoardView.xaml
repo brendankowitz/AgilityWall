@@ -44,22 +44,26 @@
                                 <TextBlock Text="{Binding}" FontSize="32" Margin="0" Foreground="{StaticResource SecondaryBrush}" />
                             </DataTemplate>
                         </phone:PanoramaItem.HeaderTemplate>
-                        <phone:LongListSelector ItemsSource="{Binding Cards}"  Margin="12,-18,12,8">
-                            <phone:LongListSelector.ItemTemplate>
-                                <DataTemplate>
-                                    <controls:CardControl
+                        <Grid>
+                            <phone:LongListSelector ItemsSource="{Binding Cards}"  Margin="12,-18,12,8">
+                                <phone:LongListSelector.ItemTemplate>
+                                    <DataTemplate>
+                                        <controls:CardControl
                                         micro:Message.Attach="[Event Tap] = [Action NavigateToCard($dataContext)]"
                                         Title="{Binding Card.Name}"
                                         HasDescription="{Binding HasDescription}"
                                         Image="{Binding CoverAttachment.Previews[0].Url}"
                                         />
-                                </DataTemplate>
-                            </phone:LongListSelector.ItemTemplate>
-                        </phone:LongListSelector>
+                                    </DataTemplate>
+                                </phone:LongListSelector.ItemTemplate>
+                            </phone:LongListSelector>
+                            <TextBlock Text="No cards" Style="{StaticResource AppSubtleTextStyle}"
+                                       Visibility="{Binding NoCards, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        </Grid>
                     </phone:PanoramaItem>
                 </DataTemplate>
             </phone:Panorama.ItemTemplate>
-            
+
         </phone:Panorama>
     </Grid>
 

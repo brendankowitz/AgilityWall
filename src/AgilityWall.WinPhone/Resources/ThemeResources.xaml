@@ -56,6 +56,12 @@
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
+    <Style x:Key="AppSubtleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
+        <Setter Property="FontStyle" Value="Italic"/>
+        <Setter Property="Foreground" Value="{StaticResource FillBorderBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource 21PtFontSize}"/>
+    </Style>
+
     <Style x:Key="AppPrimaryPageHeading" TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
         <Setter Property="FontSize" Value="32"/>

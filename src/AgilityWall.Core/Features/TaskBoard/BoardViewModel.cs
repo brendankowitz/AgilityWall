@@ -17,10 +17,6 @@ namespace AgilityWall.Core.Features.TaskBoard
         private readonly TrelloClient _trelloClient;
         private readonly IEventAggregator _eventAggregator;
 
-        public string BoardId { get; set; }
-        public Board Board { get; set; }
-        public IObservableCollection<ListSummaryViewModel> Lists { get; set; }
-
         public BoardViewModel(INavigationService navigationService, TrelloClient trelloClient, IEventAggregator eventAggregator)
         {
             _navigationService = navigationService;
@@ -28,6 +24,10 @@ namespace AgilityWall.Core.Features.TaskBoard
             _eventAggregator = eventAggregator;
             Lists = new BindableCollection<ListSummaryViewModel>();
         }
+
+        public string BoardId { get; set; }
+        public Board Board { get; set; }
+        public IObservableCollection<ListSummaryViewModel> Lists { get; set; }
 
         protected async override void OnInitialize()
         {

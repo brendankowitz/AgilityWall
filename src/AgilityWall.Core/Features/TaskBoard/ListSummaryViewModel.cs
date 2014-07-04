@@ -16,5 +16,7 @@ namespace AgilityWall.Core.Features.TaskBoard
 
         public List List { get; set; }
         public IObservableCollection<CardSummaryViewModel> Cards { get; set; }
+        [DependsOn("Cards")]
+        public bool NoCards { get { return !Cards.Any(); }}
     }
 }
