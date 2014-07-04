@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AgilityWall.TrelloApi.Authentication;
 using AgilityWall.TrelloApi.Client.Parameters;
+using AgilityWall.TrelloApi.Client.Requests;
 using AgilityWall.TrelloApi.Contracts;
 using AgilityWall.TrelloApi.Internal;
 
@@ -50,7 +51,6 @@ namespace AgilityWall.TrelloApi.Client
                 {
                     {"key", Key},
                     {"name", ClientName},
-                    //{"return_url", "http://bing.com"},
                     {"expiration", "never"},
                     {"response_type", "token"},
                     {"scope", "read,write"}
@@ -114,8 +114,9 @@ namespace AgilityWall.TrelloApi.Client
             string content = null;
             try
             {
-                 content = await message.Content.ReadAsStringAsync();
+                content = await message.Content.ReadAsStringAsync();
             }
+// ReSharper disable once EmptyGeneralCatchClause
             catch { }
 
             if (!message.IsSuccessStatusCode)
@@ -133,90 +134,55 @@ namespace AgilityWall.TrelloApi.Client
             return content;
         }
 
-        public async Task<IEnumerable<Board>> GetBoardsForMe()
+        public async Task<TResponse> ExecuteRequest<TRequest, TResponse>(ITrelloRequest<TRequest, TResponse> request)
         {
-            return await GetBoardsForUser("me");
-        }
-
-        public async Task<IEnumerable<Board>> GetBoardsForUser(string userId)
-        {
-            var response = await ExecuteRequest<IEnumerable<Board>>(string.Format("/members/{0}/boards", userId),
-               new Dictionary<string, string>
-                {
-                    {"key", Key},
-                    {"token", Token.Value}
-                });
+            var response = await ExecuteRequest<TResponse>(request.Resource,
+                   new Dictionary<string, string>(request.Parameters)
+                    {
+                        {"key", Key},
+                        {"token", Token.Value}
+                    });
             return response;
         }
 
-        public async Task<Board> GetBoardById(string boardId)
+        public Task<IEnumerable<Board>> GetBoardsForMe()
         {
-            var response = await ExecuteRequest<Board>(string.Format("/boards/{0}", boardId),
-               new Dictionary<string, string>
-                {
-                    {"key", Key},
-                    {"token", Token.Value}
-                });
-            return response;
+            return ExecuteRequest(new GetBoardsForMeRequest());
         }
 
-        public async Task<IEnumerable<Card>> GetBoardCardsById(string boardId, FilterOptions options = FilterOptions.all)
+        public Task<IEnumerable<Board>> GetBoardsForUser(string userId)
         {
-            var response = await ExecuteRequest<IEnumerable<Card>>(string.Format("/boards/{0}/cards/{1}", boardId, options),
-               new Dictionary<string, string>
-                {
-                    {"key", Key},
-                    {"token", Token.Value}
-                });
-            return response;
+            return ExecuteRequest(new GetBoardsForUserRequest(userId));
         }
 
-        public async Task<IEnumerable<List>> GetBoardListsById(string boardId, 
-            ListFilterOptions options = ListFilterOptions.all,
-            FilterOptions cards = FilterOptions.none)
+        public Task<Board> GetBoardById(string boardId)
         {
-            var response = await ExecuteRequest<IEnumerable<List>>(string.Format("/boards/{0}/lists/{1}", boardId, options),
-               new Dictionary<string, string>
-                {
-                    {"cards", cards.ToString()},
-                    {"key", Key},
-                    {"token", Token.Value}
-                });
-            return response;
+            return ExecuteRequest(new GetBoardByIdRequest(boardId));
         }
 
-        public async Task<Card> GetCardId(string cardId)
+        public Task<IEnumerable<Card>> GetBoardCardsById(string boardId, FilterOptions options = FilterOptions.all)
         {
-            var response = await ExecuteRequest<Card>(string.Format("/cards/{0}", cardId),
-               new Dictionary<string, string>
-                {
-                    {"key", Key},
-                    {"token", Token.Value}
-                });
-            return response;
+            return ExecuteRequest(new GetCardsByBoardId(boardId, options));
         }
 
-        public async Task<Attachment> GetAttachmentById(string cardId, string attachmentId)
+        public Task<IEnumerable<List>> GetBoardListsById(string boardId, ListFilterOptions options = ListFilterOptions.all, FilterOptions cards = FilterOptions.none)
         {
-            var response = await ExecuteRequest<Attachment>(string.Format("/cards/{0}/attachments/{1}", cardId, attachmentId),
-               new Dictionary<string, string>
-                {
-                    {"key", Key},
-                    {"token", Token.Value}
-                });
-            return response;
+            return ExecuteRequest(new GetListsByBoardIdRequest(boardId, options, cards));
         }
 
-        public async Task<List> GetListById(string idList, FilterOptions cards = FilterOptions.none)
+        public Task<Card> GetCardId(string cardId)
         {
-            var response = await ExecuteRequest<List>(string.Format("/lists/{0}", idList),
-               new Dictionary<string, string>
-                {
-                    {"cards", cards.ToString()},
-                    {"key", Key},
-                    {"token", Token.Value}
-                });
-            return response;
+            return ExecuteRequest(new GetCardByIdRequest(cardId));
+        }
+
+        public Task<Attachment> GetAttachmentById(string cardId, string attachmentId)
+        {
+            return ExecuteRequest(new GetAttachmentByIdRequest(cardId, attachmentId));
+        }
+
+        public Task<List> GetListById(string idList, FilterOptions cards = FilterOptions.none)
+        {
+            return ExecuteRequest(new GetListByIdRequest(idList, cards));
         }
     }
 }

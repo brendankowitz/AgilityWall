@@ -46,6 +46,16 @@
     <Compile Include="Client\ITokenStore.cs" />
     <Compile Include="Client\Parameters\FilterOptions.cs" />
     <Compile Include="Client\Parameters\ListFilterOptions.cs" />
+    <Compile Include="Client\Requests\GetAttachmentByIdRequest.cs" />
+    <Compile Include="Client\Requests\GetBoardByIdRequest.cs" />
+    <Compile Include="Client\Requests\GetBoardsForMeRequest.cs" />
+    <Compile Include="Client\Requests\GetBoardsForUserRequest.cs" />
+    <Compile Include="Client\Requests\GetCardByIdRequest.cs" />
+    <Compile Include="Client\Requests\GetCardsByBoardId.cs" />
+    <Compile Include="Client\Requests\GetListByIdRequest.cs" />
+    <Compile Include="Client\Requests\GetListsByBoardIdRequest.cs" />
+    <Compile Include="Client\Requests\ITrelloRequest.cs" />
+    <Compile Include="Client\Requests\RequestDefaults.cs" />
     <Compile Include="Client\TrelloClient.cs" />
     <Compile Include="Client\TrelloToken.cs" />
     <Compile Include="Contracts\AttachmentPreview.cs" />
