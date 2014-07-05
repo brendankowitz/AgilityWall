@@ -8,10 +8,12 @@
     <Color x:Key="AppAccentColor">#007fff</Color>
     <Color x:Key="AppAccentForeColor">#fff</Color>
     <Color x:Key="AppSecondaryColor">#9954bb</Color>
+    <Color x:Key="AppTextColor">#636363</Color>
 
     <SolidColorBrush x:Key="AppAccentBrush" Color="#007fff"/>
     <SolidColorBrush x:Key="AppSecondaryBrush" Color="#9954bb"/>
     <SolidColorBrush x:Key="AppAccentBgBrush" Color="#CC007fff"/>
+    <SolidColorBrush x:Key="AppTextBrush" Color="#636363"/>
     <SolidColorBrush x:Key="RedBrush" Color="#DE2027"/>
     <SolidColorBrush x:Key="GreenBrush" Color="#00813D"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="#9954bb"/>
@@ -49,7 +51,7 @@
         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
         <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
         <Setter Property="Margin" Value="{StaticResource PhoneHorizontalMargin}"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{StaticResource AppTextBrush}"/>
     </Style>
 
     <Style x:Key="StandardWhiteTextStyle" TargetType="TextBlock" BasedOn="{StaticResource StandardTextStyle}">
@@ -233,7 +235,7 @@
 
     <DataTemplate x:Key="MainPanoramaHeaderTemplate">
         <ContentPresenter>
-            <TextBlock Text="{Binding}" FontSize="32" Margin="0,24,0,0" Foreground="{StaticResource AppSecondaryBrush}" />
+            <TextBlock Text="{Binding}" FontSize="32" Margin="0,24,0,0" Foreground="#222222" />
         </ContentPresenter>
     </DataTemplate>
 
@@ -328,13 +330,14 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Image Source="{Binding Image, RelativeSource={RelativeSource TemplatedParent}}" Stretch="UniformToFill" MaxHeight="100" />
+                <Image Source="{Binding Image, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding Image, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToInvisibilityConverter}}" 
+                       Stretch="UniformToFill" MaxHeight="100" Margin="8,0,8,8" />
                 <TextBlock Grid.Row="1" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" 
                                                Style="{StaticResource AppTextBase}"
                                                TextWrapping="Wrap"
                                                FontSize="24"
-                                               Margin="4, 8"></TextBlock>
-                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="4, 8">
+                                               Margin="8, 8"></TextBlock>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="8, 8, 8, 4">
                     <TextBlock Style="{StaticResource IconDesc}" FontSize="{StaticResource PhoneFontSizeNormal}" Visibility="{Binding HasDescription, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </StackPanel>
             </Grid>

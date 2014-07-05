@@ -61,8 +61,10 @@
     <Compile Include="Contracts\AttachmentPreview.cs" />
     <Compile Include="Contracts\Attachment.cs" />
     <Compile Include="Contracts\Badges.cs" />
+    <Compile Include="Contracts\CheckItemState.cs" />
     <Compile Include="Contracts\DescData.cs" />
     <Compile Include="Contracts\Emoji.cs" />
+    <Compile Include="Contracts\Label.cs" />
     <Compile Include="Contracts\LabelNames.cs" />
     <Compile Include="Contracts\List.cs" />
     <Compile Include="Contracts\Board.cs" />

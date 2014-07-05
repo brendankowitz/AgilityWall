@@ -28,15 +28,25 @@ namespace AgilityWall.Core.Features.TaskBoard
         public string BoardId { get; set; }
         public Board Board { get; set; }
         public IObservableCollection<ListSummaryViewModel> Lists { get; set; }
+        public bool IsLoading { get; set; }
 
         protected async override void OnInitialize()
         {
-            if (!string.IsNullOrEmpty(BoardId))
+            try
             {
-                Board = await _trelloClient.GetBoardById(BoardId);
-                var lists = await _trelloClient.GetBoardListsById(BoardId, ListFilterOptions.open, FilterOptions.open);
+                IsLoading = true;
+                if (!string.IsNullOrEmpty(BoardId))
+                {
+                    Board = await _trelloClient.GetBoardById(BoardId);
+                    var lists =
+                        await _trelloClient.GetBoardListsById(BoardId, ListFilterOptions.open, FilterOptions.open);
 
-                Lists.AddRange(lists.Select(x => new ListSummaryViewModel(x, _eventAggregator)));
+                    Lists.AddRange(lists.Select(x => new ListSummaryViewModel(x, _eventAggregator)));
+                }
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 

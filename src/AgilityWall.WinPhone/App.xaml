@@ -16,6 +16,7 @@
             <micro:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:NonEmptyStringToVisibilityConverter x:Key="NonEmptyStringToVisibilityConverter" />
             <converters:ToCapsConverter x:Key="ToCapsConverter" />
+            <converters:NullToInvisibilityConverter x:Key="NullToInvisibilityConverter" />
 
             <local:LocalizedStrings xmlns:local="clr-namespace:AgilityWall.WinPhone" x:Key="LocalizedStrings"/>
 

@@ -55,19 +55,20 @@
                 <phone:LongListSelector ItemsSource="{Binding Boards}" Margin="12,-18,12,8">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="1"
+                            <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="2"
                                     Margin="4" toolkit:TiltEffect.IsTiltEnabled="True"
+                                    MinHeight="60"
                                     micro:Message.Attach="[Event Tap] = [Action NavigateToBoard($dataContext)]">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="15" />
+                                        <ColumnDefinition Width="5" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <Border Background="{StaticResource FillBrush}"></Border>
                                     <TextBlock Grid.Column="1" Text="{Binding Board.Name}" 
                                                Style="{StaticResource AppTextBase}"
                                                FontSize="24"
-                                               Margin="4, 8"></TextBlock>
+                                               Margin="8, 8"></TextBlock>
                                 </Grid>
                             </Border>
                         </DataTemplate>
