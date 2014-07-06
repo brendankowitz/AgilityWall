@@ -20,6 +20,12 @@
     shell:SystemTray.BackgroundColor="{StaticResource AppAccentColor}"
     shell:SystemTray.ForegroundColor="{StaticResource AppAccentForeColor}">
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator Text="{Binding Path=LocalizedResources.Loading, Source={StaticResource LocalizedStrings}}"
+                                 IsIndeterminate="{Binding IsLoading}"
+                                 IsVisible="{Binding IsLoading}"/>
+    </shell:SystemTray.ProgressIndicator>
+
     <controls:HeaderedPageLayout
         Template="{StaticResource CardHeaderedPageLayoutTemplate}"
         PageTitle="{Binding DisplayName}">
@@ -48,7 +54,7 @@
     <phone:PhoneApplicationPage.ApplicationBar >
         <shell:ApplicationBar Mode="Minimized" BackgroundColor="{StaticResource AppAccentColor}">
             <shell:ApplicationBar.Buttons>
-                <micro:AppBarButton Text="pin" Message="Pin" IconUri="/Toolkit.Content/ApplicationBar.Add.png" />
+                <micro:AppBarButton Text="pin" Message="Pin" IconUri="/Assets/AppBar/Pin.png" />
             </shell:ApplicationBar.Buttons>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

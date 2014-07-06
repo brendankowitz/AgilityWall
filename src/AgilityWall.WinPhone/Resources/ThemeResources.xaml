@@ -8,15 +8,19 @@
     <Color x:Key="AppAccentColor">#007fff</Color>
     <Color x:Key="AppAccentForeColor">#fff</Color>
     <Color x:Key="AppSecondaryColor">#9954bb</Color>
+    <Color x:Key="AppTertiaryColor">#FF7F00</Color>
     <Color x:Key="AppTextColor">#636363</Color>
+    <Color x:Key="AppHeadingColor">#222222</Color>
 
-    <SolidColorBrush x:Key="AppAccentBrush" Color="#007fff"/>
-    <SolidColorBrush x:Key="AppSecondaryBrush" Color="#9954bb"/>
+    <SolidColorBrush x:Key="AppAccentBrush" Color="{StaticResource AppAccentColor}"/>
+    <SolidColorBrush x:Key="AppSecondaryBrush" Color="{StaticResource AppSecondaryColor}"/>
+    <SolidColorBrush x:Key="AppTertiaryBrush" Color="{StaticResource AppTertiaryColor}"/>
     <SolidColorBrush x:Key="AppAccentBgBrush" Color="#CC007fff"/>
-    <SolidColorBrush x:Key="AppTextBrush" Color="#636363"/>
+    <SolidColorBrush x:Key="AppTextBrush" Color="{StaticResource AppTextColor}"/>
+    <SolidColorBrush x:Key="AppHeadingBrush" Color="{StaticResource AppHeadingColor}"/>
     <SolidColorBrush x:Key="RedBrush" Color="#DE2027"/>
     <SolidColorBrush x:Key="GreenBrush" Color="#00813D"/>
-    <SolidColorBrush x:Key="SecondaryBrush" Color="#9954bb"/>
+
     <SolidColorBrush x:Key="FillBorderBrush" Color="#e2e2e2"/>
     <SolidColorBrush x:Key="FillBrush" Color="#eeeeee"/>
 
@@ -122,6 +126,14 @@
         <Setter Property="Text" Value="&#xF015;"/>
     </Style>
 
+    <Style x:Key="IconLeftArrow" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF024;"/>
+    </Style>
+
+    <Style x:Key="IconRightArrow" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF025;"/>
+    </Style>
+
     <Style x:Key="IconEdit" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
         <Setter Property="Text" Value="&#xF031;"/>
     </Style>
@@ -197,7 +209,7 @@
     </Style>
 
     <Style x:Key="BorderlessPrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource BorderlessButtonStyle}">
-        <Setter Property="Background" Value="{StaticResource SecondaryBrush}"/>
+        <Setter Property="Background" Value="{StaticResource AppSecondaryBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource AppAccentForeColor}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
@@ -235,7 +247,7 @@
 
     <DataTemplate x:Key="MainPanoramaHeaderTemplate">
         <ContentPresenter>
-            <TextBlock Text="{Binding}" FontSize="32" Margin="0,24,0,0" Foreground="#222222" />
+            <TextBlock Text="{Binding}" FontSize="32" Margin="0,24,0,0" Foreground="{StaticResource AppHeadingBrush}" />
         </ContentPresenter>
     </DataTemplate>
 
@@ -307,7 +319,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Image Source="{Binding BackgroundBrush.ImageSource, RelativeSource={RelativeSource TemplatedParent}}" MaxHeight="300" Stretch="UniformToFill" />
-                <Border Grid.Row="1" Background="#CC9954bb" HorizontalAlignment="Left" Margin="12,12,12,24">
+                <Border Grid.Row="1" Background="{StaticResource AppSecondaryBrush}" HorizontalAlignment="Left" Margin="12,12,12,24">
                     <TextBlock Text="{Binding PageTitle, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White"
                                    HorizontalAlignment="Left" Style="{StaticResource AppPrimaryPageHeading}" TextWrapping="Wrap"/>
                 </Border>
@@ -323,9 +335,10 @@
 
     <ControlTemplate x:Key="CardControl" TargetType="controls:CardControl">
         <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="2"
-                Margin="4" toolkit:TiltEffect.IsTiltEnabled="True">
+                Margin="4" toolkit:TiltEffect.IsTiltEnabled="True" IsHitTestVisible="True">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -334,7 +347,7 @@
                     <ColumnDefinition Width="5" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Border Grid.RowSpan="3" Background="{StaticResource FillBrush}"></Border>
+                <Border Grid.RowSpan="4" Background="{StaticResource FillBrush}"></Border>
                 
                 <Border Grid.Column="1" Visibility="{Binding Image, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToInvisibilityConverter}}"
                         Background="{StaticResource FillBrush}">
@@ -377,6 +390,29 @@
                     </StackPanel>
 
                 </StackPanel>
+                <Grid x:Name="MoveButtons" Grid.Column="1" Grid.Row="3" Background="{StaticResource FillBrush}" IsHitTestVisible="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource BorderlessPrimaryButtonStyle}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource IconLeftArrow}" />
+                                <TextBlock Style="{StaticResource AppTextBase}" Text=" move" FontSize="{StaticResource 18PtFontSize}" Foreground="#fff" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button Grid.Column="2" Style="{StaticResource BorderlessPrimaryButtonStyle}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource AppTextBase}" Text="move "  FontSize="{StaticResource 18PtFontSize}" Foreground="#fff" VerticalAlignment="Center"/>
+                                <TextBlock Style="{StaticResource IconRightArrow}" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </Grid>
             </Grid>
         </Border>
     </ControlTemplate>

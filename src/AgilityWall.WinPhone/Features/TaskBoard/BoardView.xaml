@@ -40,7 +40,7 @@
                     <phone:PanoramaItem Header="{Binding List.Name}">
                         <phone:PanoramaItem.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" FontSize="32" Margin="0" Foreground="{StaticResource SecondaryBrush}" />
+                                <TextBlock Text="{Binding}" FontSize="32" Margin="0" Foreground="{StaticResource AppHeadingBrush}" />
                             </DataTemplate>
                         </phone:PanoramaItem.HeaderTemplate>
                         <Grid>
@@ -48,7 +48,7 @@
                                 <phone:LongListSelector.ItemTemplate>
                                     <DataTemplate>
                                         <controls:CardControl
-                                            micro:Message.Attach="[Event Tap] = [Action NavigateToCard($dataContext)]"
+                                            micro:Message.Attach="[Event Tap] = [Action NavigateToCard($dataContext)]; [Event Hold] = [Action CardHeld($dataContext)]"
                                             Title="{Binding Card.Name}"
                                             Image="{Binding CoverAttachment.Previews[0].Url}"
                                             HasDescription="{Binding HasDescription}"

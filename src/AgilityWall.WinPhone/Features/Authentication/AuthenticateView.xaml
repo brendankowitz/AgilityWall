@@ -19,7 +19,7 @@
 
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator x:Name="ProgressIndicator" 
-                                 Text="just a moment..." />
+                                 Text="{Binding Path=LocalizedResources.Loading, Source={StaticResource LocalizedStrings}}" />
     </shell:SystemTray.ProgressIndicator>
 
     <controls:HeaderedPageLayout

@@ -100,6 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CardControl.cs" />
+    <Compile Include="Controls\CardDisplayStates.cs" />
     <Compile Include="Controls\FeaturedItemControl.cs" />
     <Compile Include="Controls\HeaderedPageLayout.cs" />
     <Compile Include="Features\About\AboutView.xaml.cs">
@@ -294,6 +295,12 @@
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.2.0.0\lib\wp8\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Primitives">
+      <HintPath>..\Dependencies\Telerik\WindowsPhone\Telerik.Windows.Controls.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Core">
+      <HintPath>..\Dependencies\Telerik\WindowsPhone\Telerik.Windows.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
