@@ -48,10 +48,18 @@
                                 <phone:LongListSelector.ItemTemplate>
                                     <DataTemplate>
                                         <controls:CardControl
-                                        micro:Message.Attach="[Event Tap] = [Action NavigateToCard($dataContext)]"
-                                        Title="{Binding Card.Name}"
-                                        HasDescription="{Binding HasDescription}"
-                                        Image="{Binding CoverAttachment.Previews[0].Url}"
+                                            micro:Message.Attach="[Event Tap] = [Action NavigateToCard($dataContext)]"
+                                            Title="{Binding Card.Name}"
+                                            Image="{Binding CoverAttachment.Previews[0].Url}"
+                                            HasDescription="{Binding HasDescription}"
+                                            HasAttachments="{Binding HasAttachments}"
+                                            HasComments="{Binding HasComments}"
+                                            HasLists="{Binding HasLists}"
+                                            ListItemsComplete="{Binding Card.Badges.CheckItemsChecked}"
+                                            TotalLists="{Binding Card.Badges.CheckItems}"
+                                            Attatchments="{Binding Card.Badges.Attachments}"
+                                            Comments="{Binding Card.Badges.Comments}"
+                                            DueDate="{Binding Card.Badges.Due}"
                                         />
                                     </DataTemplate>
                                 </phone:LongListSelector.ItemTemplate>

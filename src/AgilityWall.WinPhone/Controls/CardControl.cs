@@ -33,6 +33,15 @@ namespace AgilityWall.WinPhone.Controls
             set { SetValue(HasDescriptionProperty, value); }
         }
 
+        public static readonly DependencyProperty HasCommentsProperty = DependencyProperty.Register(
+            "HasComments", typeof (bool), typeof (CardControl), new PropertyMetadata(default(bool)));
+
+        public bool HasComments
+        {
+            get { return (bool) GetValue(HasCommentsProperty); }
+            set { SetValue(HasCommentsProperty, value); }
+        }
+
         public static readonly DependencyProperty CommentsProperty = DependencyProperty.Register(
             "Comments", typeof (int), typeof (CardControl), new PropertyMetadata(default(int)));
 
@@ -60,13 +69,22 @@ namespace AgilityWall.WinPhone.Controls
             set { SetValue(ListItemsCompleteProperty, value); }
         }
 
-        public static readonly DependencyProperty ListItemsIncompleteProperty = DependencyProperty.Register(
-            "ListItemsIncomplete", typeof (int), typeof (CardControl), new PropertyMetadata(default(int)));
+        public static readonly DependencyProperty TotalListsProperty = DependencyProperty.Register(
+            "TotalLists", typeof (int), typeof (CardControl), new PropertyMetadata(default(int)));
 
-        public int ListItemsIncomplete
+        public int TotalLists
         {
-            get { return (int) GetValue(ListItemsIncompleteProperty); }
-            set { SetValue(ListItemsIncompleteProperty, value); }
+            get { return (int) GetValue(TotalListsProperty); }
+            set { SetValue(TotalListsProperty, value); }
+        }
+
+        public static readonly DependencyProperty HasAttachmentsProperty = DependencyProperty.Register(
+            "HasAttachments", typeof (bool), typeof (CardControl), new PropertyMetadata(default(bool)));
+
+        public bool HasAttachments
+        {
+            get { return (bool) GetValue(HasAttachmentsProperty); }
+            set { SetValue(HasAttachmentsProperty, value); }
         }
 
         public static readonly DependencyProperty AttatchmentsProperty = DependencyProperty.Register(
@@ -76,6 +94,15 @@ namespace AgilityWall.WinPhone.Controls
         {
             get { return (int) GetValue(AttatchmentsProperty); }
             set { SetValue(AttatchmentsProperty, value); }
+        }
+
+        public static readonly DependencyProperty DueDateProperty = DependencyProperty.Register(
+            "DueDate", typeof (string), typeof (CardControl), new PropertyMetadata(default(string)));
+
+        public string DueDate
+        {
+            get { return (string) GetValue(DueDateProperty); }
+            set { SetValue(DueDateProperty, value); }
         }
     }
 }

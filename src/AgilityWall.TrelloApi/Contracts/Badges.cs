@@ -11,6 +11,6 @@ namespace AgilityWall.TrelloApi.Contracts
         public int Comments { get; set; }
         public int Attachments { get; set; }
         public bool Description { get; set; }
-        public object Due { get; set; }
+        public string Due { get; set; }
     }
 }

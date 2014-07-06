@@ -36,10 +36,49 @@ namespace AgilityWall.Core.Features.TaskBoard
             get
             {
                 if (Card == null) return false;
-                return !string.IsNullOrEmpty(Card.Desc);
+                return Card.Badges.Description;
             }
         }
 
+        [DependsOn("Card")]
+        public bool HasComments
+        {
+            get
+            {
+                if (Card == null) return false;
+                return Card.Badges.Comments > 0;
+            }
+        }
+
+        [DependsOn("Card")]
+        public bool HasAttachments
+        {
+            get
+            {
+                if (Card == null) return false;
+                return Card.Badges.Attachments > 0;
+            }
+        }
+
+        [DependsOn("Card")]
+        public bool HasLists
+        {
+            get
+            {
+                if (Card == null) return false;
+                return Card.Badges.CheckItems > 0;
+            }
+        }
+
+        [DependsOn("Card")]
+        public bool HasDueDate
+        {
+            get
+            {
+                if (Card == null) return false;
+                return !string.IsNullOrEmpty(Card.Badges.Due);
+            }
+        }
 
         public void Handle(ModelResponse<GetAttachmentByIdRequest, Attachment> message)
         {

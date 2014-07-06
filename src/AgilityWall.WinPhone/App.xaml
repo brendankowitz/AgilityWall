@@ -17,6 +17,7 @@
             <converters:NonEmptyStringToVisibilityConverter x:Key="NonEmptyStringToVisibilityConverter" />
             <converters:ToCapsConverter x:Key="ToCapsConverter" />
             <converters:NullToInvisibilityConverter x:Key="NullToInvisibilityConverter" />
+            <converters:CardDateFormatter x:Key="CardDateFormatter" />
 
             <local:LocalizedStrings xmlns:local="clr-namespace:AgilityWall.WinPhone" x:Key="LocalizedStrings"/>
 

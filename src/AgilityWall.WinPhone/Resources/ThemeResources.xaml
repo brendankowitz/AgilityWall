@@ -330,15 +330,52 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Image Source="{Binding Image, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding Image, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToInvisibilityConverter}}" 
-                       Stretch="UniformToFill" MaxHeight="100" Margin="8,0,8,8" />
-                <TextBlock Grid.Row="1" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Border Grid.RowSpan="3" Background="{StaticResource FillBrush}"></Border>
+                
+                <Border Grid.Column="1" Visibility="{Binding Image, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToInvisibilityConverter}}"
+                        Background="{StaticResource FillBrush}">
+                    <Image Source="{Binding Image, RelativeSource={RelativeSource TemplatedParent}}" 
+                       Stretch="UniformToFill" MaxHeight="100" Margin="8,8,8,8" />
+                </Border>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" 
                                                Style="{StaticResource AppTextBase}"
                                                TextWrapping="Wrap"
                                                FontSize="24"
-                                               Margin="8, 8"></TextBlock>
-                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="8, 8, 8, 4">
-                    <TextBlock Style="{StaticResource IconDesc}" FontSize="{StaticResource PhoneFontSizeNormal}" Visibility="{Binding HasDescription, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                               Margin="8, 8" />
+                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="8, 8, 8, 4">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="{StaticResource AppSecondaryBrush}" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock Style="{StaticResource IconDesc}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,12,0" FontSize="{StaticResource PhoneFontSizeNormal}" Visibility="{Binding HasDescription, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                    <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasComments, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource IconComment}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                        <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Comments, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasAttachments, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource IconAttachment}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                        <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Attatchments, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasLists, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource IconChecklist}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                        <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" FontSize="{StaticResource PhoneFontSizeNormal}">
+                            <Run Text="{Binding ListItemsComplete, RelativeSource={RelativeSource TemplatedParent}}" /><Run Text="/" /><Run Text="{Binding TotalLists, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding DueDate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToInvisibilityConverter}}">
+                        <TextBlock Style="{StaticResource IconClock}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                        <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding DueDate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CardDateFormatter}}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                    </StackPanel>
+
                 </StackPanel>
             </Grid>
         </Border>
