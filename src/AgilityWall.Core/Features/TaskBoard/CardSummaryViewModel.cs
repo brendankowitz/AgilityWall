@@ -1,4 +1,6 @@
-﻿using AgilityWall.Core.Messages;
+﻿using System.Windows.Input;
+using AgilityWall.Core.Infrastructure;
+using AgilityWall.Core.Messages;
 using AgilityWall.TrelloApi.Client.Requests;
 using AgilityWall.TrelloApi.Contracts;
 using Caliburn.Micro;
@@ -18,6 +20,8 @@ namespace AgilityWall.Core.Features.TaskBoard
             Card = card;
             _getAttachmentByIdRequest = new GetAttachmentByIdRequest(Card.Id, Card.IdAttachmentCover);
             _eventAggregator.Subscribe(this);
+            MoveRight = new ActionCommand(_ => {});
+            MoveLeft = new ActionCommand(_ => {});
             Initialize();
         }
 
@@ -29,6 +33,9 @@ namespace AgilityWall.Core.Features.TaskBoard
 
         public Card Card { get; set; }
         public Attachment CoverAttachment { get; set; }
+        public CardDisplayStates State { get; set; }
+        public ICommand MoveLeft { get; set; }
+        public ICommand MoveRight { get; set; }
 
         [DependsOn("Card")]
         public bool HasDescription
@@ -86,6 +93,12 @@ namespace AgilityWall.Core.Features.TaskBoard
             {
                 CoverAttachment = message.Value;
             }
+        }
+
+        public void ChangeEditState()
+        {
+            State = State == CardDisplayStates.Moving ? 
+                CardDisplayStates.Normal : CardDisplayStates.Moving;
         }
     }
 }

@@ -38,8 +38,10 @@
   <ItemGroup>
     <Compile Include="Features\About\AboutViewModel.cs" />
     <Compile Include="Features\Authentication\AuthenticateViewModel.cs" />
+    <Compile Include="Features\CardDetails\Designer\DesignCardDetailsViewModel.cs" />
     <Compile Include="Features\TaskBoard\BoardViewModel.cs" />
     <Compile Include="Features\Main\BoardSummaryViewModel.cs" />
+    <Compile Include="Features\TaskBoard\CardDisplayStates.cs" />
     <Compile Include="Features\TaskBoard\CardSummaryViewModel.cs" />
     <Compile Include="Features\TaskBoard\ListSummaryViewModel.cs" />
     <Compile Include="Features\CardDetails\CardDetailsViewModel.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="Features\Main\MainPageViewModel.cs" />
     <Compile Include="Infrastructure\TrelloRelay.cs" />
     <Compile Include="Messages\ModelResponse.cs" />
+    <Compile Include="Messages\MoveCardToColumn.cs" />
     <Compile Include="Messages\PinCardMessage.cs" />
     <Compile Include="Repositories\BoardRepository.cs" />
     <Compile Include="Repositories\IBoardRepository.cs" />

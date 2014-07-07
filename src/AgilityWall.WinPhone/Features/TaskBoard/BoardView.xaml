@@ -32,23 +32,16 @@
             ItemsSource="{Binding Lists}">
             <phone:Panorama.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Visibility="Collapsed" />
+                    <TextBlock Text="{Binding List.Name}" FontSize="32" Margin="0,24,0,0" Foreground="{StaticResource AppHeadingBrush}" />
                 </DataTemplate>
             </phone:Panorama.HeaderTemplate>
             <phone:Panorama.ItemTemplate>
                 <DataTemplate>
-                    <phone:PanoramaItem Header="{Binding List.Name}">
-                        <phone:PanoramaItem.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}" FontSize="32" Margin="0" Foreground="{StaticResource AppHeadingBrush}" />
-                            </DataTemplate>
-                        </phone:PanoramaItem.HeaderTemplate>
-                        <Grid>
-                            <phone:LongListSelector ItemsSource="{Binding Cards}"  Margin="12,-18,12,8">
-                                <phone:LongListSelector.ItemTemplate>
-                                    <DataTemplate>
-                                        <controls:CardControl
-                                            micro:Message.Attach="[Event Tap] = [Action NavigateToCard($dataContext)]; [Event Hold] = [Action CardHeld($dataContext)]"
+                    <Grid>
+                        <phone:LongListSelector ItemsSource="{Binding Cards}"  Margin="12,-18,12,8">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:CardControl
                                             Title="{Binding Card.Name}"
                                             Image="{Binding CoverAttachment.Previews[0].Url}"
                                             HasDescription="{Binding HasDescription}"
@@ -60,14 +53,15 @@
                                             Attatchments="{Binding Card.Badges.Attachments}"
                                             Comments="{Binding Card.Badges.Comments}"
                                             DueDate="{Binding Card.Badges.Due}"
+                                            MoveRight="{Binding MoveRight}"
+                                            State="{Binding State}"
                                         />
-                                    </DataTemplate>
-                                </phone:LongListSelector.ItemTemplate>
-                            </phone:LongListSelector>
-                            <TextBlock Text="No cards" Style="{StaticResource AppSubtleTextStyle}"
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                        <TextBlock Text="No cards" Style="{StaticResource AppSubtleTextStyle}"
                                        Visibility="{Binding NoCards, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                        </Grid>
-                    </phone:PanoramaItem>
+                    </Grid>
                 </DataTemplate>
             </phone:Panorama.ItemTemplate>
 

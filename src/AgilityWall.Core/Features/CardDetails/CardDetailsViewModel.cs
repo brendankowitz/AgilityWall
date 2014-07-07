@@ -56,7 +56,7 @@ namespace AgilityWall.Core.Features.CardDetails
         {
             get {
                 if (CoverAttachment != null)
-                    return new Uri(CoverAttachment.Url);
+                    return new Uri(CoverAttachment.Url, UriKind.RelativeOrAbsolute);
                 return null;
             }
         }

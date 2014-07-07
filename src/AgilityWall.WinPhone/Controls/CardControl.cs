@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using AgilityWall.Core.Features.TaskBoard;
+using Microsoft.Phone.Controls;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace AgilityWall.WinPhone.Controls
 {
@@ -8,6 +12,24 @@ namespace AgilityWall.WinPhone.Controls
     [TemplateVisualState(Name = "Moving", GroupName = "CardDisplayStates")]
     public class CardControl : Control
     {
+        public static readonly DependencyProperty MoveRightProperty = DependencyProperty.Register(
+            "MoveRight", typeof (ICommand), typeof (CardControl), new PropertyMetadata(default(ICommand)));
+
+        public ICommand MoveRight
+        {
+            get { return (ICommand) GetValue(MoveRightProperty); }
+            set { SetValue(MoveRightProperty, value); }
+        }
+
+        public static readonly DependencyProperty MoveLeftProperty = DependencyProperty.Register(
+            "MoveLeft", typeof (ICommand), typeof (CardControl), new PropertyMetadata(default(ICommand)));
+
+        public ICommand MoveLeft
+        {
+            get { return (ICommand) GetValue(MoveLeftProperty); }
+            set { SetValue(MoveLeftProperty, value); }
+        }
+
         public static readonly DependencyProperty ImageProperty = DependencyProperty.Register(
             "Image", typeof(Uri), typeof(CardControl), new PropertyMetadata(default(Uri)));
 

@@ -54,5 +54,10 @@ namespace AgilityWall.Core.Features.TaskBoard
         {
             _navigationService.Navigate<CardDetailsViewModel>(new {CardId = card.Card.Id, DisplayName = card.Card.Name});
         }
+
+        public void CardHeld(CardSummaryViewModel card)
+        {
+            card.ChangeEditState();
+        }
     }
 }

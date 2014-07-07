@@ -11,11 +11,12 @@
     xmlns:cardDetails="clr-namespace:AgilityWall.Core.Features.CardDetails;assembly=AgilityWall.Core"
     xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:designer="clr-namespace:AgilityWall.Core.Features.CardDetails.Designer;assembly=AgilityWall.Core"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type=cardDetails:CardDetailsViewModel}"
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=designer:DesignCardDetailsViewModel}"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource AppAccentColor}"
     shell:SystemTray.ForegroundColor="{StaticResource AppAccentForeColor}">
@@ -41,12 +42,12 @@
         
         <StackPanel Margin="0,-24,0,0">
             
-            <TextBlock FontWeight="Black">
+            <TextBlock FontWeight="Black" Margin="{StaticResource PhoneMargin}">
                 <Run Text="In list " FontWeight="SemiBold" /><Run Text="{Binding List.Name}" />
             </TextBlock>
-            
+
             <TextBlock Text="{Binding Card.Desc}" TextWrapping="Wrap" />
-            
+
         </StackPanel>
 
     </controls:HeaderedPageLayout>

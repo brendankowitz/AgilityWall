@@ -1,4 +1,4 @@
-﻿namespace AgilityWall.WinPhone.Controls
+﻿namespace AgilityWall.Core.Features.TaskBoard
 {
     public enum CardDisplayStates
     {
