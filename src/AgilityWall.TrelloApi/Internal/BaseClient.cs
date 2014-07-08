@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,7 +58,10 @@ namespace PortableTrello.Internal
 
         protected virtual HttpClient CreateHttpClient()
         {
-            return new HttpClient();
+            var handler = new HttpClientHandler();
+            if (handler.SupportsAutomaticDecompression)
+                handler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            return new HttpClient(handler);
         }
 
         protected virtual Task<string> HandleResponseMessage(HttpResponseMessage message)
