@@ -117,6 +117,7 @@
     <Compile Include="Infrastructure\AutofacBootstrapper.cs" />
     <Compile Include="Infrastructure\Behaviors\UpdateTextBindingOnPropertyChanged.cs" />
     <Compile Include="Infrastructure\Converters\CardDateFormatter.cs" />
+    <Compile Include="Infrastructure\Converters\GravatarUriConverter.cs" />
     <Compile Include="Infrastructure\Converters\NonEmptyStringToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\NullToInvisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\StringToUriConverter.cs" />

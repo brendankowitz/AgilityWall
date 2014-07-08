@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using PortableTrello.Contracts;
 
-namespace PortableTrello.Client.Requests
+namespace PortableTrello.Client.Requests.CardRequests
 {
-    public class GetBoardByIdRequest : ITrelloRequest<GetBoardByIdRequest, Board>
+    public class GetCardByIdRequest : ITrelloRequest<GetCardByIdRequest, Card>
     {
-        public GetBoardByIdRequest(string boardId)
+        public GetCardByIdRequest(string cardId)
         {
-            Resource = string.Format("/boards/{0}", boardId);
+            Resource = ResourcePathFor.Card(cardId);
         }
 
         public string Resource { get; private set; }

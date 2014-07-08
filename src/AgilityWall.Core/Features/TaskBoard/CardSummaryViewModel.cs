@@ -3,6 +3,7 @@ using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
 using Caliburn.Micro;
 using PortableTrello.Client.Requests;
+using PortableTrello.Client.Requests.CardRequests;
 using PortableTrello.Contracts;
 using PropertyChanged;
 

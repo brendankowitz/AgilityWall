@@ -2,7 +2,7 @@
 using PortableTrello.Client.Parameters;
 using PortableTrello.Contracts;
 
-namespace PortableTrello.Client.Requests
+namespace PortableTrello.Client.Requests.ListRequests
 {
     public class GetListsByBoardIdRequest : ITrelloRequest<GetListsByBoardIdRequest, IEnumerable<List>>
     {
@@ -10,7 +10,7 @@ namespace PortableTrello.Client.Requests
             ListFilterOptions options = ListFilterOptions.all,
             FilterOptions cards = FilterOptions.none)
         {
-            Resource = string.Format("/boards/{0}/lists/{1}", boardId, options);
+            Resource = ResourcePathFor.Board(boardId, "lists", options.ToString());
             Parameters = new Dictionary<string, string>
             {
                 {"cards", cards.ToString()}

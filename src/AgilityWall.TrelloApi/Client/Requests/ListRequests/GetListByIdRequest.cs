@@ -2,13 +2,13 @@
 using PortableTrello.Client.Parameters;
 using PortableTrello.Contracts;
 
-namespace PortableTrello.Client.Requests
+namespace PortableTrello.Client.Requests.ListRequests
 {
     public class GetListByIdRequest : ITrelloRequest<GetListByIdRequest, List>
     {
         public GetListByIdRequest(string idList, FilterOptions cards = FilterOptions.none)
         {
-            Resource = string.Format("/lists/{0}", idList);
+            Resource = ResourcePathFor.List(idList);
             Parameters = new Dictionary<string, string>
             {
                 {"cards", cards.ToString()}

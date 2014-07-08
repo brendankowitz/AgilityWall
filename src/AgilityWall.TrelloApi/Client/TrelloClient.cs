@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using PortableTrello.Authentication;
 using PortableTrello.Client.Parameters;
 using PortableTrello.Client.Requests;
+using PortableTrello.Client.Requests.BoardRequests;
+using PortableTrello.Client.Requests.CardRequests;
+using PortableTrello.Client.Requests.ListRequests;
+using PortableTrello.Client.Requests.MemberRequests;
 using PortableTrello.Contracts;
 using PortableTrello.Internal;
 
@@ -152,7 +156,7 @@ namespace PortableTrello.Client
 
         public Task<IEnumerable<Board>> GetBoardsForUser(string userId)
         {
-            return ExecuteRequest(new GetBoardsForUserRequest(userId));
+            return ExecuteRequest(new GetBoardsForMemberRequest(userId));
         }
 
         public Task<Board> GetBoardById(string boardId)

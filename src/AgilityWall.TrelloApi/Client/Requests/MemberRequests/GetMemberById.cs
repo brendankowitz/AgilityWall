@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using PortableTrello.Contracts;
 
-namespace PortableTrello.Client.Requests
+namespace PortableTrello.Client.Requests.MemberRequests
 {
     public class GetMemberById : ITrelloRequest<GetMemberById, Member>
     {
         public GetMemberById(string memberId)
         {
-            Resource = string.Format("/members/{0}", memberId);
+            Resource = ResourcePathFor.Member(memberId);
         }
 
         public string Resource { get; private set; }
