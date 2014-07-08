@@ -55,6 +55,7 @@
     <Compile Include="Client\Requests\GetCardsByBoardIdRequest.cs" />
     <Compile Include="Client\Requests\GetListByIdRequest.cs" />
     <Compile Include="Client\Requests\GetListsByBoardIdRequest.cs" />
+    <Compile Include="Client\Requests\GetMemberById.cs" />
     <Compile Include="Client\Requests\ITrelloRequest.cs" />
     <Compile Include="Client\Requests\RequestDefaults.cs" />
     <Compile Include="Client\TrelloClient.cs" />
@@ -70,7 +71,10 @@
     <Compile Include="Contracts\List.cs" />
     <Compile Include="Contracts\Board.cs" />
     <Compile Include="Contracts\Card.cs" />
+    <Compile Include="Contracts\Member.cs" />
+    <Compile Include="Contracts\MemberPrefs.cs" />
     <Compile Include="Contracts\Membership.cs" />
+    <Compile Include="Contracts\MemberTimezoneInfo.cs" />
     <Compile Include="Contracts\Prefs.cs" />
     <Compile Include="Internal\BaseClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

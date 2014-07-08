@@ -175,6 +175,11 @@ namespace PortableTrello.Client
             return ExecuteRequest(new GetCardByIdRequest(cardId));
         }
 
+        public Task<Member> GetMemberById(string memberId)
+        {
+            return ExecuteRequest(new GetMemberById(memberId));
+        }
+
         public Task<Attachment> GetAttachmentById(string cardId, string attachmentId)
         {
             return ExecuteRequest(new GetAttachmentByIdRequest(cardId, attachmentId));
