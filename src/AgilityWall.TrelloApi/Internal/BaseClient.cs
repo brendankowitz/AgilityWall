@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -30,41 +29,29 @@ namespace AgilityWall.TrelloApi.Internal
             return JsonConvert.DeserializeObject<T>(response);
         }
 
-        protected virtual async Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters)
+        protected virtual Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters, HttpMethod method, string content = null)
         {
-            return await ExecuteRequest(resource, parameters, HttpMethod.Get);
+            HttpContent httpContent = null;
+            if (!string.IsNullOrEmpty(content))
+                httpContent = new StringContent(content);
+            return ExecuteRequest(resource, parameters, method, httpContent);
         }
 
-        protected virtual async Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters, HttpMethod method, string content = null)
-        {
-            using (var client = CreateHttpClient())
-            {
-                var req = new HttpRequestMessage(method, BuildUri(resource, parameters));
-                if(!string.IsNullOrEmpty(content))
-                    req.Content = new StringContent(content);
-                var response = await client.SendAsync(req);
-                return await HandleResponseMessage(response);
-            }
-        }
-
-        protected virtual async Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters, HttpMethod method, IDictionary<string, string> formUrlEncodedContent)
+        protected virtual Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters, HttpMethod method, IDictionary<string, string> formUrlEncodedContent)
         {
             if (formUrlEncodedContent == null) throw new ArgumentNullException("formUrlEncodedContent");
-
-            using (var client = CreateHttpClient())
-            {
-                var req = new HttpRequestMessage(method, BuildUri(resource, parameters));
-                req.Content = new FormUrlEncodedContent(formUrlEncodedContent);
-                var response = await client.SendAsync(req);
-                return await HandleResponseMessage(response);
-            }
+            return ExecuteRequest(resource, parameters, method, new FormUrlEncodedContent(formUrlEncodedContent));
         }
 
-        protected virtual async Task Execute(string resource, IDictionary<string, string> parameters)
+        protected virtual async Task<string> ExecuteRequest(string resource, IDictionary<string, string> parameters, HttpMethod method, HttpContent content = null)
         {
             using (var client = CreateHttpClient())
             {
-                await client.GetAsync(BuildUri(resource, parameters));
+                var req = new HttpRequestMessage(method, BuildUri(resource, parameters));
+                if (content != null)
+                    req.Content = content;
+                var response = await client.SendAsync(req);
+                return await HandleResponseMessage(response);
             }
         }
 

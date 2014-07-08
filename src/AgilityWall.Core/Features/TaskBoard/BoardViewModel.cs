@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using AgilityWall.Core.Features.CardDetails;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.TrelloApi.Client;
