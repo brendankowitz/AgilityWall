@@ -1,4 +1,7 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System.Linq;
+using System.Windows.Controls;
+using AgilityWall.Core.Features.TaskBoard;
+using Microsoft.Phone.Controls;
 
 namespace AgilityWall.WinPhone.Features.TaskBoard
 {

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AgilityWall.Core.Features.CardDetails;
 using AgilityWall.Core.Infrastructure;
@@ -11,7 +12,7 @@ using PropertyChanged;
 namespace AgilityWall.Core.Features.TaskBoard
 {
     [ImplementPropertyChanged]
-    public class BoardViewModel : Screen
+    public class BoardViewModel : Conductor<object>.Collection.OneActive
     {
         private readonly INavigationService _navigationService;
         private readonly TrelloClient _trelloClient;
@@ -22,12 +23,10 @@ namespace AgilityWall.Core.Features.TaskBoard
             _navigationService = navigationService;
             _trelloClient = trelloClient;
             _eventAggregator = eventAggregator;
-            Lists = new BindableCollection<ListSummaryViewModel>();
         }
 
         public string BoardId { get; set; }
         public Board Board { get; set; }
-        public IObservableCollection<ListSummaryViewModel> Lists { get; set; }
         public bool IsLoading { get; set; }
 
         protected async override void OnInitialize()
@@ -41,7 +40,7 @@ namespace AgilityWall.Core.Features.TaskBoard
                     var lists =
                         await _trelloClient.GetBoardListsById(BoardId, ListFilterOptions.open, FilterOptions.open);
 
-                    Lists.AddRange(lists.Select(x => new ListSummaryViewModel(x, _eventAggregator)));
+                    Items.AddRange(lists.Select(x => new ListSummaryViewModel(x, _eventAggregator)));
                 }
             }
             finally
@@ -58,6 +57,11 @@ namespace AgilityWall.Core.Features.TaskBoard
         public void CardHeld(CardSummaryViewModel card)
         {
             card.ChangeEditState();
+        }
+
+        protected override void ChangeActiveItem(object newItem, bool closePrevious)
+        {
+            base.ChangeActiveItem(BindingWorkaroundExtensions.EnsureModel<ListSummaryViewModel>(newItem), closePrevious);
         }
     }
 }

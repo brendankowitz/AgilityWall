@@ -46,6 +46,7 @@
     <Compile Include="Features\TaskBoard\ListSummaryViewModel.cs" />
     <Compile Include="Features\CardDetails\CardDetailsViewModel.cs" />
     <Compile Include="Infrastructure\ActionCommand.cs" />
+    <Compile Include="Infrastructure\BindingWorkaroundExtensions.cs" />
     <Compile Include="Infrastructure\Clock.cs" />
     <Compile Include="Infrastructure\FuncEqualityComparer.cs" />
     <Compile Include="Infrastructure\INavigationService.cs" />
@@ -56,7 +57,9 @@
     <Compile Include="Infrastructure\TrelloRelay.cs" />
     <Compile Include="Messages\ModelResponse.cs" />
     <Compile Include="Messages\MoveCardToColumn.cs" />
+    <Compile Include="Messages\NetworkFailure.cs" />
     <Compile Include="Messages\PinCardMessage.cs" />
+    <Compile Include="Messages\Refresh.cs" />
     <Compile Include="Repositories\BoardRepository.cs" />
     <Compile Include="Repositories\IBoardRepository.cs" />
     <None Include="PlatformServices\ObjectStorageHelper.cs" />

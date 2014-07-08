@@ -26,10 +26,10 @@
 
         <phone:Panorama
             Grid.Row="0"
+            x:Name="Items"
             Background="Transparent"
             Title="{Binding DisplayName}" 
-            TitleTemplate="{StaticResource BoardPanorama}" 
-            ItemsSource="{Binding Lists}">
+            TitleTemplate="{StaticResource BoardPanorama}">
             <phone:Panorama.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding List.Name}" FontSize="32" Margin="0,24,0,0" Foreground="{StaticResource AppHeadingBrush}" />
