@@ -1,4 +1,4 @@
-﻿namespace AgilityWall.TrelloApi.Client.Requests
+﻿namespace PortableTrello.Client.Requests
 {
     public class GetBoardsForMeRequest : GetBoardsForUserRequest
     {

@@ -1,6 +1,6 @@
 ﻿using AgilityWall.Core.Infrastructure;
-using AgilityWall.TrelloApi.Client;
 using Autofac;
+using PortableTrello.Client;
 
 namespace AgilityWall.WinPhone.Infrastructure.Modules
 {

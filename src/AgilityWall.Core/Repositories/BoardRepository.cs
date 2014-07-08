@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AgilityWall.Core.Infrastructure;
-using AgilityWall.TrelloApi.Contracts;
+using PortableTrello.Contracts;
 using Task = System.Threading.Tasks.Task;
 
 namespace AgilityWall.Core.Repositories

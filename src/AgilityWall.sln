@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{130A4E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{EFF741C9-324C-42C2-A89F-E237B8BCD2EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgilityWall.TrelloApi", "AgilityWall.TrelloApi\AgilityWall.TrelloApi.csproj", "{93FA04F0-783C-4D46-B1F3-B5B48E6D8F36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortableTrello", "AgilityWall.TrelloApi\PortableTrello.csproj", "{93FA04F0-783C-4D46-B1F3-B5B48E6D8F36}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6210C707-9085-45B2-A7A2-02277A1357FD}"
 	ProjectSection(SolutionItems) = preProject

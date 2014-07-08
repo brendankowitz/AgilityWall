@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AgilityWall.TrelloApi.Client
+namespace PortableTrello.Client
 {
     public interface ITokenStore
     {

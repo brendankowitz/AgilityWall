@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace AgilityWall.TrelloApi.Authentication
+namespace PortableTrello.Authentication
 {
     public interface IAuthenticationFrame
     {

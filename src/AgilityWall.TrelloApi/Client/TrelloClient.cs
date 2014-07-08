@@ -4,13 +4,13 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using AgilityWall.TrelloApi.Authentication;
-using AgilityWall.TrelloApi.Client.Parameters;
-using AgilityWall.TrelloApi.Client.Requests;
-using AgilityWall.TrelloApi.Contracts;
-using AgilityWall.TrelloApi.Internal;
+using PortableTrello.Authentication;
+using PortableTrello.Client.Parameters;
+using PortableTrello.Client.Requests;
+using PortableTrello.Contracts;
+using PortableTrello.Internal;
 
-namespace AgilityWall.TrelloApi.Client
+namespace PortableTrello.Client
 {
     public class TrelloClient : BaseClient
     {
@@ -160,17 +160,17 @@ namespace AgilityWall.TrelloApi.Client
             return ExecuteRequest(new GetBoardByIdRequest(boardId));
         }
 
-        public Task<IEnumerable<Card>> GetBoardCardsById(string boardId, FilterOptions options = FilterOptions.all)
+        public Task<IEnumerable<Card>> GetCardsByBoardId(string boardId, FilterOptions options = FilterOptions.all)
         {
-            return ExecuteRequest(new GetCardsByBoardId(boardId, options));
+            return ExecuteRequest(new GetCardsByBoardIdRequest(boardId, options));
         }
 
-        public Task<IEnumerable<List>> GetBoardListsById(string boardId, ListFilterOptions options = ListFilterOptions.all, FilterOptions cards = FilterOptions.none)
+        public Task<IEnumerable<List>> GetListsByBoardId(string boardId, ListFilterOptions options = ListFilterOptions.all, FilterOptions cards = FilterOptions.none)
         {
             return ExecuteRequest(new GetListsByBoardIdRequest(boardId, options, cards));
         }
 
-        public Task<Card> GetCardId(string cardId)
+        public Task<Card> GetCardById(string cardId)
         {
             return ExecuteRequest(new GetCardByIdRequest(cardId));
         }

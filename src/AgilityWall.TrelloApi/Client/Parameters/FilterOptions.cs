@@ -1,4 +1,4 @@
-﻿namespace AgilityWall.TrelloApi.Client.Parameters
+﻿namespace PortableTrello.Client.Parameters
 {
     public enum FilterOptions
     {

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using AgilityWall.Core.Infrastructure;
-using AgilityWall.TrelloApi.Contracts;
 using Caliburn.Micro;
+using PortableTrello.Contracts;
 using PropertyChanged;
 
 namespace AgilityWall.Core.Features.TaskBoard

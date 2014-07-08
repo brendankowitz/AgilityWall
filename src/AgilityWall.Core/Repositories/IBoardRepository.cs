@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AgilityWall.TrelloApi.Contracts;
+using PortableTrello.Contracts;
 using Task = System.Threading.Tasks.Task;
 
 namespace AgilityWall.Core.Repositories

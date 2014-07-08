@@ -1,4 +1,4 @@
-﻿using AgilityWall.TrelloApi.Client.Requests;
+﻿using PortableTrello.Client.Requests;
 
 namespace AgilityWall.Core.Messages
 {

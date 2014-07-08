@@ -1,7 +1,7 @@
 ﻿using AgilityWall.Core.Infrastructure;
-using AgilityWall.TrelloApi.Authentication;
-using AgilityWall.TrelloApi.Client;
 using Caliburn.Micro;
+using PortableTrello.Authentication;
+using PortableTrello.Client;
 
 namespace AgilityWall.Core.Features.Authentication
 {

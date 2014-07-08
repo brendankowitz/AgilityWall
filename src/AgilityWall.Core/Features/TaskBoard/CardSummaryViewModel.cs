@@ -1,9 +1,9 @@
 ﻿using System.Windows.Input;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
-using AgilityWall.TrelloApi.Client.Requests;
-using AgilityWall.TrelloApi.Contracts;
 using Caliburn.Micro;
+using PortableTrello.Client.Requests;
+using PortableTrello.Contracts;
 using PropertyChanged;
 
 namespace AgilityWall.Core.Features.TaskBoard

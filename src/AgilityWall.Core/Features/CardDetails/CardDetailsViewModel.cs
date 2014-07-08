@@ -1,9 +1,9 @@
 ﻿using System;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
-using AgilityWall.TrelloApi.Client;
-using AgilityWall.TrelloApi.Contracts;
 using Caliburn.Micro;
+using PortableTrello.Client;
+using PortableTrello.Contracts;
 using PropertyChanged;
 
 namespace AgilityWall.Core.Features.CardDetails
@@ -33,7 +33,7 @@ namespace AgilityWall.Core.Features.CardDetails
                 IsLoading = true;
                 if (!string.IsNullOrEmpty(CardId))
                 {
-                    Card = await _trelloClient.GetCardId(CardId);
+                    Card = await _trelloClient.GetCardById(CardId);
                     if (!string.IsNullOrEmpty(Card.IdAttachmentCover))
                         CoverAttachment = await _trelloClient.GetAttachmentById(CardId, Card.IdAttachmentCover);
                     List = await _trelloClient.GetListById(Card.IdList);

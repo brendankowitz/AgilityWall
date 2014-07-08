@@ -1,4 +1,4 @@
-namespace AgilityWall.TrelloApi.Contracts
+namespace PortableTrello.Contracts
 {
     public class Label
     {

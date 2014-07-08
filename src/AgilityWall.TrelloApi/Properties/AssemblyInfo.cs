@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AgilityWall.TrelloApi")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("PortableTrello")]
+[assembly: AssemblyDescription("A portable library for connecting with the Trello Api")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AgilityWall.TrelloApi")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyProduct("PortableTrello")]
+[assembly: AssemblyCopyright("Copyright © Brendan Kowitz  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]

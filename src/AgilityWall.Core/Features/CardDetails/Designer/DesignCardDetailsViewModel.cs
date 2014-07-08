@@ -1,5 +1,5 @@
 ﻿using System;
-using AgilityWall.TrelloApi.Contracts;
+using PortableTrello.Contracts;
 
 namespace AgilityWall.Core.Features.CardDetails.Designer
 {

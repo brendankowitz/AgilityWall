@@ -3,9 +3,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AgilityWall.Core.Messages;
-using AgilityWall.TrelloApi.Client;
-using AgilityWall.TrelloApi.Client.Requests;
 using Caliburn.Micro;
+using PortableTrello.Client;
+using PortableTrello.Client.Requests;
 
 namespace AgilityWall.Core.Infrastructure
 {

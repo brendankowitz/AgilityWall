@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using AgilityWall.Core.Features.CardDetails;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
-using AgilityWall.TrelloApi.Client;
-using AgilityWall.TrelloApi.Contracts;
 using Caliburn.Micro;
 using Microsoft.Phone.Shell;
+using PortableTrello.Client;
+using PortableTrello.Contracts;
 
 namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
 {

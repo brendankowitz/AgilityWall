@@ -8,8 +8,8 @@
     <ProjectGuid>{93FA04F0-783C-4D46-B1F3-B5B48E6D8F36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgilityWall.TrelloApi</RootNamespace>
-    <AssemblyName>AgilityWall.TrelloApi</AssemblyName>
+    <RootNamespace>PortableTrello</RootNamespace>
+    <AssemblyName>PortableTrello</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Authentication\BrowserEventArgs.cs" />
     <Compile Include="Authentication\IAuthenticationFrame.cs" />
+    <Compile Include="Client\InMemoryTokenStore.cs" />
     <Compile Include="Client\InvalidTokenException.cs" />
     <Compile Include="Client\ITokenStore.cs" />
     <Compile Include="Client\Parameters\FilterOptions.cs" />
@@ -51,7 +52,7 @@
     <Compile Include="Client\Requests\GetBoardsForMeRequest.cs" />
     <Compile Include="Client\Requests\GetBoardsForUserRequest.cs" />
     <Compile Include="Client\Requests\GetCardByIdRequest.cs" />
-    <Compile Include="Client\Requests\GetCardsByBoardId.cs" />
+    <Compile Include="Client\Requests\GetCardsByBoardIdRequest.cs" />
     <Compile Include="Client\Requests\GetListByIdRequest.cs" />
     <Compile Include="Client\Requests\GetListsByBoardIdRequest.cs" />
     <Compile Include="Client\Requests\ITrelloRequest.cs" />

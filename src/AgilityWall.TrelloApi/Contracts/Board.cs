@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AgilityWall.TrelloApi.Contracts
+namespace PortableTrello.Contracts
 {
     public class Board
     {

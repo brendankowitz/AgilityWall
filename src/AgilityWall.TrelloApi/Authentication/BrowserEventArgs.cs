@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AgilityWall.TrelloApi.Authentication
+namespace PortableTrello.Authentication
 {
     public class BrowserEventArgs : EventArgs
     {

@@ -1,5 +1,5 @@
-﻿using AgilityWall.TrelloApi.Contracts;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
+using PortableTrello.Contracts;
 using PropertyChanged;
 
 namespace AgilityWall.Core.Features.Main

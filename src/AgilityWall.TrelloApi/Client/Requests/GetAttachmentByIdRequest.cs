@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using AgilityWall.TrelloApi.Contracts;
+using PortableTrello.Contracts;
 
-namespace AgilityWall.TrelloApi.Client.Requests
+namespace PortableTrello.Client.Requests
 {
     public class GetAttachmentByIdRequest : ITrelloRequest<GetAttachmentByIdRequest, Attachment>
     {

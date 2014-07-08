@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AgilityWall.TrelloApi.Client.Requests
+namespace PortableTrello.Client.Requests
 {
     // ReSharper disable UnusedTypeParameter
     public interface ITrelloRequest<TRequest, TResponse>

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using AgilityWall.Core.Features.CardDetails;
 using AgilityWall.Core.Infrastructure;
-using AgilityWall.TrelloApi.Client;
-using AgilityWall.TrelloApi.Client.Parameters;
-using AgilityWall.TrelloApi.Contracts;
 using Caliburn.Micro;
+using PortableTrello.Client;
+using PortableTrello.Client.Parameters;
+using PortableTrello.Contracts;
 using PropertyChanged;
 
 namespace AgilityWall.Core.Features.TaskBoard
@@ -36,7 +36,7 @@ namespace AgilityWall.Core.Features.TaskBoard
                 {
                     Board = await _trelloClient.GetBoardById(BoardId);
                     var lists =
-                        await _trelloClient.GetBoardListsById(BoardId, ListFilterOptions.open, FilterOptions.open);
+                        await _trelloClient.GetListsByBoardId(BoardId, ListFilterOptions.open, FilterOptions.open);
 
                     Items.AddRange(lists.Select(x => new ListSummaryViewModel(x, _eventAggregator)));
                 }

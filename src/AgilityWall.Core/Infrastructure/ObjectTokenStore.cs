@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AgilityWall.TrelloApi.Client;
+using PortableTrello.Client;
 
 namespace AgilityWall.Core.Infrastructure
 {

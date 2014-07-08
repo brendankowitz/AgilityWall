@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using AgilityWall.TrelloApi.Client.Parameters;
-using AgilityWall.TrelloApi.Contracts;
+using PortableTrello.Client.Parameters;
+using PortableTrello.Contracts;
 
-namespace AgilityWall.TrelloApi.Client.Requests
+namespace PortableTrello.Client.Requests
 {
     public class GetListByIdRequest : ITrelloRequest<GetListByIdRequest, List>
     {

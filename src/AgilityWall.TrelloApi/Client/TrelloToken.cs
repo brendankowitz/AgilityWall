@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AgilityWall.TrelloApi.Client
+namespace PortableTrello.Client
 {
     public class TrelloToken
     {

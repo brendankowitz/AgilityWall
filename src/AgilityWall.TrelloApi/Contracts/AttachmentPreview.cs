@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace AgilityWall.TrelloApi.Contracts
+namespace PortableTrello.Contracts
 {
     public class AttachmentPreview
     {

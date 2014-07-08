@@ -3,8 +3,8 @@ using AgilityWall.Core.Features.About;
 using AgilityWall.Core.Features.Authentication;
 using AgilityWall.Core.Features.TaskBoard;
 using AgilityWall.Core.Infrastructure;
-using AgilityWall.TrelloApi.Client;
 using Caliburn.Micro;
+using PortableTrello.Client;
 using PropertyChanged;
 
 namespace AgilityWall.Core.Features.Main
