@@ -15,12 +15,14 @@ namespace AgilityWall.Core.Features.TaskBoard
         private readonly INavigationService _navigationService;
         private readonly TrelloClient _trelloClient;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IAvatarUrlResolver _avatarUrlResolver;
 
-        public BoardViewModel(INavigationService navigationService, TrelloClient trelloClient, IEventAggregator eventAggregator)
+        public BoardViewModel(INavigationService navigationService, TrelloClient trelloClient, IEventAggregator eventAggregator, IAvatarUrlResolver avatarUrlResolver)
         {
             _navigationService = navigationService;
             _trelloClient = trelloClient;
             _eventAggregator = eventAggregator;
+            _avatarUrlResolver = avatarUrlResolver;
         }
 
         public string BoardId { get; set; }
@@ -38,7 +40,7 @@ namespace AgilityWall.Core.Features.TaskBoard
                     var lists =
                         await _trelloClient.GetListsByBoardId(BoardId, ListFilterOptions.open, FilterOptions.open);
 
-                    Items.AddRange(lists.Select(x => new ListSummaryViewModel(x, _eventAggregator)));
+                    Items.AddRange(lists.Select(x => new ListSummaryViewModel(x, _eventAggregator, _avatarUrlResolver)));
                 }
             }
             finally

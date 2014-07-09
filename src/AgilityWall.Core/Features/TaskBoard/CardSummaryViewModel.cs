@@ -1,8 +1,8 @@
-﻿using System.Windows.Input;
+﻿using System.Linq;
+using System.Windows.Input;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
 using Caliburn.Micro;
-using PortableTrello.Client.Requests;
 using PortableTrello.Client.Requests.CardRequests;
 using PortableTrello.Contracts;
 using PropertyChanged;
@@ -13,23 +13,29 @@ namespace AgilityWall.Core.Features.TaskBoard
     public class CardSummaryViewModel : PropertyChangedBase, IHandle<ModelResponse<GetAttachmentByIdRequest, Attachment>>
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly IAvatarUrlResolver _avatarResolver;
         private readonly GetAttachmentByIdRequest _getAttachmentByIdRequest;
 
-        public CardSummaryViewModel(Card card, IEventAggregator eventAggregator)
+        public CardSummaryViewModel(Card card, IEventAggregator eventAggregator, IAvatarUrlResolver avatarResolver)
         {
             _eventAggregator = eventAggregator;
+            _avatarResolver = avatarResolver;
             Card = card;
             _getAttachmentByIdRequest = new GetAttachmentByIdRequest(Card.Id, Card.IdAttachmentCover);
+            MemberAvatars = new BindableCollection<string>();
             _eventAggregator.Subscribe(this);
             MoveRight = new ActionCommand(_ => {});
             MoveLeft = new ActionCommand(_ => {});
             Initialize();
         }
 
-        protected void Initialize()
+        protected async void Initialize()
         {
             if (!string.IsNullOrEmpty(Card.IdAttachmentCover))
                 _eventAggregator.Publish(_getAttachmentByIdRequest, Execute.BeginOnUIThread);
+
+            if (Card.IdMembers.Any())
+                MemberAvatars.AddRange(await _avatarResolver.GetTrelloMemberGravitar(56, Card.IdMembers.ToArray()));
         }
 
         public Card Card { get; set; }
@@ -37,6 +43,7 @@ namespace AgilityWall.Core.Features.TaskBoard
         public CardDisplayStates State { get; set; }
         public ICommand MoveLeft { get; set; }
         public ICommand MoveRight { get; set; }
+        public IObservableCollection<string> MemberAvatars { get; set; }
 
         [DependsOn("Card")]
         public bool HasDescription
@@ -85,6 +92,16 @@ namespace AgilityWall.Core.Features.TaskBoard
             {
                 if (Card == null) return false;
                 return !string.IsNullOrEmpty(Card.Badges.Due);
+            }
+        }
+
+        [DependsOn("Card")]
+        public bool HasMembers
+        {
+            get
+            {
+                if (Card == null) return false;
+                return Card.IdMembers.Any();
             }
         }
 

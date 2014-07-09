@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using AgilityWall.Core.Features.TaskBoard;
+using Caliburn.Micro;
 using Microsoft.Phone.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
@@ -66,6 +67,15 @@ namespace AgilityWall.WinPhone.Controls
             set { SetValue(HasCommentsProperty, value); }
         }
 
+        public static readonly DependencyProperty HasMembersProperty = DependencyProperty.Register(
+            "HasMembers", typeof (bool), typeof (CardControl), new PropertyMetadata(default(bool)));
+
+        public bool HasMembers
+        {
+            get { return (bool) GetValue(HasMembersProperty); }
+            set { SetValue(HasMembersProperty, value); }
+        }
+
         public static readonly DependencyProperty CommentsProperty = DependencyProperty.Register(
             "Comments", typeof(int), typeof(CardControl), new PropertyMetadata(default(int)));
 
@@ -127,6 +137,15 @@ namespace AgilityWall.WinPhone.Controls
         {
             get { return (string)GetValue(DueDateProperty); }
             set { SetValue(DueDateProperty, value); }
+        }
+
+        public static readonly DependencyProperty AvatarUrlsProperty = DependencyProperty.Register(
+            "AvatarUrls", typeof (IObservableCollection<string>), typeof (CardControl), new PropertyMetadata(default(IObservableCollection<string>)));
+
+        public IObservableCollection<string> AvatarUrls
+        {
+            get { return (IObservableCollection<string>) GetValue(AvatarUrlsProperty); }
+            set { SetValue(AvatarUrlsProperty, value); }
         }
 
         public static readonly DependencyProperty StateProperty = DependencyProperty.Register(

@@ -5,7 +5,7 @@ namespace PortableTrello.Client.Fields
     [Flags]
     public enum MemberFields
     {
-        None = 0,
+        all = 0,
         avatarHash                  = 1 << 0,
         bio                         = 1 << 1,
         bioData                     = 1 << 2,

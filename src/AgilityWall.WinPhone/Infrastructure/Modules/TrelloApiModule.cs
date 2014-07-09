@@ -24,6 +24,10 @@ namespace AgilityWall.WinPhone.Infrastructure.Modules
             builder.RegisterType<TrelloRelay>()
                 .AutoActivate()
                 .SingleInstance();
+
+            builder.RegisterType<AvatarUrlResolver>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
     }
 }

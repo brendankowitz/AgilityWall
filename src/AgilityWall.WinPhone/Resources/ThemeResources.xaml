@@ -11,17 +11,19 @@
     <Color x:Key="AppAccentForeColor">#fff</Color>
     <Color x:Key="AppSecondaryColor">#9954bb</Color>
     <Color x:Key="AppTertiaryColor">#FF7F00</Color>
+    <Color x:Key="AppSuccessColor">#65FF65</Color>
+    <Color x:Key="AppFailColor">#CE1021</Color>
     <Color x:Key="AppTextColor">#636363</Color>
     <Color x:Key="AppHeadingColor">#222222</Color>
 
     <SolidColorBrush x:Key="AppAccentBrush" Color="{StaticResource AppAccentColor}"/>
     <SolidColorBrush x:Key="AppSecondaryBrush" Color="{StaticResource AppSecondaryColor}"/>
     <SolidColorBrush x:Key="AppTertiaryBrush" Color="{StaticResource AppTertiaryColor}"/>
+    <SolidColorBrush x:Key="AppSuccessBrush" Color="{StaticResource AppSuccessColor}"/>
+    <SolidColorBrush x:Key="AppFailBrush" Color="{StaticResource AppFailColor}"/>
     <SolidColorBrush x:Key="AppAccentBgBrush" Color="#CC007fff"/>
     <SolidColorBrush x:Key="AppTextBrush" Color="{StaticResource AppTextColor}"/>
     <SolidColorBrush x:Key="AppHeadingBrush" Color="{StaticResource AppHeadingColor}"/>
-    <SolidColorBrush x:Key="RedBrush" Color="#DE2027"/>
-    <SolidColorBrush x:Key="GreenBrush" Color="#00813D"/>
 
     <SolidColorBrush x:Key="FillBorderBrush" Color="#e2e2e2"/>
     <SolidColorBrush x:Key="FillBrush" Color="#eeeeee"/>
@@ -395,42 +397,60 @@
                         <Image Source="{Binding Image, RelativeSource={RelativeSource TemplatedParent}}" 
 						Stretch="UniformToFill" Height="100" Margin="8,8,8,8" />
                     </Border>
-                    <TextBlock Grid.Column="1" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" 
-					Style="{StaticResource AppTextBase}"
-					TextWrapping="Wrap"
-					FontSize="24"
-					Margin="8, 8" />
-                    <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="8, 8, 8, 4">
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="{StaticResource AppSecondaryBrush}" />
-                            </Style>
-                        </StackPanel.Resources>
-                        <TextBlock Style="{StaticResource IconDesc}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,12,0" FontSize="{StaticResource PhoneFontSizeNormal}" Visibility="{Binding HasDescription, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                    <TextBlock Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" 
+					            Style="{StaticResource AppTextBase}"
+					            TextWrapping="Wrap"
+					            FontSize="24"
+					            Margin="8, 8" />
+                    <controls:LeftRightWrapPanel>
+                        <StackPanel Orientation="Horizontal" Margin="8, 8, 8, 4">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource AppSecondaryBrush}" />
+                                </Style>
+                            </StackPanel.Resources>
+                            <TextBlock Style="{StaticResource IconDesc}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,12,0" FontSize="{StaticResource PhoneFontSizeNormal}" Visibility="{Binding HasDescription, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
 
-                        <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasComments, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
-                            <TextBlock Style="{StaticResource IconComment}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
-                            <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Comments, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource PhoneFontSizeNormal}" />
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasComments, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <TextBlock Style="{StaticResource IconComment}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Comments, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasAttachments, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
-                            <TextBlock Style="{StaticResource IconAttachment}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
-                            <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Attatchments, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource PhoneFontSizeNormal}" />
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasAttachments, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <TextBlock Style="{StaticResource IconAttachment}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Attatchments, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasLists, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
-                            <TextBlock Style="{StaticResource IconChecklist}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
-                            <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" FontSize="{StaticResource PhoneFontSizeNormal}">
+                            <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasLists, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <TextBlock Style="{StaticResource IconChecklist}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" FontSize="{StaticResource PhoneFontSizeNormal}">
 							<Run Text="{Binding ListItemsComplete, RelativeSource={RelativeSource TemplatedParent}}" /><Run Text="/" /><Run Text="{Binding TotalLists, RelativeSource={RelativeSource TemplatedParent}}" />
-                            </TextBlock>
-                        </StackPanel>
+                                </TextBlock>
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding DueDate, Converter={StaticResource NullToInvisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
-                            <TextBlock Style="{StaticResource IconClock}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
-                            <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding DueDate, Converter={StaticResource CardDateFormatter}, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource PhoneFontSizeNormal}" />
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding DueDate, Converter={StaticResource NullToInvisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <TextBlock Style="{StaticResource IconClock}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding DueDate, Converter={StaticResource CardDateFormatter}, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                            </StackPanel>
 
-                    </StackPanel>
+                        </StackPanel>
+                        <ItemsControl ItemsSource="{Binding AvatarUrls, RelativeSource={RelativeSource TemplatedParent}}"
+                                  Visibility="{Binding HasMembers, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  MinHeight="40"
+                                  HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+                                  Margin="4">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <toolkit:WrapPanel HorizontalAlignment="Right" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding}" Width="40" Height="40" Margin="4" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </controls:LeftRightWrapPanel>
                 </StackPanel>
                 <Grid x:Name="MoveButtons" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Background="{StaticResource FillBrush}" Height="90">
                     <Grid.ColumnDefinitions>

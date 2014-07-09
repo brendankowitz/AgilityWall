@@ -48,6 +48,7 @@
                                             HasAttachments="{Binding HasAttachments}"
                                             HasComments="{Binding HasComments}"
                                             HasLists="{Binding HasLists}"
+                                            HasMembers="{Binding HasMembers}"
                                             ListItemsComplete="{Binding Card.Badges.CheckItemsChecked}"
                                             TotalLists="{Binding Card.Badges.CheckItems}"
                                             Attatchments="{Binding Card.Badges.Attachments}"
@@ -55,6 +56,7 @@
                                             DueDate="{Binding Card.Badges.Due}"
                                             MoveRight="{Binding MoveRight}"
                                             State="{Binding State}"
+                                            AvatarUrls="{Binding MemberAvatars}"
                                         />
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>

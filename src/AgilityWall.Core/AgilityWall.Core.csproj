@@ -49,6 +49,7 @@
     <Compile Include="Infrastructure\BindingWorkaroundExtensions.cs" />
     <Compile Include="Infrastructure\Clock.cs" />
     <Compile Include="Infrastructure\FuncEqualityComparer.cs" />
+    <Compile Include="Infrastructure\GravitarHashResolver.cs" />
     <Compile Include="Infrastructure\INavigationService.cs" />
     <Compile Include="Infrastructure\IObjectStorageService.cs" />
     <Compile Include="Infrastructure\ObjectTokenStore.cs" />

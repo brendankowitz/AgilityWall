@@ -65,6 +65,7 @@
     <Compile Include="Client\TrelloToken.cs" />
     <Compile Include="Contracts\AttachmentPreview.cs" />
     <Compile Include="Contracts\Attachment.cs" />
+    <Compile Include="Contracts\AvatarSource.cs" />
     <Compile Include="Contracts\Badges.cs" />
     <Compile Include="Contracts\CheckItemState.cs" />
     <Compile Include="Contracts\DescData.cs" />

@@ -9,10 +9,13 @@ namespace AgilityWall.Core.Features.TaskBoard
     [ImplementPropertyChanged]
     public class ListSummaryViewModel : PropertyChangedBase
     {
-        public ListSummaryViewModel(List list, IEventAggregator eventAggregator)
+        private readonly IAvatarUrlResolver _avatarResolver;
+
+        public ListSummaryViewModel(List list, IEventAggregator eventAggregator, IAvatarUrlResolver avatarResolver)
         {
+            _avatarResolver = avatarResolver;
             List = list;
-            Cards = new BindableCollection<CardSummaryViewModel>(list.Cards.Select(x => new CardSummaryViewModel(x, eventAggregator)));
+            Cards = new BindableCollection<CardSummaryViewModel>(list.Cards.Select(x => new CardSummaryViewModel(x, eventAggregator, avatarResolver)));
         }
 
         public List List { get; set; }

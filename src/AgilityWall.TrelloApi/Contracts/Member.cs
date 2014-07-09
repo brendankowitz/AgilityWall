@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace PortableTrello.Contracts
 {
@@ -17,7 +19,7 @@ namespace PortableTrello.Contracts
         public string Status { get; set; }
         public string Url { get; set; }
         public string Username { get; set; }
-        public string AvatarSource { get; set; }
+        public AvatarSource AvatarSource { get; set; }
         public object Email { get; set; }
         public string GravatarHash { get; set; }
         public List<string> IdBoards { get; set; }
