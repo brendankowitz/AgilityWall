@@ -5,6 +5,7 @@
     xmlns:local="using:AgilityWall.WinStore"
     xmlns:micro="using:Caliburn.Micro"
     xmlns:infrastructure="using:AgilityWall.WinStore.Infrastructure"
+    RequestedTheme="Light"
     xmlns:autofac="using:Caliburn.Micro.Autofac">
     
     <micro:CaliburnApplication.Resources>

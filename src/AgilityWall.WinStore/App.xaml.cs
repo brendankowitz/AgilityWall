@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Windows.ApplicationModel.Activation;
@@ -29,7 +30,14 @@ namespace AgilityWall.WinStore
 
         protected override void Configure()
         {
-            base.Configure();
+            try
+            {
+                base.Configure();
+            }
+            catch (Exception ex)
+            {
+                if(Debugger.IsAttached) Debugger.Break();
+            }
 
             var config = new TypeMappingConfiguration
             {

@@ -110,8 +110,15 @@
     <Compile Include="Features\Main\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Modules\AutosubscribeModule.cs" />
+    <Compile Include="Infrastructure\Modules\NavigationModule.cs" />
+    <Compile Include="Infrastructure\Modules\StorageModule.cs" />
+    <Compile Include="Infrastructure\Modules\TileModule.cs" />
+    <Compile Include="Infrastructure\Modules\TrelloApiModule.cs" />
     <Compile Include="Infrastructure\NavigationHelper.cs" />
+    <Compile Include="Infrastructure\PlatformServices\NavigationWrapper.cs" />
     <Compile Include="Infrastructure\PlatformServices\ObjectStorageHelper.RT.cs" />
+    <Compile Include="Infrastructure\PlatformServices\TileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +182,10 @@
     <ProjectReference Include="..\AgilityWall.Core\AgilityWall.Core.csproj">
       <Project>{f3ca2d72-c993-4ca5-9481-651824da64e2}</Project>
       <Name>AgilityWall.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgilityWall.TrelloApi\PortableTrello.csproj">
+      <Project>{93fa04f0-783c-4d46-b1f3-b5b48e6d8f36}</Project>
+      <Name>PortableTrello</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
