@@ -2,14 +2,21 @@
     x:Class="AgilityWall.WinStore.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AgilityWall.WinStore"
-    xmlns:micro="using:Caliburn.Micro"
-    xmlns:infrastructure="using:AgilityWall.WinStore.Infrastructure"
     RequestedTheme="Light"
-    xmlns:autofac="using:Caliburn.Micro.Autofac">
-    
-    <micro:CaliburnApplication.Resources>
-        <infrastructure:NavigationHelper x:Name="NavigationHelper" />
-    </micro:CaliburnApplication.Resources>
+    xmlns:autofac="using:Caliburn.Micro.Autofac"
+    xmlns:micro="using:Caliburn.Micro"
+    xmlns:infrastructure="using:AgilityWall.WinStore.Infrastructure">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/ThemeResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <micro:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+            <infrastructure:NavigationHelper x:Name="NavigationHelper" />
+        </ResourceDictionary>
+    </Application.Resources>
 
 </autofac:CaliburnAutofacApplication>

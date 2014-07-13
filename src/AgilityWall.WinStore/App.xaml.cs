@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Controls;
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 using AgilityWall.Core.Features.Main;
 using AgilityWall.WinStore.Features.Main;
+using Autofac;
 using Caliburn.Micro;
 
 namespace AgilityWall.WinStore
@@ -38,7 +39,10 @@ namespace AgilityWall.WinStore
             {
                 if(Debugger.IsAttached) Debugger.Break();
             }
+        }
 
+        public override void HandleConfigure(ContainerBuilder builder)
+        {
             var config = new TypeMappingConfiguration
             {
                 DefaultSubNamespaceForViewModels = "AgilityWall.Core.Features",
@@ -51,7 +55,7 @@ namespace AgilityWall.WinStore
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            DisplayRootViewFor<MainPageViewModel>();
+            DisplayRootView<MainPage>();
         }
     }
 }

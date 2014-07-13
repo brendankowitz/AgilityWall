@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using AgilityWall.WinStore.Features.Authentication;
+using Caliburn.Micro;
 using INavigationService = AgilityWall.Core.Infrastructure.INavigationService;
 
 namespace AgilityWall.WinStore.Infrastructure.PlatformServices
