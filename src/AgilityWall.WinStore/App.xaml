@@ -5,7 +5,8 @@
     RequestedTheme="Light"
     xmlns:autofac="using:Caliburn.Micro.Autofac"
     xmlns:micro="using:Caliburn.Micro"
-    xmlns:infrastructure="using:AgilityWall.WinStore.Infrastructure">
+    xmlns:infrastructure="using:AgilityWall.WinStore.Infrastructure"
+    xmlns:converters="using:AgilityWall.WinStore.Infrastructure.Converters">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -14,6 +15,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <micro:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:IsLoadingToPageStateConverter x:Key="IsLoadingToPageStateConverter" />
 
             <infrastructure:NavigationHelper x:Name="NavigationHelper" />
         </ResourceDictionary>

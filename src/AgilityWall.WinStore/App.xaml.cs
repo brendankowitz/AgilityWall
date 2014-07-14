@@ -4,9 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml.Controls;
-
-// The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using AgilityWall.Core.Features.Main;
 using AgilityWall.WinStore.Features.Main;
 using Autofac;
@@ -22,6 +21,14 @@ namespace AgilityWall.WinStore
         public App()
         {
             InitializeComponent();
+        }
+
+        protected override void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+            args.Handled = true;
+            new MessageDialog(args.Exception.ToString(), "Error").ShowAsync();
         }
 
         protected override IEnumerable<Assembly> SelectAssemblies()

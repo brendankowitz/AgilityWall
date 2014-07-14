@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using AgilityWall.WinStore.Controls;
 using PortableTrello.Authentication;
 
 namespace AgilityWall.WinStore.Features.Authentication
@@ -46,8 +47,7 @@ namespace AgilityWall.WinStore.Features.Authentication
 
         void SetProgress(bool enabled)
         {
-            Progress.Visibility = enabled ? Visibility.Visible : Visibility.Collapsed;
-            Progress.IsIndeterminate = enabled;
+            PageLayout.PageState = enabled ? PageStates.Busy : PageStates.Normal;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

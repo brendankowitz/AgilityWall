@@ -11,6 +11,8 @@ namespace PortableTrello.Internal
 {
     public abstract class BaseClient
     {
+        public static bool AllowAutomaticDecompression = true;
+
         protected abstract string BaseUrl { get; }
 
         protected virtual async Task<T> ExecuteRequest<T>(string resource, IDictionary<string, string> parameters)
@@ -59,8 +61,17 @@ namespace PortableTrello.Internal
         protected virtual HttpClient CreateHttpClient()
         {
             var handler = new HttpClientHandler();
-            if (handler.SupportsAutomaticDecompression)
-                handler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            if (handler.SupportsAutomaticDecompression && AllowAutomaticDecompression)
+            {
+                try
+                {
+                    handler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+                }
+                catch
+                {
+                    AllowAutomaticDecompression = false;
+                }
+            }
             return new HttpClient(handler);
         }
 

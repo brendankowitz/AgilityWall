@@ -4,6 +4,8 @@ using System.Windows.Media;
 
 namespace AgilityWall.WinPhone.Controls
 {
+    [TemplateVisualState(Name = "Normal", GroupName = "PageStates")]
+    [TemplateVisualState(Name = "Busy", GroupName = "PageStates")]
     public class HeaderedPageLayout : ContentControl
     {
         public static readonly DependencyProperty PageTitleProperty = DependencyProperty.Register(
@@ -32,5 +34,6 @@ namespace AgilityWall.WinPhone.Controls
             get { return (Brush) GetValue(BackgroundBrushProperty); }
             set { SetValue(BackgroundBrushProperty, value); }
         }
+
     }
 }

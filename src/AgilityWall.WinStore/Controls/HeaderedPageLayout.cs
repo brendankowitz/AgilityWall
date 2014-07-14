@@ -41,5 +41,33 @@ namespace AgilityWall.WinStore.Controls
             get { return (Brush) GetValue(BackgroundBrushProperty); }
             set { SetValue(BackgroundBrushProperty, value); }
         }
+
+
+        public static readonly DependencyProperty PageStateProperty = DependencyProperty.Register(
+            "PageState", typeof(PageStates), typeof(HeaderedPageLayout), new PropertyMetadata(default(PageStates), DefaultValue));
+
+        public PageStates PageState
+        {
+            get { return (PageStates)GetValue(PageStateProperty); }
+            set { SetValue(PageStateProperty, value); }
+        }
+
+        private static void DefaultValue(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+        {
+            ((HeaderedPageLayout)dependencyObject).SetPageState();
+        }
+
+        private void SetPageState()
+        {
+            switch (PageState)
+            {
+                case PageStates.Normal:
+                    VisualStateManager.GoToState(this, "Normal", true);
+                    break;
+                case PageStates.Busy:
+                    VisualStateManager.GoToState(this, "Busy", true);
+                    break;
+            }
+        }
     }
 }
