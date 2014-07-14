@@ -15,6 +15,15 @@ namespace AgilityWall.WinStore.Controls
             set { SetValue(PageTitleProperty, value); }
         }
 
+        public static readonly DependencyProperty PageTitleBackgroundProperty = DependencyProperty.Register(
+            "PageTitleBackground", typeof (Brush), typeof (HeaderedPageLayout), new PropertyMetadata(default(Brush)));
+
+        public Brush PageTitleBackground
+        {
+            get { return (Brush) GetValue(PageTitleBackgroundProperty); }
+            set { SetValue(PageTitleBackgroundProperty, value); }
+        }
+
         public static readonly DependencyProperty PageIconProperty = DependencyProperty.Register(
             "PageIcon", typeof (object), typeof (HeaderedPageLayout), new PropertyMetadata(default(object)));
 

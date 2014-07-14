@@ -273,13 +273,13 @@
                 </TransitionCollection>
             </Grid.ChildrenTransitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="140"/>
+                <RowDefinition Height="120"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Border Grid.Row="0" Background="{Binding BackgroundBrush, RelativeSource={RelativeSource TemplatedParent}}">
                 <StackPanel Margin="0" Orientation="Horizontal">
-                    <Button x:Name="backButton" Margin="39,59,39,0"
+                    <Button x:Name="backButton" Margin="39,39,39,0"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         Command="{Binding GoBackCommand, Source={StaticResource NavigationHelper}}"
                         Foreground="White"
@@ -288,9 +288,10 @@
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
 
-                    <ContentControl Content="{Binding PageIcon, RelativeSource={RelativeSource TemplatedParent}}" Margin="0,30"></ContentControl>
+                    <ContentControl Content="{Binding PageIcon, RelativeSource={RelativeSource TemplatedParent}}" Margin="0,15" />
 
-                    <Border Background="#CC9954bb" HorizontalAlignment="Left" Margin="0,30,30,30" Padding="20" VerticalAlignment="Bottom">
+                    <Border Background="{Binding PageTitleBackground, RelativeSource={RelativeSource TemplatedParent}}" 
+                            HorizontalAlignment="Left" Margin="0,30,10,30" Padding="10" VerticalAlignment="Bottom">
 
                         <TextBlock Text="{Binding PageTitle, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White"
 							HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" 
@@ -307,6 +308,7 @@
 
     <Style TargetType="controls:HeaderedPageLayout">
         <Setter Property="Template" Value="{StaticResource BaseHeaderedPageLayoutTemplate}" />
+        <Setter Property="PageTitleBackground" Value="#CC9954bb" />
     </Style>
 
 

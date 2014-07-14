@@ -15,12 +15,7 @@
             <controls:HeaderedPageLayout.BackgroundBrush>
                 <ImageBrush ImageSource="/Assets/RandomBg2.jpg" Stretch="UniformToFill" />
             </controls:HeaderedPageLayout.BackgroundBrush>
-            <controls:HeaderedPageLayout.PageIcon>
-                <Viewbox Grid.Column="1"  Height="60" Width="60" Stretch="Uniform"  Margin="0,8,18,0" VerticalAlignment="Top">
-                    <ContentControl Template="{StaticResource IconAgilityWall}"></ContentControl>
-                </Viewbox>
-            </controls:HeaderedPageLayout.PageIcon>
-
+            
             <Grid>
                 <WebView x:Name="Browser" />
                 <ProgressBar x:Name="Progress" Height="10" Foreground="#fff" />
