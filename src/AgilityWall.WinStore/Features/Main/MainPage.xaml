@@ -20,12 +20,17 @@
             <Hub Margin="-12">
                 <HubSection Width="500" Margin="0" Padding="0">
                     <DataTemplate>
-                        <Image Margin="0, -60,0,0" Source="/Assets/Backgrounds/1442506_94862833.jpg" Stretch="UniformToFill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Image>
+                        <Image Margin="0, -60,0,0" 
+                               RenderTransformOrigin="0.5,0.5"
+                               Source="/Assets/Backgrounds/1442506_94862833.jpg" 
+                               Stretch="UniformToFill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        </Image>
                     </DataTemplate>
                 </HubSection>
                 <HubSection MinWidth="600" Header="Boards">
                     <DataTemplate>
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
                             <Button Content="Connect with Trello" Style="{StaticResource BorderlessPrimaryButtonStyle}" 
                                 x:Name="ConnectWithTrello"
                                 micro:Message.Attach="ConnectWithTrello"
