@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:micro="using:Caliburn.Micro"
     xmlns:controls="using:AgilityWall.WinStore.Controls"
+    NavigationCacheMode="Required"
     mc:Ignorable="d">
 
     <Grid>

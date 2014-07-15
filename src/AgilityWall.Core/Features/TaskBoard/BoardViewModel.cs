@@ -26,6 +26,8 @@ namespace AgilityWall.Core.Features.TaskBoard
         }
 
         public string BoardId { get; set; }
+        public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); } }
+
         public Board Board { get; set; }
         public bool IsLoading { get; set; }
 

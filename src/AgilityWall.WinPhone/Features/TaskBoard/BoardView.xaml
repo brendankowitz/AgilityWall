@@ -32,7 +32,7 @@
             TitleTemplate="{StaticResource BoardPanorama}">
             <phone:Panorama.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding List.Name}" FontSize="32" Margin="0,24,0,0" Foreground="{StaticResource AppHeadingBrush}" />
+                    <TextBlock Text="{Binding DisplayName}" FontSize="32" Margin="0,24,0,0" Foreground="{StaticResource AppHeadingBrush}" />
                 </DataTemplate>
             </phone:Panorama.HeaderTemplate>
             <phone:Panorama.ItemTemplate>

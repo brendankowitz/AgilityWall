@@ -109,13 +109,20 @@
     </Compile>
     <Compile Include="Controls\CardControl.cs" />
     <Compile Include="Controls\HeaderedPageLayout.cs" />
+    <Compile Include="Controls\ItemsHub.cs" />
     <Compile Include="Controls\LeftRightWrapPanel.cs" />
     <Compile Include="Controls\PageStates.cs" />
     <Compile Include="Features\Authentication\AuthenticateView.xaml.cs">
       <DependentUpon>AuthenticateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Features\CardDetails\CardDetailsView.xaml.cs">
+      <DependentUpon>CardDetailsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Features\Main\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\TaskBoard\BoardView.xaml.cs">
+      <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Converters\IsLoadingToPageStateConverter.cs" />
     <Compile Include="Infrastructure\Modules\AutosubscribeModule.cs" />
@@ -154,9 +161,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Features\CardDetails\CardDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Features\Main\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Features\TaskBoard\BoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\ThemeResources.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -204,6 +219,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\trellicons-regular.ttf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

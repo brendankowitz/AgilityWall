@@ -4,6 +4,8 @@ using Windows.UI.Xaml.Media;
 
 namespace AgilityWall.WinStore.Controls
 {
+    [TemplateVisualState(Name = "Normal", GroupName = "PageStates")]
+    [TemplateVisualState(Name = "Busy", GroupName = "PageStates")]
     public class HeaderedPageLayout : ContentControl
     {
         public static readonly DependencyProperty PageTitleProperty = DependencyProperty.Register(
