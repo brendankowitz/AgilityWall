@@ -11,11 +11,33 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="HubSectionTemplate">
-            <StackPanel>
-                <!--<TextBlock Text="{Binding Content}" 
-                           FontSize="26.667" 
-                           Foreground="#FF1133A6" />-->
-            </StackPanel>
+
+            <GridView ItemsSource="{Binding Cards}" MinWidth="400" SelectionMode="None">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:CardControl
+                            Title="{Binding Card.Name}"
+                            Image="{Binding CoverAttachment.Previews[0].Url}"
+                            MinHeight="80"
+                            Width="380"
+                            HasDescription="{Binding HasDescription}"
+                            HasAttachments="{Binding HasAttachments}"
+                            HasComments="{Binding HasComments}"
+                            HasLists="{Binding HasLists}"
+                            HasMembers="{Binding HasMembers}"
+                            ListItemsComplete="{Binding Card.Badges.CheckItemsChecked}"
+                            TotalLists="{Binding Card.Badges.CheckItems}"
+                            Attatchments="{Binding Card.Badges.Attachments}"
+                            Comments="{Binding Card.Badges.Comments}"
+                            DueDate="{Binding Card.Badges.Due}"
+                            MoveRight="{Binding MoveRight}"
+                            State="{Binding State}"
+                            AvatarUrls="{Binding MemberAvatars}"
+                        />
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+
         </DataTemplate>
         <DataTemplate x:Key="HubHeaderTemplate">
             <StackPanel>

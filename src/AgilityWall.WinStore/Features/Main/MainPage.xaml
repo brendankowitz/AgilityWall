@@ -35,7 +35,7 @@
                     <DataTemplate>
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-                            <GridView ItemsSource="{Binding Boards}">
+                            <GridView ItemsSource="{Binding Boards}" SelectionMode="None">
                                 <GridView.ItemTemplate>
                                     <DataTemplate>
                                             <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="2"

@@ -124,7 +124,9 @@
     <Compile Include="Features\TaskBoard\BoardView.xaml.cs">
       <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Converters\CardDateFormatter.cs" />
     <Compile Include="Infrastructure\Converters\IsLoadingToPageStateConverter.cs" />
+    <Compile Include="Infrastructure\Converters\NullToInvisibilityConverter.cs" />
     <Compile Include="Infrastructure\Modules\AutosubscribeModule.cs" />
     <Compile Include="Infrastructure\Modules\NavigationModule.cs" />
     <Compile Include="Infrastructure\Modules\StorageModule.cs" />
