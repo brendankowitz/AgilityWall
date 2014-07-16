@@ -7,12 +7,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:AgilityWall.WinStore.Controls"
     xmlns:taskBoard="using:AgilityWall.Core.Features.TaskBoard"
+    xmlns:thirdParty="using:AgilityWall.WinStore.Controls.ThirdParty"
     d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type=taskBoard:BoardViewModel}"
+    NavigationCacheMode="Required"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="HubSectionTemplate">
 
-            <GridView ItemsSource="{Binding Cards}" MinWidth="400" SelectionMode="None">
+            <GridView ItemsSource="{Binding Cards}" MinWidth="400" SelectionMode="None" >
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <thirdParty:WrapPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
                 <GridView.ItemTemplate>
                     <DataTemplate>
                         <controls:CardControl
@@ -32,35 +39,29 @@
                             DueDate="{Binding Card.Badges.Due}"
                             MoveRight="{Binding MoveRight}"
                             State="{Binding State}"
-                            AvatarUrls="{Binding MemberAvatars}"
-                        />
+                            AvatarUrls="{Binding MemberAvatars}" />
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
 
         </DataTemplate>
         <DataTemplate x:Key="HubHeaderTemplate">
-            <StackPanel>
-                <TextBlock Text="{Binding}" 
-                           FontSize="40" 
-                           Foreground="White" />
-            </StackPanel>
+            
         </DataTemplate>
     </Page.Resources>
 
-    <controls:HeaderedPageLayout x:Name="PageLayout" PageTitle="{Binding DisplayName}" 
+    <controls:HeaderedPageLayout x:Name="PageLayout" PageTitle="{Binding DisplayName}"
                                  BackgroundBrush="{StaticResource AppAccentBrush}"
                                  PageTitleBackground="Transparent"
                                  PageState="{Binding IsLoading, Converter={StaticResource IsLoadingToPageStateConverter}}">
         <controls:HeaderedPageLayout.PageIcon>
-            <TextBlock Style="{StaticResource IconBoard}" VerticalAlignment="Bottom" Margin="0,10,10,0" Foreground="White"></TextBlock>
+            <TextBlock Style="{StaticResource IconBoard}" VerticalAlignment="Bottom" Margin="0,10,10,0"
+                       Foreground="White" />
         </controls:HeaderedPageLayout.PageIcon>
 
         <controls:ItemsHub
             ItemsSource="{Binding Items}"
-            HeaderTemplate="{StaticResource HubHeaderTemplate}"
-            ItemTemplate="{StaticResource HubSectionTemplate}">
-        </controls:ItemsHub>
+            ItemTemplate="{StaticResource HubSectionTemplate}" />
 
     </controls:HeaderedPageLayout>
 </Page>

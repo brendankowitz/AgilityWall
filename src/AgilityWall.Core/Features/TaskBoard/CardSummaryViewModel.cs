@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
@@ -43,7 +44,7 @@ namespace AgilityWall.Core.Features.TaskBoard
         public CardDisplayStates State { get; set; }
         public ICommand MoveLeft { get; set; }
         public ICommand MoveRight { get; set; }
-        public IObservableCollection<string> MemberAvatars { get; set; }
+        public BindableCollection<string> MemberAvatars { get; set; }
 
         [DependsOn("Card")]
         public bool HasDescription

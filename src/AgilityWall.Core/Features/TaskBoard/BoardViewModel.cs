@@ -26,15 +26,16 @@ namespace AgilityWall.Core.Features.TaskBoard
         }
 
         public string BoardId { get; set; }
-        public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); } }
+        public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); Board = null; Items.Clear(); } }
 
         public Board Board { get; set; }
         public bool IsLoading { get; set; }
 
-        protected async override void OnInitialize()
+        protected async override void OnActivate()
         {
             try
             {
+                if (Board != null) return;
                 IsLoading = true;
                 if (!string.IsNullOrEmpty(BoardId))
                 {

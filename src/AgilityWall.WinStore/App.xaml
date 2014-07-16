@@ -18,6 +18,7 @@
             <converters:IsLoadingToPageStateConverter x:Key="IsLoadingToPageStateConverter" />
             <converters:NullToInvisibilityConverter x:Key="NullToInvisibilityConverter" />
             <converters:CardDateFormatter x:Key="CardDateFormatter" />
+            <converters:StringToUriConverter x:Key="StringToUriConverter" />
 
             <infrastructure:NavigationHelper x:Name="NavigationHelper" />
         </ResourceDictionary>

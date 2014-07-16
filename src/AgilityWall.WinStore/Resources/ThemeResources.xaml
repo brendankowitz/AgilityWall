@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="using:AgilityWall.WinStore.Controls"
-                    xmlns:micro="using:Caliburn.Micro">
+                    xmlns:micro="using:Caliburn.Micro"
+                    xmlns:thirdParty="using:AgilityWall.WinStore.Controls.ThirdParty">
 
     <Color x:Key="AppAccentColor">#007fff</Color>
     <Color x:Key="AppAccentForeColor">#fff</Color>
@@ -464,14 +465,14 @@
                 <VisualStateGroup x:Name="CardDisplayStates">
                     <VisualState x:Name="Moving">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MoveButtons">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MoveButtons" EnableDependentAnimation="True">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
                                         <Visibility>Visible</Visibility>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="MoveButtons">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="MoveButtons" EnableDependentAnimation="True">
                                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="90"/>
                             </DoubleAnimationUsingKeyFrames>
@@ -479,7 +480,7 @@
                     </VisualState>
                     <VisualState x:Name="Normal">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MoveButtons">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MoveButtons" EnableDependentAnimation="True">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
                                         <Visibility>Visible</Visibility>
@@ -491,7 +492,7 @@
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="MoveButtons">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="MoveButtons" EnableDependentAnimation="True">
                                 <EasingDoubleKeyFrame KeyTime="0" Value="90"/>
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
                             </DoubleAnimationUsingKeyFrames>
@@ -508,9 +509,10 @@
                     <ColumnDefinition Width="5" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Border Grid.RowSpan="4" Background="{StaticResource FillBrush}"/>
+                <Border Grid.RowSpan="2" Background="{StaticResource FillBrush}"/>
 
-                <StackPanel Grid.Column="1" Grid.Row="0">
+                <StackPanel Grid.Column="1" Grid.Row="0"
+                            micro:Message.Attach="[Event Tapped] = [Action NavigateToCard($dataContext)]; [Event Holding] = [Action CardHeld($dataContext)]; [Event RightTapped] = [Action CardHeld($dataContext)]">
                     <Border Visibility="{Binding Image, Converter={StaticResource NullToInvisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"
 					Background="{StaticResource FillBrush}">
                         <Image Source="{Binding Image, RelativeSource={RelativeSource TemplatedParent}}" 
@@ -528,28 +530,28 @@
                                     <Setter Property="Foreground" Value="{StaticResource AppSecondaryBrush}" />
                                 </Style>
                             </StackPanel.Resources>
-                            <TextBlock Style="{StaticResource IconDesc}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,12,0" FontSize="{StaticResource 18PtFontSize}" Visibility="{Binding HasDescription, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <TextBlock Style="{StaticResource IconDesc}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,12,0" FontSize="{StaticResource 14PtFontSize}" Visibility="{Binding HasDescription, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
 
                             <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasComments, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
-                                <TextBlock Style="{StaticResource IconComment}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource 18PtFontSize}" />
-                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Comments, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource 18PtFontSize}" />
+                                <TextBlock Style="{StaticResource IconComment}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource 14PtFontSize}" />
+                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Comments, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource 14PtFontSize}" />
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasAttachments, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
-                                <TextBlock Style="{StaticResource IconAttachment}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource 18PtFontSize}" />
-                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Attatchments, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource 18PtFontSize}" />
+                                <TextBlock Style="{StaticResource IconAttachment}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource 14PtFontSize}" />
+                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Attatchments, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource 14PtFontSize}" />
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding HasLists, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
-                                <TextBlock Style="{StaticResource IconChecklist}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource 18PtFontSize}" />
-                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" FontSize="{StaticResource 18PtFontSize}">
+                                <TextBlock Style="{StaticResource IconChecklist}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource 14PtFontSize}" />
+                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" FontSize="{StaticResource 14PtFontSize}">
 							<Run Text="{Binding ListItemsComplete, RelativeSource={RelativeSource TemplatedParent}}" /><Run Text="/" /><Run Text="{Binding TotalLists, RelativeSource={RelativeSource TemplatedParent}}" />
                                 </TextBlock>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="12,0" Visibility="{Binding DueDate, Converter={StaticResource NullToInvisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
-                                <TextBlock Style="{StaticResource IconClock}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource 18PtFontSize}" />
-                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding DueDate, Converter={StaticResource CardDateFormatter}, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource 18PtFontSize}" />
+                                <TextBlock Style="{StaticResource IconClock}" Foreground="{StaticResource AppSecondaryBrush}" FontSize="{StaticResource 14PtFontSize}" />
+                                <TextBlock Style="{StaticResource AppTextBase}" Foreground="{StaticResource AppSecondaryBrush}" Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding DueDate, Converter={StaticResource CardDateFormatter}, RelativeSource={RelativeSource TemplatedParent}}" FontSize="{StaticResource 14PtFontSize}" />
                             </StackPanel>
 
                         </StackPanel>
@@ -560,7 +562,7 @@
                                   Margin="4">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapGrid />
+                                    <thirdParty:WrapPanel />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>

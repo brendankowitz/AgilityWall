@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -138,11 +139,11 @@ namespace AgilityWall.WinStore.Controls
         }
 
         public static readonly DependencyProperty AvatarUrlsProperty = DependencyProperty.Register(
-            "AvatarUrls", typeof (IObservableCollection<string>), typeof (CardControl), new PropertyMetadata(default(IObservableCollection<string>)));
+            "AvatarUrls", typeof(BindableCollection<string>), typeof(CardControl), new PropertyMetadata(default(BindableCollection<string>)));
 
-        public IObservableCollection<string> AvatarUrls
+        public BindableCollection<string> AvatarUrls
         {
-            get { return (IObservableCollection<string>) GetValue(AvatarUrlsProperty); }
+            get { return (BindableCollection<string>)GetValue(AvatarUrlsProperty); }
             set { SetValue(AvatarUrlsProperty, value); }
         }
 

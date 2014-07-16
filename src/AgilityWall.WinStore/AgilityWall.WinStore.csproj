@@ -111,7 +111,10 @@
     <Compile Include="Controls\HeaderedPageLayout.cs" />
     <Compile Include="Controls\ItemsHub.cs" />
     <Compile Include="Controls\LeftRightWrapPanel.cs" />
+    <Compile Include="Controls\ThirdParty\OrientedSize.cs" />
     <Compile Include="Controls\PageStates.cs" />
+    <Compile Include="Controls\ThirdParty\NumericExtensions.cs" />
+    <Compile Include="Controls\ThirdParty\WrapPanel.cs" />
     <Compile Include="Features\Authentication\AuthenticateView.xaml.cs">
       <DependentUpon>AuthenticateView.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,7 @@
     <Compile Include="Infrastructure\Converters\CardDateFormatter.cs" />
     <Compile Include="Infrastructure\Converters\IsLoadingToPageStateConverter.cs" />
     <Compile Include="Infrastructure\Converters\NullToInvisibilityConverter.cs" />
+    <Compile Include="Infrastructure\Converters\StringToUriConverter.cs" />
     <Compile Include="Infrastructure\Modules\AutosubscribeModule.cs" />
     <Compile Include="Infrastructure\Modules\NavigationModule.cs" />
     <Compile Include="Infrastructure\Modules\StorageModule.cs" />
