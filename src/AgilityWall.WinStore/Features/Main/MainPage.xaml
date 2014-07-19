@@ -21,7 +21,7 @@
                 </Viewbox>
             </controls:HeaderedPageLayout.PageIcon>
 
-            <Hub Margin="-12">
+            <Hub Margin="-80,-12,-12,-12">
                 <HubSection Width="200" Margin="0" Padding="0">
                     <DataTemplate>
                         <Image Margin="0, -60,0,0" 

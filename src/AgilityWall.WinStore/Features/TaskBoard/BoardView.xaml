@@ -13,16 +13,16 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="HubSectionTemplate">
-
-            <GridView ItemsSource="{Binding Cards}" MinWidth="400" SelectionMode="None" >
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <thirdParty:WrapPanel Orientation="Vertical" />
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <controls:CardControl
+            <Grid>
+                <GridView ItemsSource="{Binding Cards}" MinWidth="400" SelectionMode="None" >
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <thirdParty:WrapPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:CardControl
                             Title="{Binding Card.Name}"
                             Image="{Binding CoverAttachment.Previews[0].Url}"
                             MinHeight="80"
@@ -40,13 +40,12 @@
                             MoveRight="{Binding MoveRight}"
                             State="{Binding State}"
                             AvatarUrls="{Binding MemberAvatars}" />
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-
-        </DataTemplate>
-        <DataTemplate x:Key="HubHeaderTemplate">
-            
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+                <TextBlock Text="No cards" Style="{StaticResource AppSubtleTextStyle}"
+                                       Visibility="{Binding NoCards, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Grid>
         </DataTemplate>
     </Page.Resources>
 
