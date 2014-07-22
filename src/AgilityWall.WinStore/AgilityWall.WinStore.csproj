@@ -132,6 +132,7 @@
     <Compile Include="Infrastructure\Converters\IsLoadingToPageStateConverter.cs" />
     <Compile Include="Infrastructure\Converters\NullToInvisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\StringToUriConverter.cs" />
+    <Compile Include="Infrastructure\DictionaryExtensions.cs" />
     <Compile Include="Infrastructure\Modules\AutosubscribeModule.cs" />
     <Compile Include="Infrastructure\Modules\NavigationModule.cs" />
     <Compile Include="Infrastructure\Modules\StorageModule.cs" />

@@ -17,6 +17,7 @@ namespace AgilityWall.Core.Features.TaskBoard
         private readonly TrelloClient _trelloClient;
         private readonly IEventAggregator _eventAggregator;
         private readonly IAvatarUrlResolver _avatarUrlResolver;
+        private string _boardId;
 
         public BoardViewModel(INavService navigationService, TrelloClient trelloClient, IEventAggregator eventAggregator, IAvatarUrlResolver avatarUrlResolver)
         {
@@ -26,8 +27,19 @@ namespace AgilityWall.Core.Features.TaskBoard
             _avatarUrlResolver = avatarUrlResolver;
         }
 
-        public string BoardId { get; set; }
-        public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); Board = null; Items.Clear(); } }
+        public string BoardId
+        {
+            get { return _boardId; }
+            set
+            {
+                if (value == _boardId) return;
+                _boardId = value;
+                Reset();
+                NotifyOfPropertyChange(() => BoardId);
+            }
+        }
+
+        public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); } }
 
         public Board Board { get; set; }
         public bool IsLoading { get; set; }
@@ -51,6 +63,12 @@ namespace AgilityWall.Core.Features.TaskBoard
             {
                 IsLoading = false;
             }
+        }
+
+        private void Reset()
+        {
+            Board = null;
+            Items.Clear();
         }
 
         public void NavigateToCard(CardSummaryViewModel card)

@@ -1,6 +1,5 @@
-﻿using AgilityWall.Core.Infrastructure;
+﻿using System.Collections.Generic;
 using AgilityWall.Core.Navigation;
-using AgilityWall.WinStore.Features.Authentication;
 using Caliburn.Micro;
 
 namespace AgilityWall.WinStore.Infrastructure.PlatformServices
@@ -24,6 +23,11 @@ namespace AgilityWall.WinStore.Infrastructure.PlatformServices
         public bool Navigate<T>(object parameter)
         {
             return _navigationService.NavigateToViewModel<T>(parameter);
+        }
+
+        public bool Navigate<T>(IDictionary<string,string> parameters)
+        {
+            return Navigate<T>(parameters.ToExpando());
         }
 
         public void GoForward()

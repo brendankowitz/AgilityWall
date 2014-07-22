@@ -50,7 +50,6 @@
     <Compile Include="Infrastructure\Clock.cs" />
     <Compile Include="Infrastructure\FuncEqualityComparer.cs" />
     <Compile Include="Infrastructure\GravitarHashResolver.cs" />
-    <Compile Include="Navigation\DictionaryExtensions.cs" />
     <Compile Include="Navigation\INavService.cs" />
     <Compile Include="Infrastructure\IObjectStorageService.cs" />
     <Compile Include="Infrastructure\ObjectTokenStore.cs" />

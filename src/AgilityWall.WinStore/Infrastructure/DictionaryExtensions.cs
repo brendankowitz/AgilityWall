@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 
-namespace AgilityWall.Core.Navigation
+namespace AgilityWall.WinStore.Infrastructure
 {
     internal static class DictionaryExtensions
     {

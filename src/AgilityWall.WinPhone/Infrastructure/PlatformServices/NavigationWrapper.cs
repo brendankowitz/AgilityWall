@@ -29,13 +29,21 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
             var queryString = new Dictionary<string, string>();
             if (parameter != null)
             {
-                foreach(var p in parameter.GetType().GetProperties())
+                foreach (var p in parameter.GetType().GetProperties())
                 {
                     var value = p.GetValue(parameter);
-                    if(value != null)
+                    if (value != null)
                         queryString.Add(p.Name, value.ToString());
                 }
             }
+            return Navigate<T>(queryString);
+        }
+
+        public bool Navigate<T>(IDictionary<string, string> parameters)
+        {
+            var queryString = new Dictionary<string, string>();
+            if (parameters != null)
+                queryString = new Dictionary<string, string>(parameters);
             return _navigationService.Navigate(BuildUri(typeof(T), queryString));
         }
 

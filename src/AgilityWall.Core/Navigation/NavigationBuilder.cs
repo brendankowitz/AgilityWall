@@ -25,8 +25,7 @@ namespace AgilityWall.Core.Navigation
 
         public void Navigate()
         {
-            object obj = _queryString.Any() ? _queryString.ToExpando() : null;
-            _navService.Navigate<T>(obj);
+            _navService.Navigate<T>(_queryString);
         }
     }
 }
