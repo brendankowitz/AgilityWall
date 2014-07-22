@@ -50,13 +50,14 @@ namespace AgilityWall.Core.Features.CardDetails
         public string CardId { get; set; }
         public List List { get; set; }
         public bool IsLoading { get; set; }
+        public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); Card = null; List = null; } }
 
         [DependsOn("CoverAttachment")]
         public Uri CoverPhoto
         {
             get {
                 if (CoverAttachment != null)
-                    return new Uri(CoverAttachment.Url, UriKind.RelativeOrAbsolute);
+                    return new Uri(CoverAttachment.Url, UriKind.Absolute);
                 return null;
             }
         }

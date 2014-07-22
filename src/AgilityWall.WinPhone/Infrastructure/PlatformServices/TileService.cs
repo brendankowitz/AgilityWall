@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AgilityWall.Core.Features.CardDetails;
 using AgilityWall.Core.Infrastructure;
@@ -11,7 +12,7 @@ using PortableTrello.Contracts;
 
 namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
 {
-    public class TileService : IHandleWithTask<PinCardMessage>
+    public class TileService : IHandleWithTask<PinCardMessage>, IHandle<CanPinCardMessage>
     {
         private readonly NavigationWrapper _navigationWrapper;
         private readonly TrelloClient _client;
@@ -24,25 +25,41 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
 
         public async Task Handle(PinCardMessage message)
         {
-            var uri = _navigationWrapper.BuildUri(typeof (CardDetailsViewModel),
-                new Dictionary<string, string>
-                {
-                    { "CardId", message.Card.Id },
-                    {"DisplayName", message.Card.Name}
-                });
+            var card = message.Card;
+            var uri = GetCardUri(card);
 
             Attachment backgroundImage = null;
-            if (!string.IsNullOrEmpty(message.Card.IdAttachmentCover))
-                backgroundImage = await _client.GetAttachmentById(message.Card.Id, message.Card.IdAttachmentCover);
+            if (!string.IsNullOrEmpty(card.IdAttachmentCover))
+                backgroundImage = await _client.GetAttachmentById(card.Id, card.IdAttachmentCover);
 
             var tileData = new StandardTileData
             {
-                Title = message.Card.Name,
+                Title = card.Name,
                 BackgroundImage = backgroundImage != null ? new Uri(backgroundImage.Url) : null,
-                BackContent = message.Card.Desc
+                BackContent = card.Desc
             };
 
             ShellTile.Create(uri, tileData);
+        }
+        
+        public void Handle(CanPinCardMessage message)
+        {
+            var card = message.Card;
+            var uri = GetCardUri(card);
+
+            var result = ShellTile.ActiveTiles.Any(x => x.NavigationUri == uri);
+            message.SetResult(result);
+        }
+
+        private Uri GetCardUri(Card card)
+        {
+            var uri = _navigationWrapper.BuildUri(typeof(CardDetailsViewModel),
+                new Dictionary<string, string>
+                {
+                    {"CardId", card.Id},
+                    {"DisplayName", card.Name}
+                });
+            return uri;
         }
     }
 }

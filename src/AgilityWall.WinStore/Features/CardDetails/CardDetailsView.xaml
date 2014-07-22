@@ -6,13 +6,50 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:AgilityWall.WinStore.Controls"
+    xmlns:thirdParty="using:AgilityWall.WinStore.Controls.ThirdParty"
     mc:Ignorable="d">
 
-    <controls:HeaderedPageLayout x:Name="PageLayout" PageTitle="{Binding DisplayName}" 
+    <controls:HeaderedPageLayout x:Name="PageLayout" PageTitle="Card Details" 
                                  BackgroundBrush="{StaticResource AppAccentBrush}"
-                                 PageTitleBackground="Transparent">
+                                 PageTitleBackground="Transparent"
+                                 PageState="{Binding IsLoading, Converter={StaticResource IsLoadingToPageStateConverter}}">
         <controls:HeaderedPageLayout.PageIcon>
-            <TextBlock Style="{StaticResource IconBoard}"></TextBlock>
+            <TextBlock Style="{StaticResource IconCard}"  VerticalAlignment="Bottom" Margin="0,10,10,0" Foreground="White" />
         </controls:HeaderedPageLayout.PageIcon>
+
+
+        <thirdParty:RichTextColumns Margin="40,60,0,0" VerticalAlignment="Top">
+            <RichTextBlock Width="600" IsTextSelectionEnabled="False" VerticalAlignment="Top" FontSize="{StaticResource 18PtFontSize}">
+                <Paragraph>
+                    <InlineUIContainer>
+                        <Image Source="{Binding CoverAttachment.Url}" Stretch="UniformToFill" MaxHeight="300" Margin="-12,0,0,0"></Image>
+                    </InlineUIContainer>
+                    <InlineUIContainer>
+                        <Border Background="#CC9954bb" HorizontalAlignment="Left" Margin="-12,0,0,12" Padding="12">
+                            <TextBlock Text="{Binding DisplayName}" Foreground="White"
+							HorizontalAlignment="Left" Style="{StaticResource AppPrimaryPageHeading}" TextWrapping="Wrap"/>
+                        </Border>
+                    </InlineUIContainer>
+                    <LineBreak/>
+                    <Run Text="In list " FontWeight="SemiBold" />
+                    <Run Text="{Binding List.Name}" />
+                </Paragraph>
+                <Paragraph Margin="0,12">
+                    <Run FontWeight="SemiLight" Text="{Binding Card.Desc}"/>
+                </Paragraph>
+            </RichTextBlock>
+
+            <!-- Additional columns are created from this template -->
+            <thirdParty:RichTextColumns.ColumnTemplate>
+                <DataTemplate>
+                    <RichTextBlockOverflow Width="200" Margin="80,0,0,0">
+                        <RichTextBlockOverflow.RenderTransform>
+                            <TranslateTransform X="-1" Y="4"/>
+                        </RichTextBlockOverflow.RenderTransform>
+                    </RichTextBlockOverflow>
+                </DataTemplate>
+            </thirdParty:RichTextColumns.ColumnTemplate>
+        </thirdParty:RichTextColumns>
+
     </controls:HeaderedPageLayout>
 </Page>

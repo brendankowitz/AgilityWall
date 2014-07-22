@@ -95,6 +95,10 @@
         <Setter Property="Text" Value="&#xF002;"/>
     </Style>
 
+    <Style x:Key="IconCard" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
+        <Setter Property="Text" Value="&#xF004;"/>
+    </Style>
+
     <Style x:Key="IconComment" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
         <Setter Property="Text" Value="&#xF008;"/>
     </Style>
@@ -521,7 +525,7 @@
                     <TextBlock Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" 
 					            Style="{StaticResource AppTextBase}"
 					            TextWrapping="Wrap"
-					            FontSize="24"
+					            FontSize="{StaticResource 18PtFontSize}"
 					            Margin="8, 8" />
                     <controls:LeftRightWrapPanel>
                         <StackPanel Orientation="Horizontal" Margin="8, 8, 8, 4">
