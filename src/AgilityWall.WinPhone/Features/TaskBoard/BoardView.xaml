@@ -1,0 +1,87 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="AgilityWall.WinPhone.Features.TaskBoard.BoardView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:taskBoard="clr-namespace:AgilityWall.Core.Features.TaskBoard;assembly=AgilityWall.Core"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+    xmlns:controls="clr-namespace:AgilityWall.WinPhone.Controls"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type=taskBoard:BoardViewModel}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <Grid x:Name="LayoutRoot">
+        <Border Background="{StaticResource AppAccentBrush}"
+                Height="73"
+                VerticalAlignment="Top"
+                ></Border>
+
+        <phone:Panorama
+            Grid.Row="0"
+            x:Name="Items"
+            Background="Transparent"
+            Title="{Binding DisplayName}" 
+            TitleTemplate="{StaticResource BoardPanorama}">
+            <phone:Panorama.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding DisplayName}" FontSize="32" Margin="0,24,0,0" Foreground="{StaticResource AppHeadingBrush}" />
+                </DataTemplate>
+            </phone:Panorama.HeaderTemplate>
+            <phone:Panorama.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <phone:LongListSelector ItemsSource="{Binding Cards}"  Margin="12,-18,12,8">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:CardControl
+                                            Title="{Binding Card.Name}"
+                                            Image="{Binding CoverAttachment.Previews[0].Url}"
+                                            HasDescription="{Binding HasDescription}"
+                                            HasAttachments="{Binding HasAttachments}"
+                                            HasComments="{Binding HasComments}"
+                                            HasLists="{Binding HasLists}"
+                                            HasMembers="{Binding HasMembers}"
+                                            ListItemsComplete="{Binding Card.Badges.CheckItemsChecked}"
+                                            TotalLists="{Binding Card.Badges.CheckItems}"
+                                            Attatchments="{Binding Card.Badges.Attachments}"
+                                            Comments="{Binding Card.Badges.Comments}"
+                                            DueDate="{Binding Card.Badges.Due}"
+                                            MoveRight="{Binding MoveRight}"
+                                            State="{Binding State}"
+                                            AvatarUrls="{Binding MemberAvatars}"
+                                        />
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                        <TextBlock Text="No cards" Style="{StaticResource AppSubtleTextStyle}"
+                                       Visibility="{Binding NoCards, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </Grid>
+                </DataTemplate>
+            </phone:Panorama.ItemTemplate>
+
+        </phone:Panorama>
+        
+        <ProgressBar Height="10" VerticalAlignment="Top"
+                     IsIndeterminate="{Binding IsLoading}"
+                     Foreground="White"
+                     Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar >
+        <shell:ApplicationBar Mode="Minimized" BackgroundColor="{StaticResource AppAccentColor}">
+            <shell:ApplicationBar.Buttons>
+                <micro:AppBarButton Text="new card" Message="NewCard" IconUri="/Toolkit.Content/ApplicationBar.Add.png" />
+            </shell:ApplicationBar.Buttons>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AgilityWall.Core.Contracts;
 using AgilityWall.Core.Infrastructure;
+using PortableTrello.Contracts;
 using Task = System.Threading.Tasks.Task;
 
 namespace AgilityWall.Core.Repositories
@@ -37,7 +37,7 @@ namespace AgilityWall.Core.Repositories
             return items;
         }
 
-        public async Task<Board> Get(Guid id)
+        public async Task<Board> Get(string id)
         {
             return (await GetFromStorage()).SingleOrDefault(x => x.Id == id);
         }

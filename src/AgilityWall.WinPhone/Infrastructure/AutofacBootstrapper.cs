@@ -1,9 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using AgilityWall.Core.Features.Main;
 using Caliburn.Micro;
 using Caliburn.Micro.Autofac;
+using Microsoft.Phone.Controls;
+using Telerik.Windows.Controls;
 
 namespace AgilityWall.WinPhone.Infrastructure
 {
@@ -26,6 +27,13 @@ namespace AgilityWall.WinPhone.Infrastructure
 
             ViewLocator.ConfigureTypeMappings(config);
             ViewModelLocator.ConfigureTypeMappings(config);
+
+            EnableFastAppResumeSupport<MainPageViewModel>();
+        }
+
+        protected override PhoneApplicationFrame CreatePhoneApplicationFrame()
+        {
+            return new RadPhoneApplicationFrame();
         }
     }
 }

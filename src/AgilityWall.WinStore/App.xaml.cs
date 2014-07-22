@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml.Controls;
-
-// The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using AgilityWall.Core.Features.Main;
 using AgilityWall.WinStore.Features.Main;
+using Autofac;
 using Caliburn.Micro;
 
 namespace AgilityWall.WinStore
@@ -22,6 +23,14 @@ namespace AgilityWall.WinStore
             InitializeComponent();
         }
 
+        protected override void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+            args.Handled = true;
+            new MessageDialog(args.Exception.ToString(), "Error").ShowAsync();
+        }
+
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
             return base.SelectAssemblies().Concat(new []{ typeof(MainPageViewModel).GetTypeInfo().Assembly });
@@ -29,8 +38,18 @@ namespace AgilityWall.WinStore
 
         protected override void Configure()
         {
-            base.Configure();
+            try
+            {
+                base.Configure();
+            }
+            catch (Exception ex)
+            {
+                if(Debugger.IsAttached) Debugger.Break();
+            }
+        }
 
+        public override void HandleConfigure(ContainerBuilder builder)
+        {
             var config = new TypeMappingConfiguration
             {
                 DefaultSubNamespaceForViewModels = "AgilityWall.Core.Features",
@@ -43,7 +62,7 @@ namespace AgilityWall.WinStore
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            DisplayRootViewFor<MainPageViewModel>();
+            DisplayRootView<MainPage>();
         }
     }
 }

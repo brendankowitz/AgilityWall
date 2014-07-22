@@ -16,6 +16,7 @@
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>1cade38c</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,15 +36,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Contracts\Board.cs" />
-    <Compile Include="Contracts\Column.cs" />
-    <Compile Include="Contracts\Task.cs" />
+    <Compile Include="Features\About\AboutViewModel.cs" />
+    <Compile Include="Features\Authentication\AuthenticateViewModel.cs" />
+    <Compile Include="Features\CardDetails\Designer\DesignCardDetailsViewModel.cs" />
+    <Compile Include="Features\TaskBoard\BoardViewModel.cs" />
+    <Compile Include="Features\Main\BoardSummaryViewModel.cs" />
+    <Compile Include="Features\TaskBoard\CardDisplayStates.cs" />
+    <Compile Include="Features\TaskBoard\CardSummaryViewModel.cs" />
+    <Compile Include="Features\TaskBoard\ListSummaryViewModel.cs" />
+    <Compile Include="Features\CardDetails\CardDetailsViewModel.cs" />
     <Compile Include="Infrastructure\ActionCommand.cs" />
+    <Compile Include="Infrastructure\BindingWorkaroundExtensions.cs" />
     <Compile Include="Infrastructure\Clock.cs" />
     <Compile Include="Infrastructure\FuncEqualityComparer.cs" />
+    <Compile Include="Infrastructure\GravitarHashResolver.cs" />
+    <Compile Include="Infrastructure\INavigationService.cs" />
     <Compile Include="Infrastructure\IObjectStorageService.cs" />
+    <Compile Include="Infrastructure\ObjectTokenStore.cs" />
     <Compile Include="Infrastructure\ObservableSortedList.cs" />
     <Compile Include="Features\Main\MainPageViewModel.cs" />
+    <Compile Include="Infrastructure\SetPropertiesFromParameterObject.cs" />
+    <Compile Include="Infrastructure\TrelloRelay.cs" />
+    <Compile Include="Messages\CanPinCardMessage.cs" />
+    <Compile Include="Messages\ModelResponse.cs" />
+    <Compile Include="Messages\MoveCardToColumn.cs" />
+    <Compile Include="Messages\NetworkFailure.cs" />
+    <Compile Include="Messages\PinCardMessage.cs" />
+    <Compile Include="Messages\Refresh.cs" />
     <Compile Include="Repositories\BoardRepository.cs" />
     <Compile Include="Repositories\IBoardRepository.cs" />
     <None Include="PlatformServices\ObjectStorageHelper.cs" />
@@ -56,11 +75,23 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PropertyChanged">
+      <HintPath>..\packages\PropertyChanged.Fody.1.48.2.0\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AgilityWall.TrelloApi\PortableTrello.csproj">
+      <Project>{93fa04f0-783c-4d46-b1f3-b5b48e6d8f36}</Project>
+      <Name>PortableTrello</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -68,7 +99,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.1.24.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.24.0\build\Fody.targets'))" />
   </Target>
+  <Import Project="..\packages\Fody.1.24.0\build\Fody.targets" Condition="Exists('..\packages\Fody.1.24.0\build\Fody.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
