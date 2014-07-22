@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace AgilityWall.Core.Infrastructure
+﻿namespace AgilityWall.Core.Navigation
 {
-    public interface INavigationService
+    public interface INavService
     {
         bool CanGoBack { get; }
 
@@ -12,6 +10,6 @@ namespace AgilityWall.Core.Infrastructure
 
         void GoForward();
 
-        void GoBack(); 
+        void GoBack();
     }
 }

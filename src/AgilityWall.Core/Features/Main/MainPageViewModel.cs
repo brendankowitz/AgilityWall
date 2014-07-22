@@ -2,7 +2,7 @@ using System.Linq;
 using AgilityWall.Core.Features.About;
 using AgilityWall.Core.Features.Authentication;
 using AgilityWall.Core.Features.TaskBoard;
-using AgilityWall.Core.Infrastructure;
+using AgilityWall.Core.Navigation;
 using Caliburn.Micro;
 using PortableTrello.Client;
 using PropertyChanged;
@@ -12,10 +12,10 @@ namespace AgilityWall.Core.Features.Main
     [ImplementPropertyChanged]
     public class MainPageViewModel : Screen
     {
-        private readonly INavigationService _navigationService;
+        private readonly INavService _navigationService;
         private readonly TrelloClient _trelloClient;
 
-        public MainPageViewModel(INavigationService navigationService, TrelloClient trelloClient)
+        public MainPageViewModel(INavService navigationService, TrelloClient trelloClient)
         {
             _navigationService = navigationService;
             _trelloClient = trelloClient;
@@ -61,7 +61,10 @@ namespace AgilityWall.Core.Features.Main
 
         public void NavigateToBoard(BoardSummaryViewModel viewModel)
         {
-            _navigationService.Navigate<BoardViewModel>(new { BoardId = viewModel.Board.Id, DisplayName = viewModel.Board.Name });
+            _navigationService.ForView<BoardViewModel>()
+                .WithParam(x => x.BoardId, viewModel.Board.Id)
+                .WithParam(x => x.DisplayName, viewModel.Board.Name)
+                .Navigate();
         }
 
         public void NavigateToAbout()

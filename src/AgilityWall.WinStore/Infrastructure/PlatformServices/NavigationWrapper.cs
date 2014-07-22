@@ -1,10 +1,11 @@
-﻿using AgilityWall.WinStore.Features.Authentication;
+﻿using AgilityWall.Core.Infrastructure;
+using AgilityWall.Core.Navigation;
+using AgilityWall.WinStore.Features.Authentication;
 using Caliburn.Micro;
-using INavigationService = AgilityWall.Core.Infrastructure.INavigationService;
 
 namespace AgilityWall.WinStore.Infrastructure.PlatformServices
 {
-    public class NavigationWrapper : INavigationService
+    public class NavigationWrapper : INavService
     {
         private readonly Caliburn.Micro.INavigationService _navigationService;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
+using AgilityWall.Core.Navigation;
 using Caliburn.Micro;
 using PortableTrello.Client;
 using PortableTrello.Contracts;
@@ -11,11 +12,11 @@ namespace AgilityWall.Core.Features.CardDetails
     [ImplementPropertyChanged]
     public class CardDetailsViewModel : Screen
     {
-        private readonly INavigationService _navigationService;
+        private readonly INavService _navigationService;
         private readonly TrelloClient _trelloClient;
         private readonly IEventAggregator _eventAggregator;
 
-        public CardDetailsViewModel(INavigationService navigationService, TrelloClient trelloClient, IEventAggregator eventAggregator)
+        public CardDetailsViewModel(INavService navigationService, TrelloClient trelloClient, IEventAggregator eventAggregator)
         {
             _navigationService = navigationService;
             _trelloClient = trelloClient;

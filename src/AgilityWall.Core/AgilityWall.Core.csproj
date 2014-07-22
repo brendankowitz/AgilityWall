@@ -50,7 +50,8 @@
     <Compile Include="Infrastructure\Clock.cs" />
     <Compile Include="Infrastructure\FuncEqualityComparer.cs" />
     <Compile Include="Infrastructure\GravitarHashResolver.cs" />
-    <Compile Include="Infrastructure\INavigationService.cs" />
+    <Compile Include="Navigation\DictionaryExtensions.cs" />
+    <Compile Include="Navigation\INavService.cs" />
     <Compile Include="Infrastructure\IObjectStorageService.cs" />
     <Compile Include="Infrastructure\ObjectTokenStore.cs" />
     <Compile Include="Infrastructure\ObservableSortedList.cs" />
@@ -63,6 +64,8 @@
     <Compile Include="Messages\NetworkFailure.cs" />
     <Compile Include="Messages\PinCardMessage.cs" />
     <Compile Include="Messages\Refresh.cs" />
+    <Compile Include="Navigation\NavigationBuilder.cs" />
+    <Compile Include="Navigation\NavigationServiceExtensions.cs" />
     <Compile Include="Repositories\BoardRepository.cs" />
     <Compile Include="Repositories\IBoardRepository.cs" />
     <None Include="PlatformServices\ObjectStorageHelper.cs" />
