@@ -28,7 +28,7 @@
             <ImageBrush ImageSource="/Assets/RandomBg2.jpg" 
                         Stretch="UniformToFill"></ImageBrush>
         </controls:HeaderedPageLayout.BackgroundBrush>
-        <phone:WebBrowser x:Name="Browser"></phone:WebBrowser>
+        <phone:WebBrowser x:Name="Browser" IsScriptEnabled="True" />
     </controls:HeaderedPageLayout>
 
 </phone:PhoneApplicationPage>

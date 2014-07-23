@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AgilityWall.Core.Navigation;
 using Caliburn.Micro;
 
@@ -27,7 +28,10 @@ namespace AgilityWall.WinStore.Infrastructure.PlatformServices
 
         public bool Navigate<T>(IDictionary<string,string> parameters)
         {
-            return Navigate<T>(parameters.ToExpando());
+            object expandoObject = null;
+            if(parameters != null && parameters.Any())
+                expandoObject = parameters.ToExpando();
+            return Navigate<T>(expandoObject);
         }
 
         public void GoForward()
