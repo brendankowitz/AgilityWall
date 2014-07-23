@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
 using Caliburn.Micro;
@@ -14,6 +15,7 @@ namespace AgilityWall.Core.Features.CardDetails
         private readonly TrelloClient _trelloClient;
         private readonly IEventAggregator _eventAggregator;
         private string _cardId;
+        private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
 
         public CardDetailsViewModel(TrelloClient trelloClient, IEventAggregator eventAggregator)
         {
@@ -24,11 +26,11 @@ namespace AgilityWall.Core.Features.CardDetails
         protected async override void OnInitialize()
         {
             base.OnInitialize();
-
             await _trelloClient.Initialize();
 
             try
             {
+                await _viewReady.Task;
                 IsLoading = true;
                 if (!string.IsNullOrEmpty(CardId))
                 {
@@ -42,6 +44,11 @@ namespace AgilityWall.Core.Features.CardDetails
             {
                 IsLoading = false;
             }
+        }
+
+        protected override void OnViewReady(object view)
+        {
+            if (!_viewReady.Task.IsCompleted) _viewReady.SetResult(true);
         }
 
         public string CardId

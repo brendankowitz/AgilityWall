@@ -18,7 +18,7 @@
         </controls:HeaderedPageLayout.PageIcon>
 
 
-        <thirdParty:RichTextColumns Margin="40,60,0,0" VerticalAlignment="Top">
+        <thirdParty:RichTextColumns Margin="108,60,0,0" VerticalAlignment="Top">
             <RichTextBlock Width="600" IsTextSelectionEnabled="False" VerticalAlignment="Top" FontSize="{StaticResource 18PtFontSize}">
                 <Paragraph>
                     <InlineUIContainer>

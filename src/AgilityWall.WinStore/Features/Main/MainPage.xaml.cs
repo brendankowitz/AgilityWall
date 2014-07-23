@@ -1,11 +1,7 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-using Windows.UI.Xaml.Media.Animation;
-using AgilityWall.WinStore.Features.Authentication;
-using Caliburn.Micro.Autofac;
+using AgilityWall.WinStore.Controls;
 
 namespace AgilityWall.WinStore.Features.Main
 {

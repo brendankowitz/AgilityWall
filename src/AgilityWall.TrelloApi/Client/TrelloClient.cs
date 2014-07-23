@@ -32,7 +32,16 @@ namespace PortableTrello.Client
         public async Task<bool> Initialize()
         {
             if (Token == null)
-                Token = await _tokenStore.GetToken();
+            {
+                try
+                {
+                    Token = await _tokenStore.GetToken();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
             if (Token != null)
                 return true;
             return false;

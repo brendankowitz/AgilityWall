@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using AgilityWall.Core.Features.CardDetails;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Navigation;
@@ -17,8 +18,9 @@ namespace AgilityWall.Core.Features.TaskBoard
         private readonly TrelloClient _trelloClient;
         private readonly ListSummaryViewModel.Factory _listSummaryFactory;
         private string _boardId;
+        private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
 
-        public BoardViewModel(INavService navigationService, TrelloClient trelloClient, 
+        public BoardViewModel(INavService navigationService, TrelloClient trelloClient,
             ListSummaryViewModel.Factory listSummaryFactory)
         {
             _navigationService = navigationService;
@@ -47,25 +49,25 @@ namespace AgilityWall.Core.Features.TaskBoard
         {
             try
             {
-                if (Board != null) return;
-                IsLoading = true;
-                if (!string.IsNullOrEmpty(BoardId))
-                {
-                    Board = await _trelloClient.GetBoardById(BoardId);
-                    var lists =
-                        await _trelloClient.GetListsByBoardId(BoardId, ListFilterOptions.open, FilterOptions.open);
+                if (Board != null || string.IsNullOrEmpty(BoardId)) return;
+                await _viewReady.Task;
 
-                    Items.AddRange(lists.Select(x =>
-                    {
-                        var y = x;
-                        return _listSummaryFactory(y);
-                    }));
-                }
+                IsLoading = true;
+
+                Board = await _trelloClient.GetBoardById(BoardId);
+                var lists = await _trelloClient.GetListsByBoardId(BoardId, ListFilterOptions.open, FilterOptions.open);
+
+                Items.AddRange(lists.Select(x => _listSummaryFactory(x)));
             }
             finally
             {
                 IsLoading = false;
             }
+        }
+
+        protected override void OnViewReady(object view)
+        {
+            if(!_viewReady.Task.IsCompleted) _viewReady.SetResult(true);
         }
 
         private void Reset()

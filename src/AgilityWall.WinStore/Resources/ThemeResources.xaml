@@ -447,9 +447,9 @@
                 </StackPanel>
             </Border>
 
-            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="80,12,12,12">
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,12,12,12">
                 <ContentPresenter />
-                <ProgressBar x:Name="Progress" Height="10" Foreground="{StaticResource AppAccentBrush}" Visibility="Visible" IsIndeterminate="True" />
+                <ProgressBar x:Name="Progress" Height="10" Foreground="{StaticResource AppAccentBrush}" Visibility="Collapsed" IsIndeterminate="False" />
             </Grid>
         </Grid>
     </ControlTemplate>

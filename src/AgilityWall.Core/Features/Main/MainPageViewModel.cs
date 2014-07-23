@@ -1,4 +1,6 @@
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AgilityWall.Core.Features.About;
 using AgilityWall.Core.Features.Authentication;
 using AgilityWall.Core.Features.TaskBoard;
@@ -14,6 +16,7 @@ namespace AgilityWall.Core.Features.Main
     {
         private readonly INavService _navigationService;
         private readonly TrelloClient _trelloClient;
+        private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
 
         public MainPageViewModel(INavService navigationService, TrelloClient trelloClient)
         {
@@ -30,6 +33,7 @@ namespace AgilityWall.Core.Features.Main
         {
             try
             {
+                await _viewReady.Task;
                 IsLoading = true;
                 if ((await _trelloClient.Initialize()))
                 {
@@ -52,6 +56,11 @@ namespace AgilityWall.Core.Features.Main
         {
             if(RequiredLogin)
                 OnInitialize();
+        }
+
+        protected override void OnViewReady(object view)
+        {
+            if (!_viewReady.Task.IsCompleted) _viewReady.SetResult(true);
         }
 
         public void ConnectWithTrello()
