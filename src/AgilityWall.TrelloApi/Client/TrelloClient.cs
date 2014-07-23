@@ -5,18 +5,12 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using PortableTrello.Authentication;
-using PortableTrello.Client.Parameters;
 using PortableTrello.Client.Requests;
-using PortableTrello.Client.Requests.BoardRequests;
-using PortableTrello.Client.Requests.CardRequests;
-using PortableTrello.Client.Requests.ListRequests;
-using PortableTrello.Client.Requests.MemberRequests;
-using PortableTrello.Contracts;
 using PortableTrello.Internal;
 
 namespace PortableTrello.Client
 {
-    public class TrelloClient : BaseClient
+    public class TrelloClient : BaseClient, ITrelloClient
     {
         private readonly ITokenStore _tokenStore;
         const byte ApiVersion = 1;
@@ -156,51 +150,6 @@ namespace PortableTrello.Client
                         {"token", Token.Value}
                     });
             return response;
-        }
-
-        public Task<IEnumerable<Board>> GetBoardsForMe()
-        {
-            return ExecuteRequest(new GetBoardsForMeRequest());
-        }
-
-        public Task<IEnumerable<Board>> GetBoardsForUser(string userId)
-        {
-            return ExecuteRequest(new GetBoardsForMemberRequest(userId));
-        }
-
-        public Task<Board> GetBoardById(string boardId)
-        {
-            return ExecuteRequest(new GetBoardByIdRequest(boardId));
-        }
-
-        public Task<IEnumerable<Card>> GetCardsByBoardId(string boardId, FilterOptions options = FilterOptions.all)
-        {
-            return ExecuteRequest(new GetCardsByBoardIdRequest(boardId, options));
-        }
-
-        public Task<IEnumerable<List>> GetListsByBoardId(string boardId, ListFilterOptions options = ListFilterOptions.all, FilterOptions cards = FilterOptions.none)
-        {
-            return ExecuteRequest(new GetListsByBoardIdRequest(boardId, options, cards));
-        }
-
-        public Task<Card> GetCardById(string cardId)
-        {
-            return ExecuteRequest(new GetCardByIdRequest(cardId));
-        }
-
-        public Task<Member> GetMemberById(string memberId)
-        {
-            return ExecuteRequest(new GetMemberById(memberId));
-        }
-
-        public Task<Attachment> GetAttachmentById(string cardId, string attachmentId)
-        {
-            return ExecuteRequest(new GetAttachmentByIdRequest(cardId, attachmentId));
-        }
-
-        public Task<List> GetListById(string idList, FilterOptions cards = FilterOptions.none)
-        {
-            return ExecuteRequest(new GetListByIdRequest(idList, cards));
         }
     }
 }

@@ -11,10 +11,10 @@ namespace AgilityWall.Core.Infrastructure
 {
     public class TrelloRelay : IHandleWithTask<object>
     {
-        private readonly TrelloClient _client;
+        private readonly ITrelloClient _client;
         private readonly IEventAggregator _eventAggregator;
 
-        public TrelloRelay(TrelloClient client, IEventAggregator eventAggregator)
+        public TrelloRelay(ITrelloClient client, IEventAggregator eventAggregator)
         {
             _client = client;
             _eventAggregator = eventAggregator;

@@ -12,12 +12,12 @@ namespace AgilityWall.Core.Features.CardDetails
     [ImplementPropertyChanged]
     public class CardDetailsViewModel : Screen
     {
-        private readonly TrelloClient _trelloClient;
+        private readonly ITrelloClient _trelloClient;
         private readonly IEventAggregator _eventAggregator;
         private string _cardId;
         private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
 
-        public CardDetailsViewModel(TrelloClient trelloClient, IEventAggregator eventAggregator)
+        public CardDetailsViewModel(ITrelloClient trelloClient, IEventAggregator eventAggregator)
         {
             _trelloClient = trelloClient;
             _eventAggregator = eventAggregator;

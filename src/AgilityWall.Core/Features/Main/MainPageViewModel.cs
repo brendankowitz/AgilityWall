@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using AgilityWall.Core.Features.About;
 using AgilityWall.Core.Features.Authentication;
@@ -15,10 +14,10 @@ namespace AgilityWall.Core.Features.Main
     public class MainPageViewModel : Screen
     {
         private readonly INavService _navigationService;
-        private readonly TrelloClient _trelloClient;
+        private readonly ITrelloClient _trelloClient;
         private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
 
-        public MainPageViewModel(INavService navigationService, TrelloClient trelloClient)
+        public MainPageViewModel(INavService navigationService, ITrelloClient trelloClient)
         {
             _navigationService = navigationService;
             _trelloClient = trelloClient;

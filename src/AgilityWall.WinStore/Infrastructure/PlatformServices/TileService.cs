@@ -7,9 +7,9 @@ namespace AgilityWall.WinStore.Infrastructure.PlatformServices
 {
     public class TileService : IHandleWithTask<PinCardMessage>
     {
-        private readonly TrelloClient _client;
+        private readonly ITrelloClient _client;
 
-        public TileService(TrelloClient client)
+        public TileService(ITrelloClient client)
         {
             _client = client;
         }

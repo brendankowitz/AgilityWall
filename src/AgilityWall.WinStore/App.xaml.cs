@@ -23,12 +23,12 @@ namespace AgilityWall.WinStore
             InitializeComponent();
         }
 
-        protected override void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
+        protected async override void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
             if (Debugger.IsAttached)
                 Debugger.Break();
             args.Handled = true;
-            new MessageDialog(args.Exception.ToString(), "Error").ShowAsync();
+            await new MessageDialog(args.Exception.ToString(), "Error").ShowAsync();
         }
 
         protected override IEnumerable<Assembly> SelectAssemblies()
@@ -42,7 +42,7 @@ namespace AgilityWall.WinStore
             {
                 base.Configure();
             }
-            catch (Exception ex)
+            catch
             {
                 if(Debugger.IsAttached) Debugger.Break();
             }

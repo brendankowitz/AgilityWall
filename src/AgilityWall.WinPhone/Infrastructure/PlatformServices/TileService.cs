@@ -15,9 +15,9 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
     public class TileService : IHandleWithTask<PinCardMessage>, IHandle<CanPinCardMessage>
     {
         private readonly NavigationWrapper _navigationWrapper;
-        private readonly TrelloClient _client;
+        private readonly ITrelloClient _client;
 
-        public TileService(NavigationWrapper navigationWrapper, TrelloClient client)
+        public TileService(NavigationWrapper navigationWrapper, ITrelloClient client)
         {
             _navigationWrapper = navigationWrapper;
             _client = client;

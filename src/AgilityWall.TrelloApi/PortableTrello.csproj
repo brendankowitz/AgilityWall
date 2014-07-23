@@ -46,6 +46,7 @@
     <Compile Include="Client\InMemoryTokenStore.cs" />
     <Compile Include="Client\InvalidTokenException.cs" />
     <Compile Include="Client\ITokenStore.cs" />
+    <Compile Include="Client\ITrelloClient.cs" />
     <Compile Include="Client\Parameters\FilterOptions.cs" />
     <Compile Include="Client\Parameters\ListFilterOptions.cs" />
     <Compile Include="Client\Requests\CardRequests\GetAttachmentByIdRequest.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Client\Requests\RequestDefaults.cs" />
     <Compile Include="Client\Requests\UriBuilder.cs" />
     <Compile Include="Client\TrelloClient.cs" />
+    <Compile Include="Client\TrelloClientExtensions.cs" />
     <Compile Include="Client\TrelloToken.cs" />
     <Compile Include="Contracts\AttachmentPreview.cs" />
     <Compile Include="Contracts\Attachment.cs" />

@@ -9,9 +9,9 @@ namespace AgilityWall.Core.Features.Authentication
     public class AuthenticateViewModel : Screen
     {
         private readonly INavService _navigationService;
-        private readonly TrelloClient _trelloClient;
+        private readonly ITrelloClient _trelloClient;
 
-        public AuthenticateViewModel(INavService navigationService, TrelloClient trelloClient)
+        public AuthenticateViewModel(INavService navigationService, ITrelloClient trelloClient)
         {
             _navigationService = navigationService;
             _trelloClient = trelloClient;

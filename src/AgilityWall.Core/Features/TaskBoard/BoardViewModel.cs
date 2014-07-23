@@ -15,12 +15,12 @@ namespace AgilityWall.Core.Features.TaskBoard
     public class BoardViewModel : Conductor<object>.Collection.OneActive
     {
         private readonly INavService _navigationService;
-        private readonly TrelloClient _trelloClient;
+        private readonly ITrelloClient _trelloClient;
         private readonly ListSummaryViewModel.Factory _listSummaryFactory;
         private string _boardId;
         private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
 
-        public BoardViewModel(INavService navigationService, TrelloClient trelloClient,
+        public BoardViewModel(INavService navigationService, ITrelloClient trelloClient,
             ListSummaryViewModel.Factory listSummaryFactory)
         {
             _navigationService = navigationService;

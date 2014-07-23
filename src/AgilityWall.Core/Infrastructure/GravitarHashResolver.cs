@@ -14,11 +14,11 @@ namespace AgilityWall.Core.Infrastructure
 
     public class AvatarUrlResolver : IAvatarUrlResolver
     {
-        private readonly TrelloClient _client;
+        private readonly ITrelloClient _client;
         readonly IDictionary<string,string> _resolvedHashes = new Dictionary<string, string>();
         readonly object _insertLock = new object();
 
-        public AvatarUrlResolver(TrelloClient client)
+        public AvatarUrlResolver(ITrelloClient client)
         {
             _client = client;
         }
