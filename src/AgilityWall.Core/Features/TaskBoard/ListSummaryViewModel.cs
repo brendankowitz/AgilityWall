@@ -9,10 +9,11 @@ namespace AgilityWall.Core.Features.TaskBoard
     [ImplementPropertyChanged]
     public class ListSummaryViewModel : PropertyChangedBase, IHaveDisplayName
     {
-        public ListSummaryViewModel(List list, IEventAggregator eventAggregator, IAvatarUrlResolver avatarResolver)
+        public delegate ListSummaryViewModel Factory(List list);
+        public ListSummaryViewModel(List list, CardSummaryViewModel.Factory cardFactory)
         {
             List = list;
-            Cards = new BindableCollection<CardSummaryViewModel>(list.Cards.Select(x => new CardSummaryViewModel(x, eventAggregator, avatarResolver)));
+            Cards = new BindableCollection<CardSummaryViewModel>(list.Cards.Select(x => cardFactory(x)));
             DisplayName = list.Name;
         }
 

@@ -15,16 +15,15 @@ namespace AgilityWall.Core.Features.TaskBoard
     {
         private readonly INavService _navigationService;
         private readonly TrelloClient _trelloClient;
-        private readonly IEventAggregator _eventAggregator;
-        private readonly IAvatarUrlResolver _avatarUrlResolver;
+        private readonly ListSummaryViewModel.Factory _listSummaryFactory;
         private string _boardId;
 
-        public BoardViewModel(INavService navigationService, TrelloClient trelloClient, IEventAggregator eventAggregator, IAvatarUrlResolver avatarUrlResolver)
+        public BoardViewModel(INavService navigationService, TrelloClient trelloClient, 
+            ListSummaryViewModel.Factory listSummaryFactory)
         {
             _navigationService = navigationService;
             _trelloClient = trelloClient;
-            _eventAggregator = eventAggregator;
-            _avatarUrlResolver = avatarUrlResolver;
+            _listSummaryFactory = listSummaryFactory;
         }
 
         public string BoardId
@@ -56,7 +55,11 @@ namespace AgilityWall.Core.Features.TaskBoard
                     var lists =
                         await _trelloClient.GetListsByBoardId(BoardId, ListFilterOptions.open, FilterOptions.open);
 
-                    Items.AddRange(lists.Select(x => new ListSummaryViewModel(x, _eventAggregator, _avatarUrlResolver)));
+                    Items.AddRange(lists.Select(x =>
+                    {
+                        var y = x;
+                        return _listSummaryFactory(y);
+                    }));
                 }
             }
             finally
@@ -73,7 +76,10 @@ namespace AgilityWall.Core.Features.TaskBoard
 
         public void NavigateToCard(CardSummaryViewModel card)
         {
-            _navigationService.Navigate<CardDetailsViewModel>(new {CardId = card.Card.Id, DisplayName = card.Card.Name});
+            _navigationService.ForView<CardDetailsViewModel>()
+                .WithParam(x => x.CardId, card.Card.Id)
+                .WithParam(x => x.DisplayName, card.Card.Name)
+                .Navigate();
         }
 
         public void CardHeld(CardSummaryViewModel card)

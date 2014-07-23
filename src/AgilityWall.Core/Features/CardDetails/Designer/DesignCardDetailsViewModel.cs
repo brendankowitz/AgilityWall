@@ -6,7 +6,7 @@ namespace AgilityWall.Core.Features.CardDetails.Designer
     public class DesignCardDetailsViewModel : CardDetailsViewModel
     {
         public DesignCardDetailsViewModel() : 
-            base(null,null,null)
+            base(null,null)
         {
             DisplayName = "Tart soufflé jujubes soufflé sweet candy canes. Pie biscuit macaroon.";
             Card = new Card

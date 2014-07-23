@@ -1,7 +1,6 @@
 ﻿using System;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
-using AgilityWall.Core.Navigation;
 using Caliburn.Micro;
 using PortableTrello.Client;
 using PortableTrello.Contracts;
@@ -12,13 +11,12 @@ namespace AgilityWall.Core.Features.CardDetails
     [ImplementPropertyChanged]
     public class CardDetailsViewModel : Screen
     {
-        private readonly INavService _navigationService;
         private readonly TrelloClient _trelloClient;
         private readonly IEventAggregator _eventAggregator;
+        private string _cardId;
 
-        public CardDetailsViewModel(INavService navigationService, TrelloClient trelloClient, IEventAggregator eventAggregator)
+        public CardDetailsViewModel(TrelloClient trelloClient, IEventAggregator eventAggregator)
         {
-            _navigationService = navigationService;
             _trelloClient = trelloClient;
             _eventAggregator = eventAggregator;
         }
@@ -46,12 +44,23 @@ namespace AgilityWall.Core.Features.CardDetails
             }
         }
 
+        public string CardId
+        {
+            get { return _cardId; }
+            set
+            {
+                if (value == _cardId) return;
+                _cardId = value;
+                Reset();
+                NotifyOfPropertyChange(() => CardId);
+            }
+        }
+
         public Attachment CoverAttachment { get; set; }
         public Card Card { get; set; }
-        public string CardId { get; set; }
         public List List { get; set; }
         public bool IsLoading { get; set; }
-        public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); Card = null; List = null; } }
+        public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); } }
 
         [DependsOn("CoverAttachment")]
         public Uri CoverPhoto
@@ -61,6 +70,12 @@ namespace AgilityWall.Core.Features.CardDetails
                     return new Uri(CoverAttachment.Url, UriKind.Absolute);
                 return null;
             }
+        }
+
+        private void Reset()
+        {
+            Card = null;
+            List = null;
         }
 
         public void Pin()

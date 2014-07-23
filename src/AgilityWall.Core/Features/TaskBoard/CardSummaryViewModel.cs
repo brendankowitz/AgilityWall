@@ -17,6 +17,7 @@ namespace AgilityWall.Core.Features.TaskBoard
         private readonly IAvatarUrlResolver _avatarResolver;
         private readonly GetAttachmentByIdRequest _getAttachmentByIdRequest;
 
+        public delegate CardSummaryViewModel Factory(Card card);
         public CardSummaryViewModel(Card card, IEventAggregator eventAggregator, IAvatarUrlResolver avatarResolver)
         {
             _eventAggregator = eventAggregator;
@@ -24,7 +25,6 @@ namespace AgilityWall.Core.Features.TaskBoard
             Card = card;
             _getAttachmentByIdRequest = new GetAttachmentByIdRequest(Card.Id, Card.IdAttachmentCover);
             MemberAvatars = new BindableCollection<string>();
-            _eventAggregator.Subscribe(this);
             MoveRight = new ActionCommand(_ => {});
             MoveLeft = new ActionCommand(_ => {});
             Initialize();
