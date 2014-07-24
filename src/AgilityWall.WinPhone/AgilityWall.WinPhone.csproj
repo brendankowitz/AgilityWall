@@ -320,8 +320,8 @@
       <Project>{F3CA2D72-C993-4CA5-9481-651824DA64E2}</Project>
       <Name>AgilityWall.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AgilityWall.TrelloApi\PortableTrello.csproj">
-      <Project>{93FA04F0-783C-4D46-B1F3-B5B48E6D8F36}</Project>
+    <ProjectReference Include="..\PortableTrello\PortableTrello.csproj">
+      <Project>{93fa04f0-783c-4d46-b1f3-b5b48e6d8f36}</Project>
       <Name>PortableTrello</Name>
     </ProjectReference>
   </ItemGroup>

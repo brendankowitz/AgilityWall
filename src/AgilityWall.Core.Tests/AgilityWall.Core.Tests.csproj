@@ -65,7 +65,7 @@
       <Project>{f3ca2d72-c993-4ca5-9481-651824da64e2}</Project>
       <Name>AgilityWall.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AgilityWall.TrelloApi\PortableTrello.csproj">
+    <ProjectReference Include="..\PortableTrello\PortableTrello.csproj">
       <Project>{93FA04F0-783C-4D46-B1F3-B5B48E6D8F36}</Project>
       <Name>PortableTrello</Name>
     </ProjectReference>

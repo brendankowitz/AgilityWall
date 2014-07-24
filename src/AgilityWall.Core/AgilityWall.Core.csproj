@@ -84,7 +84,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgilityWall.TrelloApi\PortableTrello.csproj">
+    <ProjectReference Include="..\PortableTrello\PortableTrello.csproj">
       <Project>{93fa04f0-783c-4d46-b1f3-b5b48e6d8f36}</Project>
       <Name>PortableTrello</Name>
     </ProjectReference>
