@@ -33,7 +33,12 @@ namespace AgilityWall.Core.Infrastructure
         {
             var onViewModel = vmType.GetRuntimeProperty(propertyName);
             if (onViewModel != null)
-                onViewModel.SetValue(viewModel, parameterObject);
+            {
+                var valueToSet = parameterObject;
+                if (parameterObject.GetType() != onViewModel.PropertyType)
+                    valueToSet = Convert.ChangeType(parameterObject, onViewModel.PropertyType);
+                onViewModel.SetValue(viewModel, valueToSet);
+            }
             else
                 throw new Exception(string.Format("Could not find property '{0}' on  '{1}", propertyName, vmType.Name));
         }

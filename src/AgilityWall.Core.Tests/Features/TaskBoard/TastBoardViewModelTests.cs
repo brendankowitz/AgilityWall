@@ -1,28 +1,48 @@
-﻿using AgilityWall.Core.Features.TaskBoard;
+﻿using System;
+using AgilityWall.Core.Features.TaskBoard;
 using AgilityWall.Core.Navigation;
+using Caliburn.Micro;
 using NSubstitute;
 using NUnit.Framework;
 using PortableTrello.Client;
+using PortableTrello.Client.Requests;
+using PortableTrello.Client.Requests.BoardRequests;
 
 namespace AgilityWall.Core.Tests.Features.TaskBoard
 {
     [TestFixture]
-    public class Given_an_taskboard_viewModel
+    public class BoardViewModelTests
     {
-        private BoardViewModel sut;
+        private BoardViewModel _sut;
         private ITrelloClient _trelloClient;
 
         [SetUp]
-        public void When_the_board_id_is_set()
+        public void GivenATaskBoard()
         {
             _trelloClient = Substitute.For<ITrelloClient>();
-            sut = new BoardViewModel(Substitute.For<INavService>(), _trelloClient, Substitute.For<ListSummaryViewModel.Factory>());
+            _sut = new BoardViewModel(Substitute.For<INavService>(), _trelloClient, Substitute.For<ListSummaryViewModel.Factory>());
         }
 
         [Test]
-        public void Then_that_board_is_loaded_from_the_api()
+        public void WhenTheBoardIdIsSet_ThenThatBoardIsLoadedFromTheApi()
         {
-            
+            _sut.BoardId = "1";
+
+            ((IViewAware)_sut).AttachView(new Object());
+            ((IActivate)_sut).Activate();
+
+            _trelloClient.Received().ExecuteRequest(Arg.Is<GetBoardByIdRequest>(x => x.Resource == ResourcePathFor.Board(_sut.BoardId)));
+        }
+
+        [Test]
+        public void WhenTheBoardIdIsSetViaTheParameterObject_ThenThatBoardIsLoadedFromTheApi()
+        {
+            _sut.Parameter = new { BoardId = 1 };
+
+            ((IViewAware)_sut).AttachView(new Object());
+            ((IActivate)_sut).Activate();
+
+            _trelloClient.Received().ExecuteRequest(Arg.Is<GetBoardByIdRequest>(x => x.Resource == ResourcePathFor.Board("1")));
         }
     }
 }
