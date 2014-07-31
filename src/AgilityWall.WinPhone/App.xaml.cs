@@ -28,8 +28,6 @@ namespace AgilityWall.WinPhone
                 {
                     broadcast.Value.Publish(new NetworkFailure(args.ExceptionObject), Execute.BeginOnUIThread);
                     args.Handled = true;
-                    MessageBox.Show(
-                        "Agility Wall could not connect to the internet, please check your data connection and try again.", "Network Problem", MessageBoxButton.OK);
                     return;
                 }
             }

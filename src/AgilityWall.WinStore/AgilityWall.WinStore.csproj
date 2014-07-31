@@ -195,9 +195,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Caliburn.Micro.Core.2.0.0\lib\portable-net45+win8+wp8+wpa81\Caliburn.Micro.dll</HintPath>
     </Reference>
-    <Reference Include="Caliburn.Micro.Autofac, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Caliburn.Micro.Autofac, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Caliburn.Micro.AutofacBootstrap.2.0.4\lib\portable-net45+win8+wpa81\Caliburn.Micro.Autofac.dll</HintPath>
+      <HintPath>..\packages\Caliburn.Micro.AutofacBootstrap.2.0.6\lib\portable-net45+win8+wpa81\Caliburn.Micro.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Caliburn.Micro.Extensions, Version=2.0.0.6, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -228,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\trellicons-regular.ttf" />
+    <Content Include="Assets\danger.ttf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -240,9 +241,7 @@
       <Name>PortableTrello</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

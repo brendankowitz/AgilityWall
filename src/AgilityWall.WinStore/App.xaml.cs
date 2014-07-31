@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.Web.Http.Filters;
 using AgilityWall.Core.Features.Main;
+using AgilityWall.Core.Features.Shared;
+using AgilityWall.Core.Messages;
 using AgilityWall.WinStore.Features.Main;
 using Autofac;
+using Autofac.Features.OwnedInstances;
 using Caliburn.Micro;
 
 namespace AgilityWall.WinStore
@@ -25,6 +30,16 @@ namespace AgilityWall.WinStore
 
         protected async override void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
+            if (args.Exception is HttpRequestException || string.Equals(args.Message, "An error occurred while sending the request."))
+            {
+                using (var broadcast = IoC.Get<Owned<IEventAggregator>>())
+                {
+                    broadcast.Value.Publish(new NetworkFailure(args.Exception), Execute.BeginOnUIThread);
+                    args.Handled = true;
+                    return;
+                }
+            }
+
             if (Debugger.IsAttached)
                 Debugger.Break();
             args.Handled = true;
@@ -41,6 +56,7 @@ namespace AgilityWall.WinStore
             try
             {
                 base.Configure();
+
             }
             catch
             {
@@ -58,6 +74,11 @@ namespace AgilityWall.WinStore
 
             ViewLocator.ConfigureTypeMappings(config);
             ViewModelLocator.ConfigureTypeMappings(config);
+
+            builder.RegisterType<NetworkErrorViewModel>()
+                .AsSelf()
+                .Named<NetworkErrorViewModel>("NetworkErrorViewModel")
+                .SingleInstance();
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)

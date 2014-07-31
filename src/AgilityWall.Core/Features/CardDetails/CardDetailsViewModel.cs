@@ -10,7 +10,7 @@ using PropertyChanged;
 namespace AgilityWall.Core.Features.CardDetails
 {
     [ImplementPropertyChanged]
-    public class CardDetailsViewModel : Screen
+    public class CardDetailsViewModel : Screen, IHandle<Refresh>
     {
         private readonly ITrelloClient _trelloClient;
         private readonly IEventAggregator _eventAggregator;
@@ -88,6 +88,11 @@ namespace AgilityWall.Core.Features.CardDetails
         public void Pin()
         {
             _eventAggregator.Publish(new PinCardMessage(Card), Execute.BeginOnUIThread);
+        }
+
+        public void Handle(Refresh message)
+        {
+            if(IsActive) OnInitialize();
         }
     }
 }

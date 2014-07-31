@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Windows.Input;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
@@ -43,7 +44,6 @@ namespace AgilityWall.WinStore.Controls
             get { return (Brush) GetValue(BackgroundBrushProperty); }
             set { SetValue(BackgroundBrushProperty, value); }
         }
-
 
         public static readonly DependencyProperty PageStateProperty = DependencyProperty.Register(
             "PageState", typeof(PageStates), typeof(HeaderedPageLayout), new PropertyMetadata(default(PageStates), DefaultValue));

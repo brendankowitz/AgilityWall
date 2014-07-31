@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using PortableTrello.Authentication;
 
 namespace AgilityWall.WinPhone.Features.Authentication

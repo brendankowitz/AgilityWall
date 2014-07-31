@@ -59,7 +59,8 @@
         </controls:HeaderedPageLayout.PageIcon>
 
         <controls:ItemsHub
-            Padding="68,0,0,0"
+            Margin="0"
+            Padding="188,0,0,0"
             ItemsSource="{Binding Items}"
             ItemTemplate="{StaticResource HubSectionTemplate}" />
 

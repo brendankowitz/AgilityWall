@@ -179,6 +179,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <Resource Include="Assets\trellicons-regular.ttf" />
+    <Resource Include="Assets\danger.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>
@@ -272,9 +273,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Caliburn.Micro.Core.2.0.0\lib\portable-net45+win8+wp8+wpa81\Caliburn.Micro.dll</HintPath>
     </Reference>
-    <Reference Include="Caliburn.Micro.Autofac, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Caliburn.Micro.AutofacBootstrap.2.0.4\lib\wp8\Caliburn.Micro.Autofac.dll</HintPath>
+    <Reference Include="Caliburn.Micro.Autofac">
+      <HintPath>..\packages\Caliburn.Micro.AutofacBootstrap.2.0.6\lib\wp8\Caliburn.Micro.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Caliburn.Micro.Extensions, Version=2.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

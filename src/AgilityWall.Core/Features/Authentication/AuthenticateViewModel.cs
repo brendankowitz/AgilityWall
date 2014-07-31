@@ -1,5 +1,4 @@
-﻿using AgilityWall.Core.Infrastructure;
-using AgilityWall.Core.Navigation;
+﻿using AgilityWall.Core.Navigation;
 using Caliburn.Micro;
 using PortableTrello.Authentication;
 using PortableTrello.Client;

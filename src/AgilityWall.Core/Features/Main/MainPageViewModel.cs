@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AgilityWall.Core.Features.About;
 using AgilityWall.Core.Features.Authentication;
 using AgilityWall.Core.Features.TaskBoard;
+using AgilityWall.Core.Messages;
 using AgilityWall.Core.Navigation;
 using Caliburn.Micro;
 using PortableTrello.Client;
@@ -11,7 +12,7 @@ using PropertyChanged;
 namespace AgilityWall.Core.Features.Main
 {
     [ImplementPropertyChanged]
-    public class MainPageViewModel : Screen
+    public class MainPageViewModel : Screen, IHandle<Refresh>
     {
         private readonly INavService _navigationService;
         private readonly ITrelloClient _trelloClient;
@@ -83,6 +84,11 @@ namespace AgilityWall.Core.Features.Main
         public void CreateBoard()
         {
 
+        }
+
+        public void Handle(Refresh message)
+        {
+            if (IsActive) OnInitialize();
         }
     }
 }

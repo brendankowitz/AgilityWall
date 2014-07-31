@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Windows;
 using AgilityWall.Core.Features.Main;
+using AgilityWall.Core.Features.Shared;
+using Autofac;
 using Caliburn.Micro;
 using Caliburn.Micro.Autofac;
 using Microsoft.Phone.Controls;
@@ -29,6 +31,14 @@ namespace AgilityWall.WinPhone.Infrastructure
             ViewModelLocator.ConfigureTypeMappings(config);
 
             EnableFastAppResumeSupport<MainPageViewModel>();
+        }
+
+        protected override void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterType<NetworkErrorViewModel>()
+                .AsSelf()
+                .Named<NetworkErrorViewModel>("NetworkErrorViewModel")
+                .SingleInstance();
         }
 
         protected override PhoneApplicationFrame CreatePhoneApplicationFrame()

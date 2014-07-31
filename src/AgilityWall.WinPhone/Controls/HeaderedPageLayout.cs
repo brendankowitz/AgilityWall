@@ -6,8 +6,13 @@ namespace AgilityWall.WinPhone.Controls
 {
     public class HeaderedPageLayout : ContentControl
     {
+        public HeaderedPageLayout()
+        {
+            ShowHeader = true;
+        }
+
         public static readonly DependencyProperty PageTitleProperty = DependencyProperty.Register(
-            "PageTitle", typeof (string), typeof (HeaderedPageLayout), new PropertyMetadata(default(string)));
+            "PageTitle", typeof(string), typeof(HeaderedPageLayout), new PropertyMetadata(default(string)));
 
         public string PageTitle
         {
@@ -33,5 +38,22 @@ namespace AgilityWall.WinPhone.Controls
             set { SetValue(BackgroundBrushProperty, value); }
         }
 
+        public static readonly DependencyProperty ShowHeaderProperty = DependencyProperty.Register(
+            "ShowHeader", typeof (bool), typeof (HeaderedPageLayout), new PropertyMetadata(default(bool)));
+
+        public bool ShowHeader
+        {
+            get { return (bool) GetValue(ShowHeaderProperty); }
+            set { SetValue(ShowHeaderProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContentMarginProperty = DependencyProperty.Register(
+            "ContentMargin", typeof(Thickness), typeof(HeaderedPageLayout), new PropertyMetadata(default(Thickness)));
+
+        public Thickness ContentMargin
+        {
+            get { return (Thickness)GetValue(ContentMarginProperty); }
+            set { SetValue(ContentMarginProperty, value); }
+        }
     }
 }

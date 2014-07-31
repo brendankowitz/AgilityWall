@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AgilityWall.Core.Features.Main;
-using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Navigation;
 using Caliburn.Micro;
 
@@ -10,9 +8,9 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
 {
     public class NavigationWrapper : INavService
     {
-        private readonly Caliburn.Micro.INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
 
-        public NavigationWrapper(Caliburn.Micro.INavigationService navigationService)
+        public NavigationWrapper(INavigationService navigationService)
         {
             _navigationService = navigationService;
         }

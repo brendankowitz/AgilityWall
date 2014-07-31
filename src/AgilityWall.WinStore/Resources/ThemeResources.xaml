@@ -49,13 +49,11 @@
     <x:Double x:Key="36PtLineHeight">52</x:Double>
 
     <Style x:Name="StandardTextStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="FontSize" Value="{StaticResource 18PtFontSize}"/>
     </Style>
 
     <Style x:Key="AppTextBase" TargetType="TextBlock">
-        <!--<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
-        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
-        <Setter Property="Margin" Value="{StaticResource PhoneHorizontalMargin}"/>-->
+        <Setter Property="FontSize" Value="{StaticResource 18PtFontSize}"/>
         <Setter Property="Foreground" Value="{StaticResource AppTextBrush}"/>
     </Style>
 
@@ -66,24 +64,37 @@
     <Style x:Key="AppSubtleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
         <Setter Property="FontStyle" Value="Italic"/>
         <Setter Property="Foreground" Value="{StaticResource FillBorderBrush}"/>
-        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontSize" Value="{StaticResource 24PtFontSize}"/>
     </Style>
 
     <Style x:Key="AppPrimaryPageHeading" TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
-        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontSize" Value="{StaticResource 24PtFontSize}"/>
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
     <Style x:Key="AppPrimaryItemHeading" TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
-        <!--<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
-        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
-        <Setter Property="Margin" Value="{StaticResource PhoneMargin}"/>-->
+        <Setter Property="FontSize" Value="{StaticResource 24PtFontSize}"/>
     </Style>
 
     <Style x:Key="ButtonTextBase" TargetType="TextBlock">
-        <!--<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
-        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
-        <Setter Property="Margin" Value="{StaticResource PhoneHorizontalMargin}"/>-->
+        <Setter Property="FontSize" Value="{StaticResource 24PtFontSize}"/>
+    </Style>
+
+    <Style x:Key="AgilityWallIconBase" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="/Assets/danger.ttf#danger"/>
+        <Setter Property="FontSize" Value="{StaticResource 32PtFontSize}"/>
+    </Style>
+
+    <Style x:Key="IconUnplugged" TargetType="TextBlock" BasedOn="{StaticResource AgilityWallIconBase}">
+        <Setter Property="Text" Value="a"/>
+    </Style>
+
+    <Style x:Key="IconFatal" TargetType="TextBlock" BasedOn="{StaticResource AgilityWallIconBase}">
+        <Setter Property="Text" Value="c"/>
+    </Style>
+
+    <Style x:Key="IconGlobe" TargetType="TextBlock" BasedOn="{StaticResource AgilityWallIconBase}">
+        <Setter Property="Text" Value="b"/>
     </Style>
 
     <Style x:Key="IconBase" TargetType="TextBlock">
@@ -447,9 +458,26 @@
                 </StackPanel>
             </Border>
 
-            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,12,12,12">
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12">
                 <ContentPresenter />
                 <ProgressBar x:Name="Progress" Height="10" Foreground="{StaticResource AppAccentBrush}" Visibility="Collapsed" IsIndeterminate="False" />
+                <Border micro:Action.Target="NetworkErrorViewModel" Background="White" Margin="-12" 
+                        Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" FontSize="100" Style="{StaticResource IconUnplugged}" Foreground="{StaticResource AppTextBrush}" />
+                        <StackPanel Grid.Row="1">
+                            <TextBlock HorizontalAlignment="Center" Text="We couldn't connect to the internet, check your data connection and try again."
+                                      TextAlignment="Center" Style="{StaticResource AppPrimaryItemHeading}" TextWrapping="WrapWholeWords" MaxWidth="600"  />
+                            <Button Margin="0, 28, 0, 0" HorizontalAlignment="Center" Content="Retry" micro:Message.Attach="Retry" Style="{StaticResource BorderlessPrimaryButtonStyle}" Foreground="White" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
             </Grid>
         </Grid>
     </ControlTemplate>
@@ -525,8 +553,7 @@
                     <TextBlock Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" 
 					            Style="{StaticResource AppTextBase}"
 					            TextWrapping="Wrap"
-					            FontSize="{StaticResource 18PtFontSize}"
-					            Margin="8, 8" />
+                               Margin="8, 8" />
                     <controls:LeftRightWrapPanel>
                         <StackPanel Orientation="Horizontal" Margin="8, 8, 8, 4">
                             <StackPanel.Resources>

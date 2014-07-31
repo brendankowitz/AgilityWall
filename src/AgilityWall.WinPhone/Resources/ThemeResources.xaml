@@ -89,6 +89,23 @@
         <Setter Property="Margin" Value="{StaticResource PhoneHorizontalMargin}"/>
     </Style>
 
+    <Style x:Key="AgilityWallIconBase" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="/AgilityWall.WinPhone;component/Assets/danger.ttf#danger"/>
+        <Setter Property="FontSize" Value="{StaticResource 32PtFontSize}"/>
+    </Style>
+
+    <Style x:Key="IconUnplugged" TargetType="TextBlock" BasedOn="{StaticResource AgilityWallIconBase}">
+        <Setter Property="Text" Value="a"/>
+    </Style>
+
+    <Style x:Key="IconFatal" TargetType="TextBlock" BasedOn="{StaticResource AgilityWallIconBase}">
+        <Setter Property="Text" Value="c"/>
+    </Style>
+
+    <Style x:Key="IconGlobe" TargetType="TextBlock" BasedOn="{StaticResource AgilityWallIconBase}">
+        <Setter Property="Text" Value="b"/>
+    </Style>
+
     <Style x:Key="IconBase" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="/AgilityWall.WinPhone;component/Assets/trellicons-regular.ttf#Trellicons"/>
         <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
@@ -255,38 +272,6 @@
         </ContentPresenter>
     </DataTemplate>
 
-    <!-- ## Listbox styles -->
-    <DataTemplate x:Key="groupHeaderTemplate">
-        <Border Width="72" Height="72" HorizontalAlignment="Left" 
-			Background="{StaticResource AppAccentBrush}"
-			Margin="0,6,6,6">
-            <TextBlock Text="{Binding Title}" 
-				FontSize="40" Padding="6"
-				VerticalAlignment="Center" HorizontalAlignment="Center"
-				Foreground="White" />
-        </Border>
-    </DataTemplate>
-    <Style x:Key="LongListSelectorJumpListStyle" TargetType="phone:LongListSelector">
-        <Setter Property="GridCellSize"  Value="113,113"/>
-        <!-- ReSharper disable Xaml.DependencyPropertyResolveError -->
-        <Setter Property="LayoutMode" Value="Grid" />
-        <!-- ReSharper restore Xaml.DependencyPropertyResolveError -->
-        <Setter Property="ItemTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <Border Background="{Binding Converter={StaticResource BackgroundConverter}}"
-						Width="113" Height="113" Margin="6" >
-                        <TextBlock Text="{Binding Title}"
-							FontFamily="{StaticResource PhoneFontFamilySemiBold}"
-							FontSize="48" Padding="6"
-							Foreground="{Binding Converter={StaticResource ForegroundConverter}}"
-							VerticalAlignment="Center"/>
-                    </Border>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <!-- ## Page Layouts -->
     <ControlTemplate x:Key="BaseHeaderedPageLayoutTemplate" TargetType="controls:HeaderedPageLayout">
         <Grid Background="Transparent">
@@ -295,7 +280,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" Background="{Binding BackgroundBrush, RelativeSource={RelativeSource TemplatedParent}}">
+            <Border Grid.Row="0" Background="{Binding BackgroundBrush, RelativeSource={RelativeSource TemplatedParent}}"
+                    Visibility="{Binding ShowHeader, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Margin="0">
                     <Border Background="#CC9954bb" HorizontalAlignment="Left" Margin="12,12,0,24">
                         <TextBlock Text="{Binding PageTitle, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White"
@@ -304,13 +290,31 @@
                 </StackPanel>
             </Border>
 
-            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12">
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="{Binding ContentMargin, RelativeSource={RelativeSource TemplatedParent}}">
                 <ContentPresenter />
+                <Border x:Name="ErrorPanel" Background="White" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                        micro:Action.Target="NetworkErrorViewModel">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" FontSize="100" Style="{StaticResource IconUnplugged}"  />
+                        <StackPanel Grid.Row="1">
+                            <TextBlock HorizontalAlignment="Center" Text="We couldn't connect to the internet, check your data connection and try again." 
+                                       FontSize="{StaticResource 24PtFontSize}" TextAlignment="Center" Style="{StaticResource AppPrimaryItemHeading}" TextWrapping="Wrap" MaxWidth="600"  />
+                            <Button Margin="0, 28, 0, 0" micro:Message.Attach="Retry" HorizontalAlignment="Center" Content="Retry" Style="{StaticResource BorderlessPrimaryButtonStyle}" Foreground="White"  />
+                        </StackPanel>
+                    </Grid>
+                </Border>
             </Grid>
         </Grid>
     </ControlTemplate>
 
     <Style TargetType="controls:HeaderedPageLayout">
+        <Setter Property="ContentMargin" Value="12" />
         <Setter Property="Template" Value="{StaticResource BaseHeaderedPageLayoutTemplate}" />
     </Style>
 
@@ -331,6 +335,23 @@
 
                 <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12">
                     <ContentPresenter />
+                    <Border x:Name="ErrorPanel" Background="White" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                        micro:Action.Target="NetworkErrorViewModel">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" FontSize="100" Style="{StaticResource IconUnplugged}"  />
+                            <StackPanel Grid.Row="1">
+                                <TextBlock HorizontalAlignment="Center" Text="We couldn't connect to the internet, check your data connection and try again." 
+                                       FontSize="{StaticResource 24PtFontSize}" TextAlignment="Center" Style="{StaticResource AppPrimaryItemHeading}" TextWrapping="Wrap" MaxWidth="600"  />
+                                <Button Margin="0, 28, 0, 0" micro:Message.Attach="Retry" HorizontalAlignment="Center" Content="Retry" Style="{StaticResource BorderlessPrimaryButtonStyle}" Foreground="White"  />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
                 </Grid>
             </Grid>
         </ScrollViewer>

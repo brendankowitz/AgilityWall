@@ -9,6 +9,7 @@
     xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:main="clr-namespace:AgilityWall.Core.Features.Main;assembly=AgilityWall.Core"
+    xmlns:controls="clr-namespace:AgilityWall.WinPhone.Controls"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -19,66 +20,43 @@
     shell:SystemTray.BackgroundColor="Black"
     shell:SystemTray.ForegroundColor="{StaticResource AppAccentForeColor}">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <!-- LOCALIZATION NOTE:
-            To localize the displayed strings copy their values to appropriately named
-            keys in the app's neutral language resource file (AppResources.resx) then
-            replace the hard-coded text value between the attributes' quotation marks
-            with the binding clause whose path points to that string name.
-
-            For example:
-
-                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
-
-            This binding points to the template's string resource named "ApplicationTitle".
-
-            Adding supported languages in the Project Properties tab will create a
-            new resx file per language that can carry the translated values of your
-            UI strings. The binding in these examples will cause the value of the
-            attributes to be drawn from the .resx file that matches the
-            CurrentUICulture of the app at run time.
-         -->
-
-        <Border Background="{StaticResource AppAccentBrush}"
+    <controls:HeaderedPageLayout ShowHeader="False" ContentMargin="0">
+        <Grid x:Name="LayoutRoot" Background="Transparent">
+            <Border Background="{StaticResource AppAccentBrush}"
                 Height="73"
-                VerticalAlignment="Top"
-                ></Border>
-
-        <phone:Panorama
+                VerticalAlignment="Top"></Border>
+            <phone:Panorama
             Grid.Row="0"
             Background="Transparent"
             Title="Agility wall" TitleTemplate="{StaticResource MainPanorama}" 
             HeaderTemplate="{StaticResource MainPanoramaHeaderTemplate}">
-
-            <phone:PanoramaItem Header="Boards">
-                <phone:LongListSelector ItemsSource="{Binding Boards}" Margin="12,-18,12,8">
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="2"
+                <phone:PanoramaItem Header="Boards">
+                    <phone:LongListSelector ItemsSource="{Binding Boards}" Margin="12,-18,12,8">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="2"
                                     Margin="4" toolkit:TiltEffect.IsTiltEnabled="True"
                                     MinHeight="60"
                                     micro:Message.Attach="[Event Tap] = [Action NavigateToBoard($dataContext)]">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="5" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <Border Background="{StaticResource FillBrush}"></Border>
-                                    <TextBlock Grid.Column="1" Text="{Binding Board.Name}" 
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Background="{StaticResource FillBrush}"></Border>
+                                        <TextBlock Grid.Column="1" Text="{Binding Board.Name}" 
                                                Style="{StaticResource AppTextBase}"
                                                FontSize="24"
                                                Margin="8, 8"></TextBlock>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
-            </phone:PanoramaItem>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PanoramaItem>
+            </phone:Panorama>
 
-        </phone:Panorama>
-        
-        <Button Height="100" Width="300" 
+            <Button Height="100" Width="300" 
                 Style="{StaticResource BorderlessPrimaryButtonStyle}"
                 HorizontalAlignment="Center"
                 Content="Connect with Trello"
@@ -86,29 +64,20 @@
                 Visibility="{Binding RequiredLogin, Converter={StaticResource BooleanToVisibilityConverter}}"
                 ></Button>
 
-        <ProgressBar Height="10" VerticalAlignment="Top"
+            <ProgressBar Height="10" VerticalAlignment="Top"
                      IsIndeterminate="{Binding IsLoading}"
                      Foreground="White"
                      Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-        <!--Uncomment to see an alignment grid to help ensure your controls are
-            aligned on common boundaries.  The image has a top margin of -32px to
-            account for the System Tray. Set this to 0 (or remove the margin altogether)
-            if the System Tray is hidden.
-
-            Before shipping remove this XAML and the image itself.-->
-        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
-    </Grid>
+        </Grid>
+    </controls:HeaderedPageLayout>
 
     <phone:PhoneApplicationPage.ApplicationBar >
         <shell:ApplicationBar Mode="Minimized" BackgroundColor="{StaticResource AppAccentColor}">
-            <shell:ApplicationBar.Buttons>
-                <micro:AppBarButton Text="new board" Message="CreateBoard" IconUri="/Toolkit.Content/ApplicationBar.Add.png" />
-            </shell:ApplicationBar.Buttons>
             <shell:ApplicationBar.MenuItems>
                 <micro:AppBarMenuItem Text="about" Message="NavigateToAbout" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-    
+
 </phone:PhoneApplicationPage>

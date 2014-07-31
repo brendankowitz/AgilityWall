@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AgilityWall.Core.Features.CardDetails;
 using AgilityWall.Core.Infrastructure;
+using AgilityWall.Core.Messages;
 using AgilityWall.Core.Navigation;
 using Caliburn.Micro;
 using PortableTrello.Client;
@@ -12,7 +13,7 @@ using PropertyChanged;
 namespace AgilityWall.Core.Features.TaskBoard
 {
     [ImplementPropertyChanged]
-    public class BoardViewModel : Conductor<object>.Collection.OneActive
+    public class BoardViewModel : Conductor<object>.Collection.OneActive, IHandle<Refresh>
     {
         private readonly INavService _navigationService;
         private readonly ITrelloClient _trelloClient;
@@ -91,6 +92,11 @@ namespace AgilityWall.Core.Features.TaskBoard
         protected override void ChangeActiveItem(object newItem, bool closePrevious)
         {
             base.ChangeActiveItem(BindingWorkaroundExtensions.EnsureModel<ListSummaryViewModel>(newItem), closePrevious);
+        }
+
+        public void Handle(Refresh message)
+        {
+            if (IsActive) OnActivate();
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AgilityWall.Core.Features.CardDetails;
-using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
 using Caliburn.Micro;
 using Microsoft.Phone.Shell;
@@ -28,14 +27,9 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
             var card = message.Card;
             var uri = GetCardUri(card);
 
-            Attachment backgroundImage = null;
-            if (!string.IsNullOrEmpty(card.IdAttachmentCover))
-                backgroundImage = await _client.GetAttachmentById(card.Id, card.IdAttachmentCover);
-
             var tileData = new StandardTileData
             {
                 Title = card.Name,
-                BackgroundImage = backgroundImage != null ? new Uri(backgroundImage.Url) : null,
                 BackContent = card.Desc
             };
 
