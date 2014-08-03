@@ -5,7 +5,7 @@ using PortableTrello.Client;
 
 namespace AgilityWall.WinStore.Infrastructure.PlatformServices
 {
-    public class TileService : IHandleWithTask<PinCardMessage>
+    public class TileService : IHandleWithTask<PinBoardMessage>
     {
         private readonly ITrelloClient _client;
 
@@ -14,7 +14,7 @@ namespace AgilityWall.WinStore.Infrastructure.PlatformServices
             _client = client;
         }
 
-        public async Task Handle(PinCardMessage message)
+        public async Task Handle(PinBoardMessage message)
         {
             //var uri = _navigationWrapper.BuildUri(typeof (CardDetailsViewModel),
             //    new Dictionary<string, string>

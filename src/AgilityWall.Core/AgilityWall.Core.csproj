@@ -59,10 +59,10 @@
     <Compile Include="Features\Main\MainPageViewModel.cs" />
     <Compile Include="Infrastructure\SetPropertiesFromParameterObject.cs" />
     <Compile Include="Infrastructure\TrelloRelay.cs" />
-    <Compile Include="Messages\CanPinCardMessage.cs" />
+    <Compile Include="Messages\CanPinBoardMessage.cs" />
     <Compile Include="Messages\ModelResponse.cs" />
     <Compile Include="Messages\MoveCardToColumn.cs" />
-    <Compile Include="Messages\PinCardMessage.cs" />
+    <Compile Include="Messages\PinBoardMessage.cs" />
     <Compile Include="Messages\Refresh.cs" />
     <Compile Include="Navigation\NavigationBuilder.cs" />
     <Compile Include="Navigation\NavigationServiceExtensions.cs" />

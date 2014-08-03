@@ -17,15 +17,17 @@ namespace AgilityWall.Core.Features.TaskBoard
     {
         private readonly INavService _navigationService;
         private readonly ITrelloClient _trelloClient;
+        private readonly IEventAggregator _eventAggregator;
         private readonly ListSummaryViewModel.Factory _listSummaryFactory;
         private string _boardId;
         private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
 
-        public BoardViewModel(INavService navigationService, ITrelloClient trelloClient,
+        public BoardViewModel(INavService navigationService, ITrelloClient trelloClient, IEventAggregator eventAggregator,
             ListSummaryViewModel.Factory listSummaryFactory)
         {
             _navigationService = navigationService;
             _trelloClient = trelloClient;
+            _eventAggregator = eventAggregator;
             _listSummaryFactory = listSummaryFactory;
         }
 
@@ -44,20 +46,28 @@ namespace AgilityWall.Core.Features.TaskBoard
         public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); } }
         public Board Board { get; set; }
         public bool IsLoading { get; set; }
+        public bool CanPin { get; set; }
 
         protected async override void OnActivate()
         {
             try
             {
-                if (Board != null || string.IsNullOrEmpty(BoardId)) return;
+                if (string.IsNullOrEmpty(BoardId)) return;
+
+                await _trelloClient.Initialize();
                 await _viewReady.Task;
+                if (Board == null)
+                {
+                    IsLoading = true;
 
-                IsLoading = true;
+                    Board = await _trelloClient.GetBoardById(BoardId);
+                    var lists =
+                        await _trelloClient.GetListsByBoardId(BoardId, ListFilterOptions.open, FilterOptions.open);
 
-                Board = await _trelloClient.GetBoardById(BoardId);
-                var lists = await _trelloClient.GetListsByBoardId(BoardId, ListFilterOptions.open, FilterOptions.open);
+                    Items.AddRange(lists.Select(x => _listSummaryFactory(x)));
+                }
 
-                Items.AddRange(lists.Select(x => _listSummaryFactory(x)));
+                _eventAggregator.Publish(new CanPinBoardMessage(Board, x => CanPin = x), Execute.BeginOnUIThread);
             }
             finally
             {
@@ -92,6 +102,12 @@ namespace AgilityWall.Core.Features.TaskBoard
         protected override void ChangeActiveItem(object newItem, bool closePrevious)
         {
             base.ChangeActiveItem(BindingWorkaroundExtensions.EnsureModel<ListSummaryViewModel>(newItem), closePrevious);
+        }
+
+        public void Pin()
+        {
+            if(CanPin)
+                _eventAggregator.Publish(new PinBoardMessage(Board), Execute.BeginOnUIThread);
         }
 
         public void Handle(Refresh message)

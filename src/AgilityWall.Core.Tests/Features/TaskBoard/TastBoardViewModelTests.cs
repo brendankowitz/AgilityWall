@@ -20,7 +20,7 @@ namespace AgilityWall.Core.Tests.Features.TaskBoard
         public void GivenATaskBoard()
         {
             _trelloClient = Substitute.For<ITrelloClient>();
-            _sut = new BoardViewModel(Substitute.For<INavService>(), _trelloClient, Substitute.For<ListSummaryViewModel.Factory>());
+            _sut = new BoardViewModel(Substitute.For<INavService>(), _trelloClient, Substitute.For<IEventAggregator>(), Substitute.For<ListSummaryViewModel.Factory>());
         }
 
         [Test]

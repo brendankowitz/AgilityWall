@@ -13,14 +13,12 @@ namespace AgilityWall.Core.Features.CardDetails
     public class CardDetailsViewModel : Screen, IHandle<Refresh>
     {
         private readonly ITrelloClient _trelloClient;
-        private readonly IEventAggregator _eventAggregator;
         private string _cardId;
         private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
 
-        public CardDetailsViewModel(ITrelloClient trelloClient, IEventAggregator eventAggregator)
+        public CardDetailsViewModel(ITrelloClient trelloClient)
         {
             _trelloClient = trelloClient;
-            _eventAggregator = eventAggregator;
         }
 
         protected async override void OnInitialize()
@@ -83,11 +81,6 @@ namespace AgilityWall.Core.Features.CardDetails
         {
             Card = null;
             List = null;
-        }
-
-        public void Pin()
-        {
-            _eventAggregator.Publish(new PinCardMessage(Card), Execute.BeginOnUIThread);
         }
 
         public void Handle(Refresh message)

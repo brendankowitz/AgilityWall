@@ -41,23 +41,12 @@
         </controls:HeaderedPageLayout.Resources>
         
         <StackPanel Margin="0,-24,0,0">
-            
             <TextBlock FontWeight="Black" Margin="{StaticResource PhoneMargin}">
                 <Run Text="In list " FontWeight="SemiBold" /><Run Text="{Binding List.Name}" />
             </TextBlock>
-
             <TextBlock Text="{Binding Card.Desc}" TextWrapping="Wrap" />
-
         </StackPanel>
 
     </controls:HeaderedPageLayout>
-
-    <phone:PhoneApplicationPage.ApplicationBar >
-        <shell:ApplicationBar Mode="Minimized" BackgroundColor="{StaticResource AppAccentColor}">
-            <shell:ApplicationBar.Buttons>
-                <micro:AppBarButton Text="pin" Message="Pin" IconUri="/Assets/AppBar/Pin.png" />
-            </shell:ApplicationBar.Buttons>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

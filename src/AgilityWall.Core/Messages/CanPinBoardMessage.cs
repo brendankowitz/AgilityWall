@@ -3,21 +3,21 @@ using PortableTrello.Contracts;
 
 namespace AgilityWall.Core.Messages
 {
-    public class CanPinCardMessage
+    public class CanPinBoardMessage
     {
         private readonly Action<bool> _result;
 
-        public CanPinCardMessage(Card card, Action<bool> result)
+        public CanPinBoardMessage(Board board, Action<bool> result)
         {
             _result = result;
-            Card = card;
+            Board = board;
         }
 
-        public Card Card { get; protected set; }
+        public Board Board { get; protected set; }
 
         public void SetResult(bool result)
         {
-            _result(result);
+            _result.Invoke(result);
         }
     }
 }

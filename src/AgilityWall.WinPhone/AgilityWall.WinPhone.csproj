@@ -236,6 +236,8 @@
     <Content Include="Assets\RandomBg3.jpg" />
     <Content Include="Assets\RandomBg4.jpg" />
     <Content Include="Assets\RandomBg5.jpg" />
+    <Content Include="Assets\Tiles\BoardTileMedium.png" />
+    <Content Include="Assets\Tiles\BoardTileSmall.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

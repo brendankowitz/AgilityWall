@@ -78,4 +78,12 @@
         </Grid>
     </controls:HeaderedPageLayout>
 
+    <phone:PhoneApplicationPage.ApplicationBar >
+        <shell:ApplicationBar Mode="Minimized" BackgroundColor="{StaticResource AppAccentColor}">
+            <shell:ApplicationBar.Buttons>
+                <micro:AppBarButton Text="pin" Message="Pin" IconUri="/Assets/AppBar/Pin.png" />
+            </shell:ApplicationBar.Buttons>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
 </phone:PhoneApplicationPage>
