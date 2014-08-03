@@ -26,26 +26,38 @@
                                  IsIndeterminate="{Binding IsLoading}"
                                  IsVisible="{Binding IsLoading}"/>
     </shell:SystemTray.ProgressIndicator>
+    
+    <phone:PhoneApplicationPage.Resources>
+        <Thickness x:Key="StackedMargin">24,0,24,12</Thickness>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
+            <Setter Property="FontSize" Value="{StaticResource 18PtFontSize}" />
+            <Setter Property="Margin" Value="{StaticResource StackedMargin}" />
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
 
-    <controls:HeaderedPageLayout
-        Template="{StaticResource CardHeaderedPageLayoutTemplate}"
-        PageTitle="{Binding DisplayName}">
-        <controls:HeaderedPageLayout.BackgroundBrush>
-            <ImageBrush ImageSource="{Binding CoverPhoto}" 
-                        Stretch="UniformToFill"></ImageBrush>
-        </controls:HeaderedPageLayout.BackgroundBrush>
-        <controls:HeaderedPageLayout.Resources>
-            <Style TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
-                <Setter Property="FontSize" Value="24" />
-            </Style>
-        </controls:HeaderedPageLayout.Resources>
-        
-        <StackPanel Margin="0,-24,0,0">
-            <TextBlock FontWeight="Black" Margin="{StaticResource PhoneMargin}">
-                <Run Text="In list " FontWeight="SemiBold" /><Run Text="{Binding List.Name}" />
-            </TextBlock>
-            <TextBlock Text="{Binding Card.Desc}" TextWrapping="Wrap" />
-        </StackPanel>
+    <controls:HeaderedPageLayout ShowHeader="False" ContentMargin="0">
+        <ScrollViewer>
+            <StackPanel Margin="0">
+
+                <Image Source="{Binding CoverPhoto}" Stretch="UniformToFill" MaxHeight="300" Margin="-12,-12,-12,24" />
+
+                <Border Background="{StaticResource AppSecondaryBrush}" HorizontalAlignment="Left" Margin="12,0,12,12">
+                    <TextBlock Text="{Binding DisplayName}" Foreground="White"
+						   HorizontalAlignment="Left" 
+                           Style="{StaticResource AppPrimaryPageHeading}" 
+                           FontSize="{StaticResource 21PtFontSize}"
+                           Margin="{StaticResource PhoneMargin}" 
+                           TextWrapping="Wrap"/>
+                </Border>
+
+                <TextBlock FontWeight="Black">
+                    <Run Text="In list " FontWeight="SemiBold" /><Run Text="{Binding List.Name}" />
+                </TextBlock>
+                
+                <TextBlock Text="{Binding Card.Desc}" TextWrapping="Wrap" />
+                
+            </StackPanel>
+        </ScrollViewer>
 
     </controls:HeaderedPageLayout>
 

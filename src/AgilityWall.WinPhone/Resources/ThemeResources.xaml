@@ -291,24 +291,26 @@
 
             <Grid x:Name="ContentPanel" Grid.Row="1" Margin="{Binding ContentMargin, RelativeSource={RelativeSource TemplatedParent}}">
                 <ContentPresenter />
-                <Border x:Name="ErrorPanel" Background="White" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                        micro:Action.Target="NetworkErrorViewModel">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" FontSize="100" Style="{StaticResource IconUnplugged}"  />
-                        <StackPanel Grid.Row="1">
-                            <TextBlock HorizontalAlignment="Center" Text="We couldn't connect to the internet, check your data connection and try again." 
-                                       FontSize="{StaticResource 24PtFontSize}" TextAlignment="Center" Style="{StaticResource AppPrimaryItemHeading}" TextWrapping="Wrap" MaxWidth="600"  />
-                            <Button Margin="0, 28, 0, 0" micro:Message.Attach="Retry" HorizontalAlignment="Center" Content="Retry" Style="{StaticResource BorderlessPrimaryButtonStyle}" Foreground="White"  />
-                        </StackPanel>
-                    </Grid>
-                </Border>
             </Grid>
+
+            <Border Grid.Row="0" Grid.RowSpan="2" x:Name="ErrorPanel" Background="White" 
+                    Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                    micro:Action.Target="NetworkErrorViewModel">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" FontSize="100" Style="{StaticResource IconUnplugged}" Foreground="{StaticResource AppTextBrush}" />
+                    <StackPanel Grid.Row="1">
+                        <TextBlock HorizontalAlignment="Center" Text="Agility Wall couldn't connect to the internet, check your data connection and try again." 
+                                       FontSize="{StaticResource 24PtFontSize}" TextAlignment="Center" Style="{StaticResource AppPrimaryItemHeading}" TextWrapping="Wrap" MaxWidth="600"  />
+                        <Button Margin="0, 28, 0, 0" micro:Message.Attach="Retry" HorizontalAlignment="Center" Content="Retry" Style="{StaticResource BorderlessPrimaryButtonStyle}" Foreground="White"  />
+                    </StackPanel>
+                </Grid>
+            </Border>
         </Grid>
     </ControlTemplate>
 
@@ -316,44 +318,6 @@
         <Setter Property="ContentMargin" Value="12" />
         <Setter Property="Template" Value="{StaticResource BaseHeaderedPageLayoutTemplate}" />
     </Style>
-
-    <ControlTemplate x:Key="CardHeaderedPageLayoutTemplate" TargetType="controls:HeaderedPageLayout">
-        <ScrollViewer>
-            <Grid Background="Transparent">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Image Source="{Binding BackgroundBrush.ImageSource, RelativeSource={RelativeSource TemplatedParent}}" 
-                       MaxHeight="300" Stretch="UniformToFill" toolkit:TiltEffect.IsTiltEnabled="True" />
-                <Border Grid.Row="1" Background="{StaticResource AppSecondaryBrush}" HorizontalAlignment="Left" Margin="12,12,12,24">
-                    <TextBlock Text="{Binding PageTitle, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White"
-						HorizontalAlignment="Left" Style="{StaticResource AppPrimaryPageHeading}" Margin="{StaticResource PhoneMargin}" TextWrapping="Wrap"/>
-                </Border>
-
-                <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12">
-                    <ContentPresenter />
-                    <Border x:Name="ErrorPanel" Background="White" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                        micro:Action.Target="NetworkErrorViewModel">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" FontSize="100" Style="{StaticResource IconUnplugged}" Foreground="{StaticResource AppTextBrush}" />
-                            <StackPanel Grid.Row="1">
-                                <TextBlock HorizontalAlignment="Center" Text="Agility Wall couldn't connect to the internet, check your data connection and try again." 
-                                       FontSize="{StaticResource 24PtFontSize}" TextAlignment="Center" Style="{StaticResource AppPrimaryItemHeading}" TextWrapping="Wrap" MaxWidth="600"  />
-                                <Button Margin="0, 28, 0, 0" micro:Message.Attach="Retry" HorizontalAlignment="Center" Content="Retry" Style="{StaticResource BorderlessPrimaryButtonStyle}" Foreground="White" />
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </Grid>
-            </Grid>
-        </ScrollViewer>
-    </ControlTemplate>
 
     <!-- ## Card Item styles -->
 

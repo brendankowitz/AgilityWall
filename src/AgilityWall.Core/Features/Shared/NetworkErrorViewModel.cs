@@ -5,16 +5,30 @@ using PropertyChanged;
 namespace AgilityWall.Core.Features.Shared
 {
     [ImplementPropertyChanged]
-    public class NetworkErrorViewModel : PropertyChangedBase, IHandle<NetworkFailure>
+    public class NetworkErrorViewModel : PropertyChangedBase, IHandle<NetworkFailure>, IHandle<AllowOfflineMessage>
     {
         private readonly IEventAggregator _eventAggregator;
+        private bool _isVisible;
 
         public NetworkErrorViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
+            ShowOfflineStatus = true;
         }
 
-        public bool IsVisible { get; set; }
+        [AlsoNotifyFor("IsVisible")]
+        public bool ShowOfflineStatus { get; set; }
+
+        public bool IsVisible
+        {
+            get { return _isVisible && ShowOfflineStatus; }
+            set
+            {
+                if (value.Equals(_isVisible)) return;
+                _isVisible = value;
+                NotifyOfPropertyChange(() => IsVisible);
+            }
+        }
 
         public void Handle(NetworkFailure message)
         {
@@ -25,6 +39,11 @@ namespace AgilityWall.Core.Features.Shared
         {
             IsVisible = false;
             _eventAggregator.Publish(new Refresh(), Execute.BeginOnUIThread);
+        }
+
+        public void Handle(AllowOfflineMessage message)
+        {
+            ShowOfflineStatus = message.Show;
         }
     }
 }

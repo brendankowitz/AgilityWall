@@ -21,6 +21,7 @@ namespace AgilityWall.Core.Features.TaskBoard
         private readonly ListSummaryViewModel.Factory _listSummaryFactory;
         private string _boardId;
         private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
+        private Task _initialiseTrelloClient = null;
 
         public BoardViewModel(INavService navigationService, ITrelloClient trelloClient, IEventAggregator eventAggregator,
             ListSummaryViewModel.Factory listSummaryFactory)
@@ -48,14 +49,19 @@ namespace AgilityWall.Core.Features.TaskBoard
         public bool IsLoading { get; set; }
         public bool CanPin { get; set; }
 
+        protected override void OnInitialize()
+        {
+            _initialiseTrelloClient = _trelloClient.Initialize();
+        }
+
         protected async override void OnActivate()
         {
             try
             {
                 if (string.IsNullOrEmpty(BoardId)) return;
 
-                await _trelloClient.Initialize();
-                await _viewReady.Task;
+                await Task.WhenAll(_initialiseTrelloClient, _viewReady.Task);
+
                 if (Board == null)
                 {
                     IsLoading = true;
