@@ -6,6 +6,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+                    xmlns:designer="clr-namespace:AgilityWall.Core.Features.Shared.Designer;assembly=AgilityWall.Core"
                     mc:Ignorable="d">
 
     <Color x:Key="AppAccentColor">#007fff</Color>
@@ -294,8 +295,10 @@
             </Grid>
 
             <Border Grid.Row="0" Grid.RowSpan="2" x:Name="ErrorPanel" Background="White" 
+                    d:Visibility="Collapsed"
                     Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                    micro:Action.Target="NetworkErrorViewModel">
+                    micro:Action.Target="NetworkErrorViewModel"
+                    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=designer:DesignNetworkErrorViewModel}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />

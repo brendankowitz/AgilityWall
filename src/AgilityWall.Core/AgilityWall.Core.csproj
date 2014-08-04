@@ -39,6 +39,7 @@
     <Compile Include="Features\About\AboutViewModel.cs" />
     <Compile Include="Features\Authentication\AuthenticateViewModel.cs" />
     <Compile Include="Features\CardDetails\Designer\DesignCardDetailsViewModel.cs" />
+    <Compile Include="Features\Shared\Designer\DesignNetworkErrorViewModel.cs" />
     <Compile Include="Features\Shared\NetworkErrorViewModel.cs" />
     <Compile Include="Features\TaskBoard\BoardViewModel.cs" />
     <Compile Include="Features\Main\BoardSummaryViewModel.cs" />
