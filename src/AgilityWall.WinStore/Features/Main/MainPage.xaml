@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
     <Grid>
-        <controls:HeaderedPageLayout PageTitle="Agility Wall" 
+        <controls:HeaderedPageLayout PageTitle="Agility Wall Reader" 
                                      BackgroundBrush="{StaticResource AppAccentBrush}" 
                                      PageTitleBackground="Transparent"
                                      PageState="{Binding IsLoading, Converter={StaticResource IsLoadingToPageStateConverter}}">

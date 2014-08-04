@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -72,7 +73,8 @@ namespace PortableTrello.Internal
                     AllowAutomaticDecompression = false;
                 }
             }
-            return new HttpClient(handler);
+            var httpClient = new HttpClient(handler);
+            return httpClient;
         }
 
         protected virtual Task<string> HandleResponseMessage(HttpResponseMessage message)

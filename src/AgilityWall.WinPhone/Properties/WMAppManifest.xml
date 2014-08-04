@@ -1,13 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{b74985c5-d805-43c7-b83b-905eafd94602}" Title="Agility Wall" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="AgilityWall.WinPhone author" Description="Agility Wall" Publisher="AgilityWall.WinPhone" PublisherID="{280ec489-ccc4-4819-9f4b-7ccce64b6fde}">
+  <App xmlns="" ProductID="{b74985c5-d805-43c7-b83b-905eafd94602}" Title="Agility Wall Reader" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Brendan Kowitz" Description="Agility Wall" Publisher="Brendan Kowitzs" PublisherID="{280ec489-ccc4-4819-9f4b-7ccce64b6fde}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
-      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
-      <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
@@ -19,7 +16,7 @@
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>Agility Wall</Title>
+          <Title>Agility Wall Reader</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>

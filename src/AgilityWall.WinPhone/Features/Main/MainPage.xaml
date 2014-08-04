@@ -28,7 +28,7 @@
             <phone:Panorama
             Grid.Row="0"
             Background="Transparent"
-            Title="Agility wall" TitleTemplate="{StaticResource MainPanorama}" 
+            Title="Agility Wall Reader" TitleTemplate="{StaticResource MainPanorama}" 
             HeaderTemplate="{StaticResource MainPanoramaHeaderTemplate}">
                 <phone:PanoramaItem Header="Boards">
                     <phone:LongListSelector ItemsSource="{Binding Boards}" Margin="12,-18,12,8">
