@@ -25,6 +25,13 @@
     <SolidColorBrush x:Key="FillBorderBrush" Color="#e2e2e2"/>
     <SolidColorBrush x:Key="FillBrush" Color="#eeeeee"/>
 
+    <SolidColorBrush x:Key="CardLabelGreen" Color="#34b27d"/>
+    <SolidColorBrush x:Key="CardLabelYellow" Color="#dbdb57"/>
+    <SolidColorBrush x:Key="CardLabelOrange" Color="#e09952"/>
+    <SolidColorBrush x:Key="CardLabelRed" Color="#cb4d4d"/>
+    <SolidColorBrush x:Key="CardLabelPurple" Color="#93c"/>
+    <SolidColorBrush x:Key="CardLabelBlue" Color="#4d77cb"/>
+
     <x:Double x:Key="11PtFontSize">14.667</x:Double>
     <x:Double x:Key="11PtLineHeight">18</x:Double>
     <x:Double x:Key="14PtFontSize">18.667</x:Double>
@@ -161,7 +168,7 @@
     <Style x:Key="IconDesc" TargetType="TextBlock" BasedOn="{StaticResource IconBase}">
         <Setter Property="Text" Value="&#xF046;"/>
     </Style>
-
+    
     <ControlTemplate x:Name="IconAgilityWall" TargetType="ContentControl">
         <Canvas Height="100" Width="100" >
             <Path Fill="#fff" Data="M 49.987,0 0,25 0,37.5 49.987,12.5 99.978,37.5 99.978,25"/>
@@ -550,6 +557,9 @@
                         <Image Source="{Binding Image, RelativeSource={RelativeSource TemplatedParent}}" 
 						Stretch="UniformToFill" Height="100" Margin="8,8,8,8" />
                     </Border>
+                    
+                    
+                    
                     <TextBlock Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" 
 					            Style="{StaticResource AppTextBase}"
 					            TextWrapping="Wrap"
@@ -604,6 +614,20 @@
                         </ItemsControl>
                     </controls:LeftRightWrapPanel>
                 </StackPanel>
+
+                <ItemsControl Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Card.Labels}" HorizontalContentAlignment="Left" VerticalAlignment="Top">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Width="50" Height="3" Margin="0 0 5 0" Background="{Binding Color, Converter={StaticResource CardLabelConverter}}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
                 <Grid x:Name="MoveButtons" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Background="{StaticResource FillBrush}" Height="90">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />

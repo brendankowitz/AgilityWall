@@ -30,6 +30,13 @@
     <SolidColorBrush x:Key="FillBorderBrush" Color="#e2e2e2"/>
     <SolidColorBrush x:Key="FillBrush" Color="#eeeeee"/>
 
+    <SolidColorBrush x:Key="CardLabelGreen" Color="#34b27d"/>
+    <SolidColorBrush x:Key="CardLabelYellow" Color="#dbdb57"/>
+    <SolidColorBrush x:Key="CardLabelOrange" Color="#e09952"/>
+    <SolidColorBrush x:Key="CardLabelRed" Color="#cb4d4d"/>
+    <SolidColorBrush x:Key="CardLabelPurple" Color="#93c"/>
+    <SolidColorBrush x:Key="CardLabelBlue" Color="#4d77cb"/>
+
     <system:Double x:Key="11PtFontSize">14.667</system:Double>
     <system:Double x:Key="11PtLineHeight">18</system:Double>
     <system:Double x:Key="14PtFontSize">18.667</system:Double>
@@ -438,6 +445,20 @@
                         </ItemsControl>
                     </controls:LeftRightWrapPanel>
                 </StackPanel>
+
+                <ItemsControl Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Card.Labels}" HorizontalContentAlignment="Left" VerticalAlignment="Top">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Width="50" Height="3" Margin="0 0 5 0" Background="{Binding Color, Converter={StaticResource CardLabelConverter}}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
                 <Grid x:Name="MoveButtons" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Background="{StaticResource FillBrush}" Height="90">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
