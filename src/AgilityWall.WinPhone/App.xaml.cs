@@ -1,12 +1,10 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Net.Http;
 using System.Windows;
 using AgilityWall.Core.Messages;
 using Autofac.Features.OwnedInstances;
 using Caliburn.Micro;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Net.NetworkInformation;
 
 namespace AgilityWall.WinPhone
 {

@@ -7,7 +7,6 @@ using System.Reflection;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using Windows.Web.Http.Filters;
 using AgilityWall.Core.Features.Main;
 using AgilityWall.Core.Features.Shared;
 using AgilityWall.Core.Messages;
@@ -42,6 +41,7 @@ namespace AgilityWall.WinStore
 
             if (Debugger.IsAttached)
                 Debugger.Break();
+
             args.Handled = true;
             await new MessageDialog(args.Exception.ToString(), "Error").ShowAsync();
         }
@@ -49,19 +49,6 @@ namespace AgilityWall.WinStore
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
             return base.SelectAssemblies().Concat(new []{ typeof(MainPageViewModel).GetTypeInfo().Assembly });
-        }
-
-        protected override void Configure()
-        {
-            try
-            {
-                base.Configure();
-
-            }
-            catch
-            {
-                if(Debugger.IsAttached) Debugger.Break();
-            }
         }
 
         public override void HandleConfigure(ContainerBuilder builder)
