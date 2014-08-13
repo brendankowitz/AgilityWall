@@ -31,7 +31,9 @@
             Title="Agility Wall Reader" TitleTemplate="{StaticResource MainPanorama}" 
             HeaderTemplate="{StaticResource MainPanoramaHeaderTemplate}">
                 <phone:PanoramaItem Header="Boards">
-                    <phone:LongListSelector ItemsSource="{Binding Boards}" Margin="12,-18,12,8">
+                    
+                    <!-- TODO: Name the longlistselector "Boards" -->
+                    <phone:LongListSelector Margin="12,-18,12,8">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderBrush="{StaticResource FillBorderBrush}" BorderThickness="2"
@@ -55,14 +57,8 @@
                     </phone:LongListSelector>
                 </phone:PanoramaItem>
             </phone:Panorama>
-
-            <Button Height="100" Width="300" 
-                Style="{StaticResource BorderlessPrimaryButtonStyle}"
-                HorizontalAlignment="Center"
-                Content="Connect with Trello"
-                x:Name="ConnectWithTrello"
-                Visibility="{Binding RequiredLogin, Converter={StaticResource BooleanToVisibilityConverter}}"
-                ></Button>
+            
+            <!-- TODO: Create button named ConnectWithTrello -->
 
             <ProgressBar Height="10" VerticalAlignment="Top"
                      IsIndeterminate="{Binding IsLoading}"

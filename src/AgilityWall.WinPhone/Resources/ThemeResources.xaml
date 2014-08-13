@@ -301,7 +301,7 @@
                 <ContentPresenter />
             </Grid>
 
-            <Border Grid.Row="0" Grid.RowSpan="2" x:Name="ErrorPanel" Background="White" 
+            <!--<Border Grid.Row="0" Grid.RowSpan="2" x:Name="ErrorPanel" Background="White" 
                     d:Visibility="Collapsed"
                     Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" 
                     micro:Action.Target="NetworkErrorViewModel"
@@ -320,7 +320,7 @@
                         <Button Margin="0, 28, 0, 0" micro:Message.Attach="Retry" HorizontalAlignment="Center" Content="Retry" Style="{StaticResource BorderlessPrimaryButtonStyle}" Foreground="White"  />
                     </StackPanel>
                 </Grid>
-            </Border>
+            </Border>-->
         </Grid>
     </ControlTemplate>
 

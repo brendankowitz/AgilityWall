@@ -63,10 +63,25 @@ namespace AgilityWall.Core.Features.Main
             if (!_viewReady.Task.IsCompleted) _viewReady.SetResult(true);
         }
 
-        public void ConnectWithTrello()
-        {
-            _navigationService.Navigate<AuthenticateViewModel>();
-        }
+        /* TODO: ConnectWithTrello method */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public void NavigateToBoard(BoardSummaryViewModel viewModel)
         {
@@ -79,11 +94,6 @@ namespace AgilityWall.Core.Features.Main
         public void NavigateToAbout()
         {
             _navigationService.Navigate<AboutViewModel>();
-        }
-
-        public void CreateBoard()
-        {
-
         }
 
         public void Handle(Refresh message)
