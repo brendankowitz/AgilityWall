@@ -53,6 +53,7 @@
     <Compile Include="Client\Requests\BoardRequests\GetBoardByIdRequest.cs" />
     <Compile Include="Client\Requests\BoardRequests\GetBoardsForMeRequest.cs" />
     <Compile Include="Client\Requests\BoardRequests\GetBoardsForMemberRequest.cs" />
+    <Compile Include="Client\Requests\CardRequests\GetCardActionsByCardIdRequest.cs" />
     <Compile Include="Client\Requests\CardRequests\GetCardByIdRequest.cs" />
     <Compile Include="Client\Requests\CardRequests\GetCardsByBoardIdRequest.cs" />
     <Compile Include="Client\Requests\ListRequests\GetListByIdRequest.cs" />
@@ -69,6 +70,11 @@
     <Compile Include="Contracts\Attachment.cs" />
     <Compile Include="Contracts\AvatarSource.cs" />
     <Compile Include="Contracts\Badges.cs" />
+    <Compile Include="Contracts\CardActions\CardActionBoard.cs" />
+    <Compile Include="Contracts\CardActions\CardActionCard.cs" />
+    <Compile Include="Contracts\CardActions\CardActionData.cs" />
+    <Compile Include="Contracts\CardActions\CardActionMemberCreator.cs" />
+    <Compile Include="Contracts\CardActions\CardActions.cs" />
     <Compile Include="Contracts\CheckItemState.cs" />
     <Compile Include="Contracts\DescData.cs" />
     <Compile Include="Contracts\Emoji.cs" />

@@ -21,6 +21,7 @@ namespace AgilityWall.Core.Features.CardDetails.Designer
             {
                 Url = "/Assets/RandomBg1.jpg"
             };
+            
         }
     }
 }
