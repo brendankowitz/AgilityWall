@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Features\About\AboutViewModel.cs" />
     <Compile Include="Features\Authentication\AuthenticateViewModel.cs" />
+    <Compile Include="Features\CardDetails\CardActionsViewModel.cs" />
     <Compile Include="Features\CardDetails\Designer\DesignCardDetailsViewModel.cs" />
     <Compile Include="Features\Shared\Designer\DesignNetworkErrorViewModel.cs" />
     <Compile Include="Features\Shared\NetworkErrorViewModel.cs" />

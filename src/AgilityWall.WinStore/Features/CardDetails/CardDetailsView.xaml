@@ -7,6 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:AgilityWall.WinStore.Controls"
     xmlns:thirdParty="using:AgilityWall.WinStore.Controls.ThirdParty"
+    xmlns:designer="using:AgilityWall.Core.Features.CardDetails.Designer"
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=designer:DesignCardDetailsViewModel}"
     mc:Ignorable="d">
 
     <controls:HeaderedPageLayout x:Name="PageLayout" PageTitle="Card Details" 
@@ -36,6 +38,22 @@
                 </Paragraph>
                 <Paragraph Margin="0,12">
                     <Run FontWeight="SemiLight" Text="{Binding Card.Desc}"/>
+                </Paragraph>
+                <Paragraph>
+                    <InlineUIContainer>
+                        <GridView ItemsSource="{Binding Cards}" MinWidth="400" SelectionMode="None" >
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <thirdParty:WrapPanel Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </InlineUIContainer>
                 </Paragraph>
             </RichTextBlock>
 

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AgilityWall.Core.Infrastructure;
 using AgilityWall.Core.Messages;
 using Caliburn.Micro;
 using PortableTrello.Client;
 using PortableTrello.Contracts;
+using PortableTrello.Contracts.CardActions;
 using PropertyChanged;
 
 namespace AgilityWall.Core.Features.CardDetails
@@ -13,12 +15,15 @@ namespace AgilityWall.Core.Features.CardDetails
     public class CardDetailsViewModel : Screen, IHandle<Refresh>
     {
         private readonly ITrelloClient _trelloClient;
+        private readonly CardActionsViewModel.Factory _actionFactory;
         private string _cardId;
         private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
 
-        public CardDetailsViewModel(ITrelloClient trelloClient)
+        public CardDetailsViewModel(ITrelloClient trelloClient, CardActionsViewModel.Factory actionFactory)
         {
             _trelloClient = trelloClient;
+            _actionFactory = actionFactory;
+            CardActions = new BindableCollection<CardActionsViewModel>();
         }
 
         protected async override void OnInitialize()
@@ -36,6 +41,8 @@ namespace AgilityWall.Core.Features.CardDetails
                     if (!string.IsNullOrEmpty(Card.IdAttachmentCover))
                         CoverAttachment = await _trelloClient.GetAttachmentById(CardId, Card.IdAttachmentCover);
                     List = await _trelloClient.GetListById(Card.IdList);
+                    var actions = await _trelloClient.GetCardActionsByCardId(CardId);
+                    CardActions.AddRange(actions.Select(x => _actionFactory.Invoke(x)));
                 }
             }
             finally
@@ -64,6 +71,7 @@ namespace AgilityWall.Core.Features.CardDetails
         public Attachment CoverAttachment { get; set; }
         public Card Card { get; set; }
         public List List { get; set; }
+        public IObservableCollection<CardActionsViewModel> CardActions { get; set; }
         public bool IsLoading { get; set; }
         public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); } }
 
@@ -81,6 +89,7 @@ namespace AgilityWall.Core.Features.CardDetails
         {
             Card = null;
             List = null;
+            CardActions.Clear();
         }
 
         public void Handle(Refresh message)

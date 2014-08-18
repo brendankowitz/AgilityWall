@@ -75,6 +75,7 @@
     <Compile Include="Contracts\CardActions\CardActionData.cs" />
     <Compile Include="Contracts\CardActions\CardActionMemberCreator.cs" />
     <Compile Include="Contracts\CardActions\CardActions.cs" />
+    <Compile Include="Contracts\CardActions\CardActionType.cs" />
     <Compile Include="Contracts\CheckItemState.cs" />
     <Compile Include="Contracts\DescData.cs" />
     <Compile Include="Contracts\Emoji.cs" />
