@@ -41,7 +41,7 @@
                 </Paragraph>
                 <Paragraph>
                     <InlineUIContainer>
-                        <GridView ItemsSource="{Binding Cards}" MinWidth="400" SelectionMode="None" >
+                        <GridView ItemsSource="{Binding CardActions}" MinWidth="400" SelectionMode="None" >
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <thirdParty:WrapPanel Orientation="Vertical" />
@@ -49,7 +49,7 @@
                             </GridView.ItemsPanel>
                             <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    
+                                    <TextBlock FontWeight="SemiLight" Text="{Binding Action.Data.Text}"/>
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
