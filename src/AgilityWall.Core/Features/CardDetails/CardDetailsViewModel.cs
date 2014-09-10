@@ -73,7 +73,6 @@ namespace AgilityWall.Core.Features.CardDetails
         public List List { get; set; }
         public IObservableCollection<CardActionsViewModel> CardActions { get; set; }
         public bool IsLoading { get; set; }
-        public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); } }
 
         [DependsOn("CoverAttachment")]
         public Uri CoverPhoto

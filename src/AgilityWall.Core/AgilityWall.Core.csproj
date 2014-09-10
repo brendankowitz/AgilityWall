@@ -60,7 +60,6 @@
     <Compile Include="Infrastructure\ObjectTokenStore.cs" />
     <Compile Include="Infrastructure\ObservableSortedList.cs" />
     <Compile Include="Features\Main\MainPageViewModel.cs" />
-    <Compile Include="Infrastructure\SetPropertiesFromParameterObject.cs" />
     <Compile Include="Infrastructure\TrelloRelay.cs" />
     <Compile Include="Messages\CanPinBoardMessage.cs" />
     <Compile Include="Messages\ModelResponse.cs" />

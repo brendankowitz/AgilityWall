@@ -44,7 +44,6 @@ namespace AgilityWall.Core.Features.TaskBoard
             }
         }
 
-        public object Parameter { set { this.SetPropertiesFromNavigationParameter(value); } }
         public Board Board { get; set; }
         public bool IsLoading { get; set; }
         public bool CanPin { get; set; }

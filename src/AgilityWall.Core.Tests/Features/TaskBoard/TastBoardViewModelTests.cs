@@ -33,16 +33,5 @@ namespace AgilityWall.Core.Tests.Features.TaskBoard
 
             _trelloClient.Received().ExecuteRequest(Arg.Is<GetBoardByIdRequest>(x => x.Resource == ResourcePathFor.Board(_sut.BoardId)));
         }
-
-        [Test]
-        public void WhenTheBoardIdIsSetViaTheParameterObject_ThenThatBoardIsLoadedFromTheApi()
-        {
-            _sut.Parameter = new { BoardId = 1 };
-
-            ((IViewAware)_sut).AttachView(new Object());
-            ((IActivate)_sut).Activate();
-
-            _trelloClient.Received().ExecuteRequest(Arg.Is<GetBoardByIdRequest>(x => x.Resource == ResourcePathFor.Board("1")));
-        }
     }
 }

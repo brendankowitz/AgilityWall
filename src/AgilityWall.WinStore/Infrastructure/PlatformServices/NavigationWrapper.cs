@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AgilityWall.Core.Navigation;
 using Caliburn.Micro;
@@ -28,10 +29,10 @@ namespace AgilityWall.WinStore.Infrastructure.PlatformServices
 
         public bool Navigate<T>(IDictionary<string,string> parameters)
         {
-            object expandoObject = null;
+            string parameterString = null;
             if(parameters != null && parameters.Any())
-                expandoObject = parameters.ToExpando();
-            return Navigate<T>(expandoObject);
+                parameterString = "caliburn://nav?" + string.Join("&", parameters.Select(x => string.Format("{0}={1}", Uri.EscapeUriString(x.Key), Uri.EscapeUriString(x.Value))));
+            return Navigate<T>(parameterString);
         }
 
         public void GoForward()
