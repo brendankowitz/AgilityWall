@@ -125,6 +125,7 @@
     <Compile Include="Features\CardDetails\CardDetailsView.xaml.cs">
       <DependentUpon>CardDetailsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Features\CardDetails\CardDetailsViewModel.cs" />
     <Compile Include="Features\Main\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

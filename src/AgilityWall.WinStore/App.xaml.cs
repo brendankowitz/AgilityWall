@@ -10,6 +10,7 @@ using Windows.UI.Xaml;
 using AgilityWall.Core.Features.Main;
 using AgilityWall.Core.Features.Shared;
 using AgilityWall.Core.Messages;
+using AgilityWall.WinStore.Features.CardDetails;
 using AgilityWall.WinStore.Features.Main;
 using Autofac;
 using Autofac.Features.OwnedInstances;
@@ -61,6 +62,10 @@ namespace AgilityWall.WinStore
 
             ViewLocator.ConfigureTypeMappings(config);
             ViewModelLocator.ConfigureTypeMappings(config);
+
+            builder.RegisterType<CardDetailsViewModel>()
+                .AsSelf()
+                .As<AgilityWall.Core.Features.CardDetails.CardDetailsViewModel>();
 
             builder.RegisterType<NetworkErrorViewModel>()
                 .AsSelf()
