@@ -287,7 +287,12 @@
         <Setter Property="Template" Value="{StaticResource BorderlessButtonStyle}"/>
     </Style>
 
-    <Style x:Key="WhiteBackButtonStyle" TargetType="Button">
+    <Style x:Key="LargeBorderlessPrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource BorderlessPrimaryButtonStyle}">
+        <Setter Property="MinWidth" Value="300"/>
+        <Setter Property="Height" Value="60"/>
+    </Style>
+
+        <Style x:Key="WhiteBackButtonStyle" TargetType="Button">
         <Setter Property="MinWidth" Value="0"/>
         <Setter Property="Width" Value="48"/>
         <Setter Property="Height" Value="48"/>
@@ -479,9 +484,9 @@
 
                         <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" FontSize="100" Style="{StaticResource IconUnplugged}" Foreground="{StaticResource AppTextBrush}" />
                         <StackPanel Grid.Row="1">
-                            <TextBlock HorizontalAlignment="Center" Text="We couldn't connect to the internet, check your data connection and try again."
+                            <TextBlock HorizontalAlignment="Center" Text="Agility Wall couldn't connect to the internet, check your data connection and try again."
                                       TextAlignment="Center" Style="{StaticResource AppPrimaryItemHeading}" TextWrapping="WrapWholeWords" MaxWidth="600"  />
-                            <Button Margin="0, 28, 0, 0" HorizontalAlignment="Center" Content="Retry" micro:Message.Attach="Retry" Style="{StaticResource BorderlessPrimaryButtonStyle}" Foreground="White" />
+                            <Button Margin="0, 28, 0, 0" HorizontalAlignment="Center" Content="Retry" micro:Message.Attach="Retry" Style="{StaticResource LargeBorderlessPrimaryButtonStyle}"  Foreground="White" />
                         </StackPanel>
                     </Grid>
                 </Border>

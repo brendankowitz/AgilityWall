@@ -6,6 +6,7 @@ using PortableTrello.Client.Requests.CardRequests;
 using PortableTrello.Client.Requests.ListRequests;
 using PortableTrello.Client.Requests.MemberRequests;
 using PortableTrello.Contracts;
+using PortableTrello.Contracts.CardActions;
 
 namespace PortableTrello.Client
 {
@@ -39,6 +40,11 @@ namespace PortableTrello.Client
         public static Task<Card> GetCardById(this ITrelloClient client, string cardId)
         {
             return client.ExecuteRequest(new GetCardByIdRequest(cardId));
+        }
+
+        public static Task<CardAction[]> GetCardActionsByCardId(this ITrelloClient client, string cardId)
+        {
+            return client.ExecuteRequest(new GetCardActionsByCardIdRequest(cardId));
         }
 
         public static Task<Member> GetMemberById(this ITrelloClient client, string memberId)

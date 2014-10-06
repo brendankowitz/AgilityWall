@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Features\About\AboutViewModel.cs" />
     <Compile Include="Features\Authentication\AuthenticateViewModel.cs" />
+    <Compile Include="Features\CardDetails\CardActionsViewModel.cs" />
     <Compile Include="Features\CardDetails\Designer\DesignCardDetailsViewModel.cs" />
     <Compile Include="Features\Shared\Designer\DesignNetworkErrorViewModel.cs" />
     <Compile Include="Features\Shared\NetworkErrorViewModel.cs" />
@@ -59,7 +60,6 @@
     <Compile Include="Infrastructure\ObjectTokenStore.cs" />
     <Compile Include="Infrastructure\ObservableSortedList.cs" />
     <Compile Include="Features\Main\MainPageViewModel.cs" />
-    <Compile Include="Infrastructure\SetPropertiesFromParameterObject.cs" />
     <Compile Include="Infrastructure\TrelloRelay.cs" />
     <Compile Include="Messages\CanPinBoardMessage.cs" />
     <Compile Include="Messages\ModelResponse.cs" />

@@ -1,12 +1,14 @@
 ﻿using System;
+using Caliburn.Micro;
 using PortableTrello.Contracts;
+using PortableTrello.Contracts.CardActions;
 
 namespace AgilityWall.Core.Features.CardDetails.Designer
 {
     public class DesignCardDetailsViewModel : CardDetailsViewModel
     {
         public DesignCardDetailsViewModel() : 
-            base(null)
+            base(null, null)
         {
             DisplayName = "Tart soufflé jujubes soufflé sweet candy canes. Pie biscuit macaroon.";
             Card = new Card
@@ -21,6 +23,18 @@ namespace AgilityWall.Core.Features.CardDetails.Designer
             {
                 Url = "/Assets/RandomBg1.jpg"
             };
+            CardActions = new BindableCollection<CardActionsViewModel>(new[]
+            {
+                new CardActionsViewModel(new CardAction
+                {
+                    Date = "12/08/2014",
+                    Data = new CardActionData
+                    {
+                        Text = "This is a comment"
+                    }
+                }, null), 
+            });
+            
         }
     }
 }
