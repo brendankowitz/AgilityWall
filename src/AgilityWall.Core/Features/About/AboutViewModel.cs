@@ -3,7 +3,7 @@ using Caliburn.Micro;
 
 namespace AgilityWall.Core.Features.About
 {
-    public class AboutViewModel : Screen
+    public sealed class AboutViewModel : Screen
     {
         private readonly IEventAggregator _eventAggregator;
 

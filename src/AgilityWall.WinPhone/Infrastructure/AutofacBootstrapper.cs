@@ -45,5 +45,11 @@ namespace AgilityWall.WinPhone.Infrastructure
         {
             return new RadPhoneApplicationFrame();
         }
+
+        protected override void AddCustomConventions()
+        {
+            base.AddCustomConventions();
+            ConventionManager.AddElementConvention<LongListSelector>(LongListSelector.ItemsSourceProperty, "SelectedItem", "SelectionChanged");
+        }
     }
 }

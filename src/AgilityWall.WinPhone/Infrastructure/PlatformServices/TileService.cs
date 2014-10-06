@@ -10,7 +10,8 @@ using PortableTrello.Contracts;
 
 namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
 {
-    public class TileService : IHandleWithTask<PinBoardMessage>, IHandle<CanPinBoardMessage>
+    public class TileService : IHandleWithTask<PinBoardMessage>,
+        IHandle<CanPinBoardMessage>
     {
         private readonly INavigationService _navigationService;
         private readonly ITrelloClient _client;
@@ -23,26 +24,7 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
 
         public async Task Handle(PinBoardMessage message)
         {
-            var board = message.Board;
-            var uri = GetBoardUri(board);
 
-            var tileData = new StandardTileData
-            {
-                Title = board.Name,
-                BackgroundImage = new Uri("/Assets/Tiles/BoardTileMedium.png", UriKind.Relative),
-            };
-            if (!string.IsNullOrEmpty(board.Desc))
-            {
-                tileData.BackContent = board.Desc;
-            }
-
-            ShellTile.Create(uri, tileData);
-        }
-
-        public void Handle(CanPinBoardMessage message)
-        {
-            var uri = GetBoardUri(message.Board);
-            message.SetResult(ShellTile.ActiveTiles.All(x => x.NavigationUri != uri));
         }
 
         private Uri GetBoardUri(Board board)
@@ -52,6 +34,12 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
                 .WithParam(x => x.DisplayName, board.Name)
                 .BuildUri();
             return uri;
+        }
+
+        public void Handle(CanPinBoardMessage message)
+        {
+            var uri = GetBoardUri(message.Board);
+            message.SetResult(ShellTile.ActiveTiles.All(x => x.NavigationUri != uri));
         }
     }
 }

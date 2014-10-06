@@ -7,9 +7,9 @@ namespace AgilityWall.WinStore.Infrastructure.PlatformServices
 {
     public class NavigationWrapper : INavService
     {
-        private readonly Caliburn.Micro.INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
 
-        public NavigationWrapper(Caliburn.Micro.INavigationService navigationService)
+        public NavigationWrapper(INavigationService navigationService)
         {
             _navigationService = navigationService;
         }

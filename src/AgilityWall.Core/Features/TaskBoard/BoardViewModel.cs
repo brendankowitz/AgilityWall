@@ -23,7 +23,8 @@ namespace AgilityWall.Core.Features.TaskBoard
         private readonly TaskCompletionSource<bool> _viewReady = new TaskCompletionSource<bool>();
         private Task _initialiseTrelloClient = null;
 
-        public BoardViewModel(INavService navigationService, ITrelloClient trelloClient, IEventAggregator eventAggregator,
+        public BoardViewModel(INavService navigationService, 
+            ITrelloClient trelloClient, IEventAggregator eventAggregator,
             ListSummaryViewModel.Factory listSummaryFactory)
         {
             _navigationService = navigationService;
@@ -73,7 +74,7 @@ namespace AgilityWall.Core.Features.TaskBoard
                     Items.AddRange(lists.Select(x => _listSummaryFactory(x)));
                 }
 
-                _eventAggregator.Publish(new CanPinBoardMessage(Board, x => CanPin = x), Execute.BeginOnUIThread);
+               _eventAggregator.Publish(new CanPinBoardMessage(Board, x=> CanPin = x), Execute.BeginOnUIThread);
             }
             finally
             {
