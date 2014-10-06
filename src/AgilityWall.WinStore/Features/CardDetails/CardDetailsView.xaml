@@ -39,22 +39,6 @@
                 <Paragraph Margin="0,12">
                     <Run FontWeight="SemiLight" Text="{Binding Card.Desc}"/>
                 </Paragraph>
-                <Paragraph>
-                    <InlineUIContainer>
-                        <GridView ItemsSource="{Binding CardActions}" MinWidth="400" SelectionMode="None" >
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <thirdParty:WrapPanel Orientation="Vertical" />
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock FontWeight="SemiLight" Text="{Binding Action.Data.Text}"/>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </InlineUIContainer>
-                </Paragraph>
             </RichTextBlock>
 
             <!-- Additional columns are created from this template -->

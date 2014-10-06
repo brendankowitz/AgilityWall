@@ -65,7 +65,10 @@ namespace AgilityWall.Core.Features.Main
 
         /* TODO: ConnectWithTrello method */
 
-
+        public void ConnectWithTrello()
+        {
+            _navigationService.Navigate<AuthenticateViewModel>();
+        }
 
 
 

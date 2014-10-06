@@ -42,12 +42,7 @@
                 <Image Source="{Binding CoverPhoto}" Stretch="UniformToFill" MaxHeight="300" Margin="-12,-12,-12,24" />
 
                 <Border Background="{StaticResource AppSecondaryBrush}" HorizontalAlignment="Left" Margin="12,0,12,12">
-                    <TextBlock Text="{Binding DisplayName}" Foreground="White"
-						   HorizontalAlignment="Left" 
-                           Style="{StaticResource AppPrimaryPageHeading}" 
-                           FontSize="{StaticResource 21PtFontSize}"
-                           Margin="{StaticResource PhoneMargin}" 
-                           TextWrapping="Wrap"/>
+                    <TextBox Text="{Binding DisplayName, Mode=TwoWay}"></TextBox>
                 </Border>
 
                 <TextBlock FontWeight="Black">
@@ -60,5 +55,13 @@
         </ScrollViewer>
 
     </controls:HeaderedPageLayout>
+
+    <phone:PhoneApplicationPage.ApplicationBar >
+        <shell:ApplicationBar Mode="Minimized" BackgroundColor="{StaticResource AppAccentColor}">
+            <shell:ApplicationBar.MenuItems>
+                <micro:AppBarMenuItem Text="Attach image" Message="AttachImage" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

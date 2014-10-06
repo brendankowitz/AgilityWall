@@ -14,17 +14,28 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
         IHandle<CanPinBoardMessage>
     {
         private readonly INavigationService _navigationService;
-        private readonly ITrelloClient _client;
 
         public TileService(INavigationService navigationService, ITrelloClient client)
         {
             _navigationService = navigationService;
-            _client = client;
         }
 
         public async Task Handle(PinBoardMessage message)
         {
+            var uri = GetBoardUri(message.Board);
+            var board = message.Board;
 
+            var tileData = new StandardTileData
+            {
+                Title = board.Name,
+                BackgroundImage = new Uri("/Assets/Tiles/BoardTileMedium.png", UriKind.Relative),
+            };
+            if (!string.IsNullOrEmpty(board.Desc))
+            {
+                tileData.BackContent = board.Desc;
+            }
+
+            ShellTile.Create(uri, tileData);
         }
 
         private Uri GetBoardUri(Board board)

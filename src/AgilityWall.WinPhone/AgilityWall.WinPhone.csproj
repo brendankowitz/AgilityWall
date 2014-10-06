@@ -109,6 +109,8 @@
     <Compile Include="Features\Authentication\AuthenticateView.xaml.cs">
       <DependentUpon>AuthenticateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Features\CardDetails\CardDetailsViewModel.cs" />
+    <Compile Include="Features\CardDetails\CardDetailsViewModelStorageHandler.cs" />
     <Compile Include="Features\TaskBoard\BoardView.xaml.cs">
       <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
