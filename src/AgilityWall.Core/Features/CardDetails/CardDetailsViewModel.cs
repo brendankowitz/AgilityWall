@@ -38,7 +38,7 @@ namespace AgilityWall.Core.Features.CardDetails
                 if (!string.IsNullOrEmpty(CardId))
                 {
                     Card = await _trelloClient.GetCardById(CardId);
-                    if (!string.IsNullOrEmpty(Card.IdAttachmentCover))
+                    if (!string.IsNullOrEmpty(Card.IdAttachmentCover) && Card.Badges.Attachments > 0)
                         CoverAttachment = await _trelloClient.GetAttachmentById(CardId, Card.IdAttachmentCover);
                     List = await _trelloClient.GetListById(Card.IdList);
                     var actions = await _trelloClient.GetCardActionsByCardId(CardId);

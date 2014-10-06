@@ -32,7 +32,7 @@ namespace AgilityWall.Core.Features.TaskBoard
 
         protected async void Initialize()
         {
-            if (!string.IsNullOrEmpty(Card.IdAttachmentCover))
+            if (!string.IsNullOrEmpty(Card.IdAttachmentCover) && Card.Badges.Attachments > 0)
                 _eventAggregator.Publish(_getAttachmentByIdRequest, Execute.BeginOnUIThread);
 
             if (Card.IdMembers.Any())
