@@ -38,11 +38,15 @@ namespace AgilityWall.Core.Features.CardDetails
                 if (!string.IsNullOrEmpty(CardId))
                 {
                     Card = await _trelloClient.GetCardById(CardId);
-                    if (!string.IsNullOrEmpty(Card.IdAttachmentCover) && Card.Badges.Attachments > 0)
-                        CoverAttachment = await _trelloClient.GetAttachmentById(CardId, Card.IdAttachmentCover);
-                    List = await _trelloClient.GetListById(Card.IdList);
-                    var actions = await _trelloClient.GetCardActionsByCardId(CardId);
-                    CardActions.AddRange(actions.Select(x => _actionFactory.Invoke(x)));
+                    var coverPhotoTask = Task.Run(async () =>
+                    {
+                        if (!string.IsNullOrEmpty(Card.IdAttachmentCover) && Card.Badges.Attachments > 0)
+                            CoverAttachment = await _trelloClient.GetAttachmentById(CardId, Card.IdAttachmentCover);
+                    });
+
+                    await Task.WhenAll(_trelloClient.GetListById(Card.IdList).ContinueWith(x => List = x.Result),
+                        _trelloClient.GetCardActionsByCardId(CardId).ContinueWith(actions => CardActions.AddRange(actions.Result.Select(y => _actionFactory.Invoke(y)))),
+                        coverPhotoTask);
                 }
             }
             finally
