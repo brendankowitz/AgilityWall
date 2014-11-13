@@ -27,7 +27,17 @@ namespace AgilityWall.Core.Features.CardDetails.Designer
             {
                 new CardActionsViewModel(new CardAction
                 {
-                    Date = "12/08/2014",
+                    Type = CardActionType.CommentCard,
+                    Date = DateTime.Now,
+                    Data = new CardActionData
+                    {
+                        Text = "This is a comment"
+                    }
+                }, null), 
+                new CardActionsViewModel(new CardAction
+                {
+                    Type = CardActionType.UpdateCard,
+                    Date = DateTime.Now.AddDays(-1),
                     Data = new CardActionData
                     {
                         Text = "This is a comment"

@@ -26,12 +26,14 @@
                                  IsIndeterminate="{Binding IsLoading}"
                                  IsVisible="{Binding IsLoading}"/>
     </shell:SystemTray.ProgressIndicator>
-    
+
     <phone:PhoneApplicationPage.Resources>
         <Thickness x:Key="StackedMargin">24,0,24,12</Thickness>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
+        <Style x:Key="PageText" TargetType="TextBlock" BasedOn="{StaticResource AppTextBase}">
             <Setter Property="FontSize" Value="{StaticResource 18PtFontSize}" />
             <Setter Property="Margin" Value="{StaticResource StackedMargin}" />
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource PageText}">
         </Style>
     </phone:PhoneApplicationPage.Resources>
 
@@ -53,9 +55,51 @@
                 <TextBlock FontWeight="Black">
                     <Run Text="In list " FontWeight="SemiBold" /><Run Text="{Binding List.Name}" />
                 </TextBlock>
-                
+
                 <TextBlock Text="{Binding Card.Desc}" TextWrapping="Wrap" />
-                
+
+                <ItemsControl ItemsSource="{Binding CardActions}" Margin="{StaticResource PhoneMargin}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="{StaticResource FillBorderBrush}" 
+                                    BorderThickness="1" Margin="{StaticResource PhoneMargin}"
+                                    Visibility="{Binding Action.Data.Text, Converter={StaticResource NullToInvisibilityConverter}}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Border Background="{StaticResource FillBrush}" Grid.ColumnSpan="2">
+                                        <Grid Margin="{StaticResource PhoneMargin}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Source="{Binding AvatarUri}" Margin="0 0 8 0" />
+                                            <TextBlock Grid.Column="1" Text="{Binding Action.MemberCreator.FullName}" />
+                                            <TextBlock Text="{Binding Action.Date, Converter={StaticResource CardDateFormatter}}"
+                                                    Grid.Column="2" HorizontalAlignment="Right" />
+                                        </Grid>
+                                    </Border>
+
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Action.Data.Text}"
+                                        Style="{StaticResource PageText}"
+                                        Margin="{StaticResource PhoneMargin}"
+                                        TextWrapping="Wrap" />
+
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
         </ScrollViewer>
 

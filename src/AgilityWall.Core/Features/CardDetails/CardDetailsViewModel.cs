@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AgilityWall.Core.Infrastructure;
@@ -75,7 +76,7 @@ namespace AgilityWall.Core.Features.CardDetails
         public Attachment CoverAttachment { get; set; }
         public Card Card { get; set; }
         public List List { get; set; }
-        public IObservableCollection<CardActionsViewModel> CardActions { get; set; }
+        public IObservableCollection<CardActionsViewModel> CardActions { get; set; } 
         public bool IsLoading { get; set; }
 
         [DependsOn("CoverAttachment")]
