@@ -56,9 +56,9 @@
                     <Run Text="In list " FontWeight="SemiBold" /><Run Text="{Binding List.Name}" />
                 </TextBlock>
 
-                <TextBlock Text="{Binding Card.Desc}" TextWrapping="Wrap" />
+                <TextBlock Text="{Binding Card.Desc}" TextWrapping="Wrap" Visibility="{Binding Card.Desc, Converter={StaticResource NullToInvisibilityConverter}}" />
 
-                <ItemsControl ItemsSource="{Binding CardActions}" Margin="{StaticResource PhoneMargin}">
+                <ItemsControl ItemsSource="{Binding CardActions}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="{StaticResource FillBorderBrush}" 
@@ -82,7 +82,7 @@
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
-                                            <Image Source="{Binding AvatarUri}" Margin="0 0 8 0" />
+                                            <Image Source="{Binding AvatarUri}" Margin="0 0 8 0" Height="30" />
                                             <TextBlock Grid.Column="1" Text="{Binding Action.MemberCreator.FullName}" />
                                             <TextBlock Text="{Binding Action.Date, Converter={StaticResource CardDateFormatter}}"
                                                     Grid.Column="2" HorizontalAlignment="Right" />

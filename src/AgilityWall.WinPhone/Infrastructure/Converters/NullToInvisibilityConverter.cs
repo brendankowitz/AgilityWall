@@ -11,6 +11,10 @@ namespace AgilityWall.WinPhone.Infrastructure.Converters
         {
             if (value == null)
                 return Visibility.Collapsed;
+
+            if(value is string && string.IsNullOrEmpty((string)value))
+                return Visibility.Collapsed;
+
             return Visibility.Visible;
         }
 
