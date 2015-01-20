@@ -2,7 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="using:AgilityWall.WinStore.Controls"
                     xmlns:micro="using:Caliburn.Micro"
-                    xmlns:thirdParty="using:AgilityWall.WinStore.Controls.ThirdParty">
+                    xmlns:thirdParty="using:AgilityWall.WinStore.Controls.ThirdParty"
+                    xmlns:infrastructure="using:AgilityWall.WinStore.Infrastructure">
+
+    <infrastructure:NavigationHelper x:Name="NavigationHelper" />
 
     <Color x:Key="AppAccentColor">#007fff</Color>
     <Color x:Key="AppAccentForeColor">#fff</Color>
