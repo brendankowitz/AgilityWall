@@ -31,7 +31,7 @@
 
         <StackPanel>
 
-            <TextBlock Text="Agility Wall v1.0" />
+            <TextBlock Text="Agility Wall v1.0.1" />
             <TextBlock Text="by Brendan Kowitz" />
 
         </StackPanel>

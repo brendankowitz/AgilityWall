@@ -27,6 +27,11 @@ namespace AgilityWall.Core.Features.TaskBoard
         {
             var model = BindingWorkaroundExtensions.EnsureModel<ListSummaryViewModel>(obj);
             return base.Equals(model);
-        }   
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

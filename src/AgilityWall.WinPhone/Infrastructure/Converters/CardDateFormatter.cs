@@ -11,7 +11,8 @@ namespace AgilityWall.WinPhone.Infrastructure.Converters
             try
             {
                 var date = System.Convert.ToDateTime(value);
-                return date.ToLocalTime().ToString("M");
+                var format = date.ToLocalTime().ToString("M");
+                return format;
             }
             catch
             {
