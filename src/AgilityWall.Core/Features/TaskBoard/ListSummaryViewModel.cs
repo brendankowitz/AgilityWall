@@ -26,11 +26,13 @@ namespace AgilityWall.Core.Features.TaskBoard
         public override bool Equals(object obj)
         {
             var model = BindingWorkaroundExtensions.EnsureModel<ListSummaryViewModel>(obj);
+            // ReSharper disable once BaseObjectEqualsIsObjectEquals
             return base.Equals(model);
         }
 
         public override int GetHashCode()
         {
+            // ReSharper disable once BaseObjectGetHashCodeCallInGetHashCode
             return base.GetHashCode();
         }
     }

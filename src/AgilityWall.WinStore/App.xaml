@@ -21,7 +21,6 @@
             <converters:StringToUriConverter x:Key="StringToUriConverter" />
             <converters:CardLabelConverter x:Key="CardLabelConverter" />
 
-            <infrastructure:NavigationHelper x:Name="NavigationHelper" />
         </ResourceDictionary>
     </Application.Resources>
 

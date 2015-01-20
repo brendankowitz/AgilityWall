@@ -75,7 +75,11 @@ namespace AgilityWall.WinStore.Infrastructure.PlatformServices
             {
                 deleteTask = StorageFolder.GetFileAsync(key).AsTask()
 // ReSharper disable once EmptyGeneralCatchClause
-                                          .ContinueWith(x => { try { x.Result.DeleteAsync(); } catch { } });
+                                          .ContinueWith(async x => {
+                                                                 try
+                                                                 {
+                                                                     await x.Result.DeleteAsync();
+                                                                 } catch { } });
             }
             finally
             {

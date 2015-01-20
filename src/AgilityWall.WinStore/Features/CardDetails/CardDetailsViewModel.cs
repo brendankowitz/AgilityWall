@@ -20,7 +20,7 @@ namespace AgilityWall.WinStore.Features.CardDetails
                 dataRequest.Data.Properties.Description = Card.Desc;
 
             dataRequest.Data.SetText(Card.Name);
-            dataRequest.Data.SetUri(new Uri(Card.Url));
+            dataRequest.Data.SetWebLink(new Uri(Card.Url));
         }
     }
 }

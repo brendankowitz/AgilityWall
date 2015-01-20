@@ -21,7 +21,7 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
             _client = client;
         }
 
-        public async Task Handle(PinBoardMessage message)
+        public Task Handle(PinBoardMessage message)
         {
             var board = message.Board;
             var uri = GetBoardUri(board);
@@ -37,6 +37,8 @@ namespace AgilityWall.WinPhone.Infrastructure.PlatformServices
             }
 
             ShellTile.Create(uri, tileData);
+
+            return Task.FromResult(true);
         }
 
         public void Handle(CanPinBoardMessage message)

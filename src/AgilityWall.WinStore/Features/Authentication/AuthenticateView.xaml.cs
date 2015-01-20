@@ -28,21 +28,22 @@ namespace AgilityWall.WinStore.Features.Authentication
             SetProgress(true);
         }
 
-        private void BrowserOnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+        private async void BrowserOnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
-            var htmlContent = GetHtml();
+            var htmlContent = await GetHtml();
             OnBrowserRedirected(new BrowserEventArgs(args.Uri.ToString(), htmlContent));
             SetProgress(false);
         }
 
-        private string GetHtml()
+        private async Task<string> GetHtml()
         {
-            return Browser.InvokeScript("eval", new[] {"document.documentElement.outerHTML;"});
+            return await Browser.InvokeScriptAsync("eval", new[] {"document.documentElement.outerHTML;"});
         }
 
-        public async Task DisplayUri(Uri authorizationUrl)
+        public Task DisplayUri(Uri authorizationUrl)
         {
             Browser.Navigate(authorizationUrl);
+            return Task.FromResult(true);
         }
 
         void SetProgress(bool enabled)

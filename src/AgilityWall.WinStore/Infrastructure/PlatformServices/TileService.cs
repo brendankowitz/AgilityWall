@@ -14,7 +14,7 @@ namespace AgilityWall.WinStore.Infrastructure.PlatformServices
             _client = client;
         }
 
-        public async Task Handle(PinBoardMessage message)
+        public Task Handle(PinBoardMessage message)
         {
             //var uri = _navigationWrapper.BuildUri(typeof (CardDetailsViewModel),
             //    new Dictionary<string, string>
@@ -35,6 +35,8 @@ namespace AgilityWall.WinStore.Infrastructure.PlatformServices
             //};
 
             //ShellTile.Create(uri, tileData);
+
+            return Task.FromResult(true);
         }
     }
 }
