@@ -20,6 +20,7 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxPackageDir>C:\Src\AppPackages\</AppxPackageDir>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>768AA5B08829390E7462ED457A94BEC3D3AB6347</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -164,6 +165,7 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <None Include="AgilityWall.WinStore_TemporaryKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
